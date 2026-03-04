@@ -1122,7 +1122,7 @@ body::after {
 }
 
 .about-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 2.5rem;
     letter-spacing: 8px;
     color: var(--white);
@@ -1137,11 +1137,13 @@ body::after {
 }
 
 .about-intro {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.2rem;
-    color: var(--gold);
-    line-height: 1.2;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    color: var(--silver);
+    line-height: 1.8;
+    font-weight: 300;
     max-width: 800px;
+    margin: 0 auto;
 }
 
 .about-grid {
@@ -1175,29 +1177,40 @@ body::after {
 }
 
 .about-pillar h3 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
     color: var(--gold);
     font-size: 1.3rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .pillar-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--silver);
-    opacity: 0.8;
-    margin-bottom: 25px;
-    line-height: 1.5;
-    min-height: 40px;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    text-align: left;
+}
+
+.pillar-subtitle strong {
+    display: block;
+    color: var(--white);
+    margin-bottom: 6px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    opacity: 1;
 }
 
 .pillar-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--silver);
-    line-height: 1.6;
-    margin-bottom: 25px;
-    text-align: justify;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: left;
 }
 
 .about-pillar ul {
