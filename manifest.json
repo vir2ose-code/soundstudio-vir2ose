@@ -1,0 +1,22 @@
+{
+  "name": "VIR2OSE Studio",
+  "short_name": "VIR2OSE",
+  "description": "VIR2OSE Sound Studio & Audio-Engineering",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "logo.ping.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.ping.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
