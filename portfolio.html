@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO | VIR2OSE SOUND STUDIO</title>
+    <link rel="icon" type="image/png" href="logo.ping.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="mouse-light"></div>
+    <audio id="preview-audio" style="display: none;"></audio>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Animated 3D Gradient Overlay -->
+    <div class="gradient-3d"></div>
+
+    <header class="header" id="header">
+        <a href="index.html" class="logo-link">
+            <img src="logo.ping.png" alt="VIR2OSE Music Production" class="logo-img">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="index.html#studio" data-i18n="nav_studio">STUDIO</a> <span class="dot">•</span>
+            <a href="index.html#services" data-i18n="nav_services">SERVICES</a> <span class="dot">•</span>
+            <a href="portfolio.html" data-i18n="nav_portfolio" class="active">PORTFOLIO</a> <span class="dot">•</span>
+            <a href="index.html#contact" data-i18n="nav_contact">CONTACT</a>
+            <span class="dot">•</span>
+            <div class="lang-selector-nav">
+                <span class="lang-option" onclick="setLanguage('de')" id="lang-de">DE</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" onclick="setLanguage('en')" id="lang-en">EN</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" onclick="setLanguage('pl')" id="lang-pl">PL</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Elegant Audio Wave Background -->
+    <div class="visualizer">
+        <canvas id="wave-canvas"></canvas>
+    </div>
+
+    <main class="portfolio-page">
+        <section id="samples" class="samples-section">
+            <div class="container">
+                <h2 class="section-title" data-i18n="port_title">SOUND PORTFOLIO</h2>
+                <p class="section-subtitle" data-i18n="port_subtitle">Entdecke exklusive Sound-Samples und Produktionen
+                    von VIR2OSE.</p>
+
+                <div class="samples-grid">
+                    <!-- Techno -->
+                    <div class="sample-card glass-panel"
+                        onclick="playPortfolioSample('sounds/previews/techno/sounds_previews_techno_sample_1.wav', this)">
+                        <div class="sample-icon">🎹</div>
+                        <div class="sample-info">
+                            <span class="sample-genre">Techno</span>
+                            <h4 class="sample-name" data-i18n="port_sample_techno">Industrial Techno Alpha</h4>
+                        </div>
+                        <div class="play-indicator"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <!-- Lofi -->
+                    <div class="sample-card glass-panel"
+                        onclick="playPortfolioSample('sounds/previews/lofi/sounds_previews_lofi_sample_1.wav', this)">
+                        <div class="sample-icon">☕</div>
+                        <div class="sample-info">
+                            <span class="sample-genre">Lofi</span>
+                            <h4 class="sample-name" data-i18n="port_sample_lofi">Luxury Lofi Dreams</h4>
+                        </div>
+                        <div class="play-indicator"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <!-- Cinematic -->
+                    <div class="sample-card glass-panel"
+                        onclick="playPortfolioSample('sounds/previews/cinematic/sounds_previews_cinematic_sample_1.wav.wav', this)">
+                        <div class="sample-icon">🎬</div>
+                        <div class="sample-info">
+                            <span class="sample-genre">Cinematic</span>
+                            <h4 class="sample-name" data-i18n="port_sample_cinematic">Dark Cinematic Odyssey</h4>
+                        </div>
+                        <div class="play-indicator"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <!-- Drill -->
+                    <div class="sample-card glass-panel"
+                        onclick="playPortfolioSample('sounds/previews/drill/sounds_previews_drill_sample_1.wav.wav', this)">
+                        <div class="sample-icon">🏙️</div>
+                        <div class="sample-info">
+                            <span class="sample-genre">Drill</span>
+                            <h4 class="sample-name" data-i18n="port_sample_drill">Urban Drill Force</h4>
+                        </div>
+                        <div class="play-indicator"><span></span><span></span><span></span></div>
+                    </div>
+
+                    <!-- House -->
+                    <div class="sample-card glass-panel"
+                        onclick="playPortfolioSample('sounds/previews/house/sounds_previews_house_sample_1.wav', this)">
+                        <div class="sample-icon">🌊</div>
+                        <div class="sample-info">
+                            <span class="sample-genre">House</span>
+                            <h4 class="sample-name" data-i18n="port_sample_house">Melodic House Vibe</h4>
+                        </div>
+                        <div class="play-indicator"><span></span><span></span><span></span></div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="index.html" class="btn btn-secondary" data-i18n="nav_studio">BACK TO STUDIO</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
