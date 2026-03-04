@@ -52,7 +52,28 @@ document.addEventListener('DOMContentLoaded', () => {
             'work_intro': 'Willkommen im modernsten Außenposten des Sound Studio Hannover. Meine duale KI-Engine ist darauf ausgelegt, die Barriere zwischen deiner kreativen Idee und dem fertigen Klangerlebnis einzureißen.',
             'work_body': 'Während die Prompt-Engine (Links) deine abstrakten Visionen in präzise technische Anweisungen übersetzt, materialisiert die Sound-Engine (Rechts) daraus ein exklusives, KI-gestütztes Audio-Unikat. Es ist der kürzeste Weg weltweit, um Sounddesign nicht nur zu denken, sondern sofort hörbar zu machen.',
             'work_footer': 'Warum VIR2OSE? Weil ich menschliche Expertise mit der grenzenlosen Rechenpower der nächsten KI-Generation (Gemini 3 Flash) vereine. Du lieferst den Funken – ich liefere den Beat.',
-            'work_btn': 'MEHR ÜBER DAS STUDIO ERFAHREN'
+            'work_btn': 'MEHR ÜBER DAS STUDIO ERFAHREN',
+            // About Me DE
+            'nav_about': 'ÜBER MICH',
+            'about_title': 'ÜBER MICH',
+            'about_intro': 'Herzlich willkommen! Mein Name ist Waldemar Krucinski. Mein professionelles Schaffen ruht auf drei wesentlichen Säulen, die kreatives Handwerk, staatlich geprüfte Expertise und technologischen Pioniergeist vereinen: Musikproduktion, Mediengestaltung und Netzwerk-Systeme.',
+
+            'about_col1_title': '1. Musik: Staatlich geprüfte Produktion',
+            'about_col1_text': 'Musik ist für mich ein ganzheitlicher Prozess auf höchstem technischem Niveau. Als staatlich geprüfter Musikproduzent (HOFA College Diploma) verfüge ich über tiefgreifendes Fachwissen in der gesamten Produktionskette. Mein Fokus liegt auf einem erstklassigen Sound und einer strukturierten Umsetzung – von der ersten Vision bis zum finalen Master.',
+            'about_col1_exp_title': 'Expertise:',
+            'about_col1_exp_text': 'Projektplanung, Songwriting, Sounddesign, Recording, Editing, Drum-Programming, Mixing und Mastering.',
+            'about_col1_cert_title': 'Nachweis:',
+            'about_col1_cert_text': 'Meine Qualifikationen sind durch das staatlich anerkannte Diploma und entsprechende Zertifizierungen belegbar.',
+
+            'about_col2_title': '2. Mediengestaltung: Professionelles Bild & Ton',
+            'about_col2_text': 'In der visuellen Welt verbinde ich kreatives Storytelling mit handwerklicher Präzision. Als IHK-geprüfter Mediengestalter Bild und Ton beherrsche ich die technischen und gestalterischen Standards der Medienbranche. Ich begleite Projekte durch alle Phasen der Postproduktion und garantiere einen professionellen Workflow.',
+            'about_col2_skill_title': 'Skills:',
+            'about_col2_skill_text': 'Kamera-Set-Planning, High-End-Schnitt (DaVinci Resolve Studio, Avid, FCP), Animation, Grafikbearbeitung, Synchronisation und komplette Filmproduktionen.',
+
+            'about_col3_title': '3. Netzwerk & IT: Innovation & Zukunft',
+            'about_col3_text': 'Die dritte Säule bildet meine Leidenschaft für Netzwerk-Kunst und moderne Programmierung. Hier bewege ich mich als ambitionierter "Early Adopter": Mein Interesse wächst mit jeder technologischen Neuerung. Ich experimentiere intensiv mit KI-Agenten-Tools, VS Cloud und GitHub. Mich faszinieren die Schnittstellen zwischen technischer Infrastruktur und zukunftsweisenden Konzepten wie der Antigravity-Technologie.',
+
+            'about_claim': '<strong>Mein Anspruch:</strong> Ob Akustik, Bild oder digitale Vernetzung – ich stehe für Projekte, die durch fundiertes Know-how, zweifach staatlich anerkannte Qualität und den Mut zu neuen Technologien überzeugen.'
         },
         'en': {
             'nav_studio': 'STUDIO',
@@ -103,7 +124,28 @@ document.addEventListener('DOMContentLoaded', () => {
             'work_intro': 'Welcome to the most modern outpost of Sound Studio Hannover. My dual AI engine is designed to break down the barrier between your creative idea and the final sound experience.',
             'work_body': 'While the Prompt Engine (Left) translates your abstract visions into precise technical instructions, the Sound Engine (Right) materializes an exclusive, AI-powered audio unique from them. It is the shortest way worldwide to not just think about sound design, but to make it audible immediately.',
             'work_footer': 'Why VIR2OSE? Because I combine human expertise with the limitless computing power of the next AI generation (Gemini 3 Flash). You provide the spark – I deliver the beat.',
-            'work_btn': 'LEARN MORE ABOUT THE STUDIO'
+            'work_btn': 'LEARN MORE ABOUT THE STUDIO',
+            // About Me EN
+            'nav_about': 'ABOUT',
+            'about_title': 'ABOUT ME',
+            'about_intro': 'Welcome! My name is Waldemar Krucinski. My professional work rests on three essential pillars that combine creative craftsmanship, state-certified expertise, and technological pioneering spirit: Music Production, Media Design, and Network Systems.',
+
+            'about_col1_title': '1. Music: State-certified Production',
+            'about_col1_text': 'For me, music is a holistic process at the highest technical level. As a state-certified Music Producer (HOFA College Diploma), I have profound expertise across the entire production chain. My focus is on premium sound and structured implementation – from the initial vision to the final master.',
+            'about_col1_exp_title': 'Expertise:',
+            'about_col1_exp_text': 'Project Planning, Songwriting, Sound Design, Recording, Editing, Drum Programming, Mixing, and Mastering.',
+            'about_col1_cert_title': 'Verification:',
+            'about_col1_cert_text': 'My qualifications are provable through the state-recognized Diploma and corresponding certificates.',
+
+            'about_col2_title': '2. Media Design: Professional Audio & Video',
+            'about_col2_text': 'In the visual world, I combine creative storytelling with craftsmanship and precision. As an IHK-certified Media Designer for Image and Sound, I master the technical and design standards of the media industry. I guide projects through all phases of post-production and guarantee a professional workflow.',
+            'about_col2_skill_title': 'Skills:',
+            'about_col2_skill_text': 'Camera Set Planning, High-End Video Editing (DaVinci Resolve Studio, Avid, FCP), Animation, Graphic Design, Dubbing, and complete Film Productions.',
+
+            'about_col3_title': '3. Network & IT: Innovation & Future',
+            'about_col3_text': 'The third pillar forms my passion for network art and modern programming. Here I operate as an ambitious "Early Adopter": My interest grows with every technological innovation. I experiment extensively with AI Agent tools, VS Cloud, and GitHub. I am fascinated by the intersections between technical infrastructure and forward-looking concepts like Antigravity technology.',
+
+            'about_claim': '<strong>My Claim:</strong> Whether acoustics, images, or digital networking – I stand for projects that convince through profound know-how, dual state-recognized quality, and the courage to embrace new technologies.'
         },
         'pl': {
             'nav_studio': 'STUDIO',
@@ -154,7 +196,28 @@ document.addEventListener('DOMContentLoaded', () => {
             'work_intro': 'Witamy w najnowocześniejszej placówce Sound Studio Hannover. Mój podwójny silnik AI został zaprojektowany, aby przełamać barierę między Twoim kreatywnym pomysłem a ostatecznym doznaniem dźwiękowym.',
             'work_body': 'Podczas gdy silnik Prompt (po lewej) tłumaczy Twoje abstrakcyjne wizje na precyzyjne instrukcje techniczne, silnik Sound (po prawej) materializuje z nich ekskluzywny, unikatowy dźwięk wspierany przez AI. To najkrótsza droga na świecie, aby nie tylko myśleć o projektowaniu dźwięku, ale natychmiast uczynić go słyszalnym.',
             'work_footer': 'Dlaczego VIR2OSE? Ponieważ łączę ludzką wiedzę z nieograniczoną mocą obliczeniową następnej generacji AI (Gemini 3 Flash). Ty dajesz iskierkę – ja dostarczam beat.',
-            'work_btn': 'DOWIEDZ SIĘ WIĘCEJ O STUDIO'
+            'work_btn': 'DOWIEDZ SIĘ WIĘCEJ O STUDIO',
+            // About Me PL
+            'nav_about': 'O MNIE',
+            'about_title': 'O MNIE',
+            'about_intro': 'Witamy serdecznie! Nazywam się Waldemar Krucinski. Moja praca zawodowa opiera się na trzech głównych filarach, które łączą rzemiosło, certyfikowaną wiedzę ekspercką (państwową) oraz pionierskiego ducha technologicznego: Produkcja muzyczna, Projektowanie mediów i Sieci informatyczne.',
+
+            'about_col1_title': '1. Muzyka: Certyfikowana produkcja',
+            'about_col1_text': 'Muzyka to dla mnie holistyczny proces na najwyższym poziomie technicznym. Jako państwowy producent muzyczny (HOFA College Diploma) posiadam głęboką wiedzę na temat całego procesu produkcji. Skupiam się na nieskazitelnym brzmieniu i ustrukturyzowanej realizacji – od pierwszej wizji po finalny master.',
+            'about_col1_exp_title': 'Ekspertyza:',
+            'about_col1_exp_text': 'Planowanie projektów, Songwriting, Sound Design, Nagrywanie, Edycja, Programowanie bębnów, Miks i Mastering.',
+            'about_col1_cert_title': 'Dowód:',
+            'about_col1_cert_text': 'Moje kwalifikacje potwierdza certyfikat państwowy i odpowiednie dyplomy.',
+
+            'about_col2_title': '2. Media: Profesjonalny Obraz & Dźwięk',
+            'about_col2_text': 'W świecie wizualnym łączę kreatywne opowiadanie historii z rzemieślniczą precyzją. Jako certyfikowany przez IHK projektant mediów obrazu i dźwięku opanowałem techniczne i projektowe standardy branży medialnej. Prowadzę projekty przez wszystkie etapy postprodukcji i gwarantuję profesjonalny workflow.',
+            'about_col2_skill_title': 'Umiejętności:',
+            'about_col2_skill_text': 'Planowanie na planie, Montaż klasy High-End (DaVinci Resolve Studio, Avid, FCP), Animacja, Edycja grafiki, Dubbing i kompletne produkcje filmowe.',
+
+            'about_col3_title': '3. Sieć i IT: Innowacja & Przyszłość',
+            'about_col3_text': 'Trzeci filar stanowi moją pasję do sztuki sieciowej i nowoczesnego programowania. Tutaj działam jako ambitny "Early Adopter": Moje zainteresowanie rośnie wraz z każdą innowacją. Intensywnie eksperymentuję z narzędziami Agenta AI, VS Cloud i GitHub. Fascynują mnie powiązania infrastruktury technicznej z koncepcjami przyszłości, takimi jak technologia Antigravity.',
+
+            'about_claim': '<strong>Moje motto:</strong> Niezależnie od tego, czy chodzi o akustykę, obraz czy sieci cyfrowe – reprezentuję projekty, które przekonują szeroką wiedzą, podwójnie certyfikowaną jakością i odwagą do wdrażania nowych technologii.'
         }
     };
 
