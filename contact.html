@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT | VIR2OSE SOUND STUDIO</title>
+    <link rel="icon" type="image/png" href="logo.ping.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="mouse-light"></div>
+    <audio id="preview-audio" style="display: none;"></audio>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Animated 3D Gradient Overlay -->
+    <div class="gradient-3d"></div>
+
+    <header class="header" id="header">
+        <a href="index.html" class="logo-link">
+            <img src="logo.ping.png" alt="VIR2OSE Music Production" class="logo-img">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="index.html#studio" data-i18n="nav_studio">STUDIO</a> <span class="dot">•</span>
+            <a href="services.html" data-i18n="nav_services">SERVICES</a> <span class="dot">•</span>
+            <a href="about.html" data-i18n="nav_about">ABOUT</a> <span class="dot">•</span>
+            <a href="portfolio.html" data-i18n="nav_portfolio">PORTFOLIO</a> <span class="dot">•</span>
+            <a href="contact.html" data-i18n="nav_contact" class="active">CONTACT</a>
+            <span class="dot">•</span>
+            <div class="lang-selector-nav">
+                <span class="lang-option" onclick="setLanguage('de')" id="lang-de">DE</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" onclick="setLanguage('en')" id="lang-en">EN</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" onclick="setLanguage('pl')" id="lang-pl">PL</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="portfolio-page" style="padding-top: 100px;">
+        <section id="contact" class="contact-section">
+            <div class="contact-container">
+                <h2 class="contact-title" data-i18n="contact_title">CONTACT</h2>
+                <div class="contact-header">
+                    <p class="contact-intro" data-i18n="contact_intro">Lass uns gemeinsam dein nächstes Audio-Projekt
+                        verwirklichen. Schreibe mir eine Nachricht oder buche direkt eine Session im Studio.</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Left: Contact Info -->
+                    <div class="contact-info-card glass-panel-generator">
+                        <h3 data-i18n="contact_info_title">DIRECT CONTACT</h3>
+                        <p class="contact-text">
+                            <span data-i18n="contact_info_desc">Ich freue mich über jede Anfrage und melde mich zeitnah
+                                zurück.</span><br>
+                            <span data-i18n="contact_info_response_time"
+                                style="color: var(--gold); display: inline-block; margin-top: 8px;">Ich melde mich in
+                                der Regel innerhalb von 24 Stunden bei dir.</span>
+                        </p>
+
+                        <div class="info-item">
+                            <span class="info-icon">📧</span>
+                            <div class="info-content">
+                                <strong>Email:</strong>
+                                <a href="mailto:vir2ose@gmail.com">vir2ose@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">📞</span>
+                            <div class="info-content">
+                                <strong>Phone / WhatsApp:</strong>
+                                <a href="tel:+491707444776">+49 (0) 170 7444776</a>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <div class="info-content">
+                                <strong>Studio Hannover:</strong>
+                                <span>Termine im Studio nur nach Vereinbarung</span>
+                            </div>
+                        </div>
+
+                        <div class="social-links">
+                            <a href="https://www.instagram.com/waldemarkrucinski/" target="_blank"
+                                class="social-icon"><img src="Instagram.png" alt="Instagram" class="social-img"></a>
+                            <a href="https://www.facebook.com/waldemar.krucinski" target="_blank"
+                                class="social-icon"><img src="Facebook.png" alt="Facebook" class="social-img"></a>
+                            <a href="https://www.youtube.com/@Waldemar-Krucinski" target="_blank"
+                                class="social-icon"><img src="YouTube.png" alt="YouTube" class="social-img"></a>
+                        </div>
+                    </div>
+
+                    <!-- Right: Contact Form -->
+                    <div class="contact-form-card glass-panel-generator">
+                        <h3 data-i18n="contact_form_title">SEND A MESSAGE</h3>
+                        <form action="#" method="POST" class="contact-form"
+                            onsubmit="event.preventDefault(); alert('Formular erfolgreich simuliert!');">
+                            <div class="input-group-gen">
+                                <label for="name" data-i18n="contact_label_name">NAME</label>
+                                <input type="text" id="name" name="name" required placeholder="Dein Name...">
+                            </div>
+
+                            <div class="input-group-gen">
+                                <label for="email" data-i18n="contact_label_email">EMAIL</label>
+                                <input type="email" id="email" name="email" required placeholder="deine@email.de...">
+                            </div>
+
+                            <div class="input-group-gen">
+                                <label for="subject" data-i18n="contact_label_subject">BETREFF</label>
+                                <select id="subject" name="subject">
+                                    <option value="production" data-i18n="contact_opt_prod">Musikproduktion / Beatmaking
+                                    </option>
+                                    <option value="mixing" data-i18n="contact_opt_mix">Mixing & Mastering</option>
+                                    <option value="video" data-i18n="contact_opt_video">Video Sounddesign</option>
+                                    <option value="other" data-i18n="contact_opt_other">Sonstige Anfrage</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group-gen">
+                                <label for="message" data-i18n="contact_label_msg">NACHRICHT</label>
+                                <textarea id="message" name="message" rows="5" required
+                                    placeholder="Beschreibe kurz dein Projekt..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-gen" data-i18n="contact_btn_send"
+                                style="margin-top:20px;">
+                                NACHRICHT SENDEN
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="index.html" class="btn btn-secondary" data-i18n="nav_studio">BACK TO STUDIO</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

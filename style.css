@@ -1293,6 +1293,298 @@ body::after {
     filter: drop-shadow(0 0 20px rgba(197, 165, 90, 0.4));
 }
 
+/* ──────────────── Services Section ──────────────── */
+.services-section {
+    padding: 100px 20px;
+    background: transparent;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.services-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.services-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 8px;
+    color: var(--white);
+    margin-bottom: 50px;
+}
+
+.services-header {
+    margin-bottom: 70px;
+}
+
+.services-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    color: var(--silver);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.service-card {
+    background: rgba(26, 26, 26, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(197, 165, 90, 0.15);
+    border-radius: 20px;
+    padding: 40px 30px;
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    text-align: left;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(197, 165, 90, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+}
+
+.service-card.premium {
+    border: 1px solid rgba(197, 165, 90, 0.5);
+    background: rgba(40, 35, 20, 0.4);
+    box-shadow: 0 0 30px rgba(197, 165, 90, 0.05);
+}
+
+.service-card.premium:hover {
+    border-color: var(--gold);
+    box-shadow: 0 15px 40px rgba(197, 165, 90, 0.2);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(197, 165, 90, 0.3));
+    text-align: center;
+}
+
+.service-card h3 {
+    font-family: 'Inter', sans-serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.service-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--silver);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.service-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.service-card ul li {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: var(--silver);
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.service-card ul li::before {
+    content: '•';
+    color: var(--gold);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.service-card ul li strong {
+    color: var(--white);
+    font-weight: 500;
+}
+
+/* ──────────────── Contact Section ──────────────── */
+.contact-section {
+    padding: 100px 20px;
+    background: transparent;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 8px;
+    color: var(--white);
+    margin-bottom: 50px;
+}
+
+.contact-header {
+    margin-bottom: 70px;
+}
+
+.contact-intro {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    color: var(--silver);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.contact-info-card,
+.contact-form-card {
+    padding: 40px 30px;
+    text-align: left;
+    height: 100%;
+}
+
+.contact-info-card h3,
+.contact-form-card h3 {
+    font-family: 'Inter', sans-serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.contact-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--silver);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+.info-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    filter: drop-shadow(0 0 5px rgba(197, 165, 90, 0.3));
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-content strong {
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.info-content a,
+.info-content span {
+    font-family: 'Inter', sans-serif;
+    color: var(--silver);
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.info-content a:hover {
+    color: var(--gold);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.social-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(150%) sepia(100%) hue-rotate(5deg) saturate(300%) contrast(0.8) drop-shadow(0 0 5px rgba(197, 165, 90, 0.3));
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+
+.social-icon:hover .social-img {
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.5));
+}
+
+/* Contact Form Specifics */
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    margin-top: 8px;
+    background: rgba(10, 10, 10, 0.6);
+    border: 1px solid rgba(197, 165, 90, 0.3);
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(197, 165, 90, 0.2);
+    background: rgba(15, 15, 15, 0.8);
+}
 
 @media (max-width: 768px) {
     .samples-section {
@@ -1326,6 +1618,16 @@ body::after {
     .about-grid {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
     }
 
     .about-section {

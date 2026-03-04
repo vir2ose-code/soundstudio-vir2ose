@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SERVICES | VIR2OSE SOUND STUDIO</title>
+    <link rel="icon" type="image/png" href="logo.ping.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="mouse-light"></div>
+    <audio id="preview-audio" style="display: none;"></audio>
+
+    <!-- Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Animated 3D Gradient Overlay -->
+    <div class="gradient-3d"></div>
+
+    <header class="header" id="header">
+        <a href="index.html" class="logo-link">
+            <img src="logo.ping.png" alt="VIR2OSE Music Production" class="logo-img">
+        </a>
+        <nav class="nav" id="nav">
+            <a href="index.html#studio" data-i18n="nav_studio">STUDIO</a> <span class="dot">•</span>
+            <a href="services.html" data-i18n="nav_services" class="active">SERVICES</a> <span class="dot">•</span>
+            <a href="about.html" data-i18n="nav_about">ABOUT</a> <span class="dot">•</span>
+            <a href="portfolio.html" data-i18n="nav_portfolio">PORTFOLIO</a> <span class="dot">•</span>
+            <a href="contact.html" data-i18n="nav_contact">CONTACT</a>
+            <span class="dot">•</span>
+            <div class="lang-selector-nav">
+                <span class="lang-option" onclick="setLanguage('de')" id="lang-de">DE</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" onclick="setLanguage('en')" id="lang-en">EN</span>
+                <span class="lang-sep">|</span>
+                <span class="lang-option" onclick="setLanguage('pl')" id="lang-pl">PL</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="portfolio-page" style="padding-top: 100px;">
+        <section id="services" class="services-section">
+            <div class="services-container">
+                <h2 class="services-title" data-i18n="services_title">SERVICES</h2>
+                <div class="services-header">
+                    <p class="services-intro" data-i18n="services_intro">Durch meine Doppel-Qualifikation als
+                        IHK-Mediengestalter und Staatlich geprüfter Musikproduzent garantiere ich dir einen Workflow,
+                        der Kreativität mit technischer Perfektion vereint. Jedes Projekt wird individuell betreut und
+                        erhält das passende Finishing.</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Card 1: Premium Experience -->
+                    <div class="service-card premium">
+                        <div class="service-icon">🎙️</div>
+                        <h3 data-i18n="srv_card1_title">Das "Studio-Experience" Special</h3>
+                        <p class="service-text" data-i18n="srv_card1_desc">Du hast dir einen Beat oder ein Playback
+                            generiert und suchst jetzt nach dem entscheidenden Qualitätssprung? Komm direkt zu mir ins
+                            Studio.</p>
+                        <ul>
+                            <li data-i18n="srv_card1_item1"><strong>Vocal-Recording:</strong> Nimm deine Stimme in
+                                professioneller Akustik-Umgebung auf.</li>
+                            <li data-i18n="srv_card1_item2"><strong>Full-Service-Production:</strong> Ich übernehme das
+                                komplette Handwerk – von präzisem Editing über kreatives Mixing bis zum finalen,
+                                druckvollen Mastering.</li>
+                            <li data-i18n="srv_card1_item3"><strong>Das Ergebnis:</strong> Ein fertiger Song oder
+                                Soundtrack, der radiotauglich ist und professionellen Standards entspricht.</li>
+                        </ul>
+                        <p class="service-text" style="margin-top:20px;" data-i18n="srv_card1_footer">Egal ob aus der
+                            Region oder mit Anreise – buche deinen persönlichen Session-Tag und veredle dein Projekt.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Audio Engineering -->
+                    <div class="service-card">
+                        <div class="service-icon">🎼</div>
+                        <h3 data-i18n="srv_card2_title">Musikproduktion & Engineering</h3>
+                        <p class="service-text" data-i18n="srv_card2_desc">Als staatlich geprüfter Musikproduzent
+                            begleite ich dein Projekt mit technischer Exzellenz:</p>
+                        <ul>
+                            <li data-i18n="srv_card2_item1"><strong>Recording & Editing:</strong> Saubere Aufnahmen und
+                                perfektes Timing für jedes Instrument.</li>
+                            <li data-i18n="srv_card2_item2"><strong>Drum-Programming:</strong> Individuelle und
+                                druckvolle Beats, die deinem Track das nötige Fundament geben.</li>
+                            <li data-i18n="srv_card2_item3"><strong>Mixing & Mastering:</strong> Ein transparenter,
+                                balancierter Mix und ein finales Mastering, das auf allen Endgeräten überzeugt.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 3: Film Sounddesign -->
+                    <div class="service-card">
+                        <div class="service-icon">🎬</div>
+                        <h3 data-i18n="srv_card3_title">Sounddesign für Film & Video</h3>
+                        <p class="service-text" data-i18n="srv_card3_desc">Verleihe deinem visuellen Content die
+                            passende akustische Tiefe:</p>
+                        <ul>
+                            <li data-i18n="srv_card3_item1"><strong>Film-Sounddesign:</strong> Maßgeschneiderte
+                                Sound-Landschaften und Atmosphären für Filmstreifen oder Werbevideos.</li>
+                            <li data-i18n="srv_card3_item2"><strong>Synchronisation:</strong> Präzise Anpassung von Ton
+                                und Bild für eine immersive Wirkung.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Card 4: Podcasting -->
+                    <div class="service-card">
+                        <div class="service-icon">🎧</div>
+                        <h3 data-i18n="srv_card4_title">Podcasting & Voiceover</h3>
+                        <p class="service-text" data-i18n="srv_card4_desc">Professioneller Sound für deine Botschaft:
+                        </p>
+                        <ul>
+                            <li data-i18n="srv_card4_item1"><strong>Audio-Postproduktion:</strong> Ich sorge für klare
+                                Stimmen, entfernen Störgeräusche und optimieren den Flow deiner Podcast-Episoden.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 60px;">
+                    <a href="index.html" class="btn btn-secondary" data-i18n="nav_studio">BACK TO STUDIO</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
