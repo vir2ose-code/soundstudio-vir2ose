@@ -38,9 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_opt_dark': 'Cinematic Dark',
             'gen_opt_drill': 'Hard-Hitting Drill',
             'gen_opt_house': 'Melodic House',
+            'gen_opt_pop': 'POP',
+            'gen_opt_rock': 'Rock',
+            'gen_opt_reggaeton': 'Reggaeton',
+            'gen_opt_hiphop': 'Hip-Hop',
+            'gen_opt_meditation': 'Meditation',
             'gen_opt_heavy': 'Düster & Schwer',
             'gen_opt_clear': 'Ätherisch & Klar',
-            'gen_opt_rebel': 'Verzerrt & Rebellisch',
             'gen_opt_analog': 'Warm & Analog',
             'gen_btn_generate': 'GENERATE PROMPTS',
             'gen_btn_copy': 'PROMPT KOPIEREN',
@@ -150,9 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_opt_dark': 'Cinematic Dark',
             'gen_opt_drill': 'Hard-Hitting Drill',
             'gen_opt_house': 'Melodic House',
+            'gen_opt_pop': 'POP',
+            'gen_opt_rock': 'Rock',
+            'gen_opt_reggaeton': 'Reggaeton',
+            'gen_opt_hiphop': 'Hip-Hop',
+            'gen_opt_meditation': 'Meditation',
             'gen_opt_heavy': 'Dark & Heavy',
             'gen_opt_clear': 'Ethereal & Clear',
-            'gen_opt_rebel': 'Distorted & Rebellious',
             'gen_opt_analog': 'Warm & Analog',
             'gen_btn_generate': 'GENERATE PROMPTS',
             'gen_btn_copy': 'COPY PROMPT',
@@ -259,14 +267,18 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Konfiguruj swoją wizję dźwięku dla generowania przez AI.',
             'gen_label_style': 'CHARAKTER DŹWIĘKU (STYLE)',
             'gen_label_mood': 'ATMOSFERA (MOOD)',
-            'gen_opt_industrial': 'Industrial Techno',
-            'gen_opt_lofi': 'Luxury Lofi',
-            'gen_opt_dark': 'Cinematic Dark',
-            'gen_opt_drill': 'Hard-Hitting Drill',
-            'gen_opt_house': 'Melodic House',
+            'gen_opt_industrial': 'Industrialne Techno',
+            'gen_opt_lofi': 'Luksusowe Lofi',
+            'gen_opt_dark': 'Mroczne Cinematic',
+            'gen_opt_drill': 'Mocny Drill',
+            'gen_opt_house': 'Melodyjny House',
+            'gen_opt_pop': 'POP',
+            'gen_opt_rock': 'Rock',
+            'gen_opt_reggaeton': 'Reggaeton',
+            'gen_opt_hiphop': 'Hip-Hop',
+            'gen_opt_meditation': 'Medytacja',
             'gen_opt_heavy': 'Mroczny i Ciężki',
             'gen_opt_clear': 'Eteryczny i Czysty',
-            'gen_opt_rebel': 'Przesterowany i Buntowniczy',
             'gen_opt_analog': 'Ciepły i Analogowy',
             'gen_btn_generate': 'GENERATE PROMPTS',
             'gen_btn_copy': 'KOPIUJ PROMPT',
@@ -615,32 +627,52 @@ document.addEventListener('DOMContentLoaded', () => {
         'Industrial Techno': [
             'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Dark&Heavy.wav',
             'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Warm & Analog.wav',
-            'sounds/audio gen/Industrial Techno/VIR2OSE Studios_Techno_Distorted & Rebellious.wav',
             'sounds/audio gen/Industrial Techno/VIR2OSE Studios_Techno_Ethereal & Clear.wav'
         ],
         'Luxury Chill-Hop & Jazz': [
             'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Distorted & Rebellious.wav',
             'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
             'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
         ],
         'Dark Cinematic Orchestral': [
             'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Distorted & Rebellious.wav',
             'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
             'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
         ],
         'Modern Hard-Hitting Drill': [
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Distorted & Rebellious.wav',
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Warm & Analog.wav'
         ],
         'Hypnotic Melodic House': [
             'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
-            'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Distroted & Rebellious.wav',
             'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
             'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+        ],
+        'Commercial POP': [
+            'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
+            'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
+            'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
+        ],
+        'Authentic Rock': [
+            'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
+            'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
+            'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+        ],
+        'Modern Reggaeton': [
+            'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+        ],
+        'Urban Hip-Hop': [
+            'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
+            'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
+            'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+        ],
+        'Deep Meditation': [
+            'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
+            'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
+            'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
         ]
     };
 
@@ -678,7 +710,27 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (genreVal.includes("House")) {
             bpm = "124 BPM";
             instruments = "deep Moog bassline, classic 909 claps, lush polyphonic pad chords";
-            textures = "heavy sidechain pumping, analog chorus, crisp high-end sheen";
+            textures = "hypnotic groove, clear and punchy low-midrange, wide stereo delays";
+        } else if (genreVal.includes("POP")) {
+            bpm = "110 BPM";
+            instruments = "tight dry vocal chain, punchy pop snare, sub synth bass, acoustic guitars";
+            textures = "pristine high-end sheen, radio-ready limiting, ultra-clean mix, wide pop vocals";
+        } else if (genreVal.includes("Rock")) {
+            bpm = "135 BPM";
+            instruments = "distorted electric guitars, heavy acoustic drum kit, driven bass guitar";
+            textures = "live room ambiance, tube amp saturation, thick harmonic overdrive";
+        } else if (genreVal.includes("Reggaeton")) {
+            bpm = "95 BPM";
+            instruments = "dembow drum pattern, vocal chops, booming sub bass, nylon string guitar";
+            textures = "punchy transients, rhythmic dance bounce, bright and crisp percussion";
+        } else if (genreVal.includes("Hip-Hop")) {
+            bpm = "90 BPM";
+            instruments = "sampled boom-bap drums, chopped vinyl samples, deep 808 sub";
+            textures = "gritty urban texture, smooth low-end bounce, vintage sampler coloring";
+        } else if (genreVal.includes("Meditation")) {
+            bpm = "60 BPM";
+            instruments = "crystal singing bowls, ethereal pad layers, soft chimes, ambient piano";
+            textures = "washes of lush reverb, infinite sustain, binaural beats, extremely wide soundstage";
         }
 
         const base = `${genreVal}, ${bpm}, ${instruments}, ${vibe.toLowerCase()} atmosphere, ${textures}, high fidelity, latent-diffusion optimized`;
@@ -1006,36 +1058,61 @@ document.addEventListener('DOMContentLoaded', () => {
             const technoFiles = [
                 'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Dark&Heavy.wav',
                 'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Warm & Analog.wav',
-                'sounds/audio gen/Industrial Techno/VIR2OSE Studios_Techno_Distorted & Rebellious.wav',
                 'sounds/audio gen/Industrial Techno/VIR2OSE Studios_Techno_Ethereal & Clear.wav'
             ];
 
             const houseFiles = [
                 'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
-                'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Distroted & Rebellious.wav',
                 'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
                 'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
             ];
 
             const lofiFiles = [
                 'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Distorted & Rebellious.wav',
                 'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
                 'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
             ];
 
             const drillFiles = [
                 'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Distorted & Rebellious.wav',
                 'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
                 'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Warm & Analog.wav'
             ];
 
             const cinematicFiles = [
                 'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Distorted & Rebellious.wav',
                 'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
                 'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
+            ];
+
+            const popFiles = [
+                'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
+                'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
+                'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
+            ];
+
+            const rockFiles = [
+                'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
+                'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
+                'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+            ];
+
+            const reggaetonFiles = [
+                'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+            ];
+
+            const hiphopFiles = [
+                'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
+                'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
+                'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+            ];
+
+            const meditationFiles = [
+                'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
+                'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
+                'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
             ];
 
             // Select a demo file based on prompt content
@@ -1046,7 +1123,12 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (p.includes("lofi") || p.includes("chill") || p.includes("jazz")) demoFile = lofiFiles[Math.floor(Math.random() * lofiFiles.length)];
             else if (p.includes("drill")) demoFile = drillFiles[Math.floor(Math.random() * drillFiles.length)];
             else if (p.includes("cinematic")) demoFile = cinematicFiles[Math.floor(Math.random() * cinematicFiles.length)];
-            else demoFile = technoFiles[Math.floor(Math.random() * technoFiles.length)]; // Default to random techno file
+            else if (p.includes("pop")) demoFile = popFiles[Math.floor(Math.random() * popFiles.length)];
+            else if (p.includes("rock")) demoFile = rockFiles[Math.floor(Math.random() * rockFiles.length)];
+            else if (p.includes("reggaeton")) demoFile = reggaetonFiles[Math.floor(Math.random() * reggaetonFiles.length)];
+            else if (p.includes("hip-hop")) demoFile = hiphopFiles[Math.floor(Math.random() * hiphopFiles.length)];
+            else if (p.includes("meditation")) demoFile = meditationFiles[Math.floor(Math.random() * meditationFiles.length)];
+            else demoFile = technoFiles[Math.floor(Math.random() * technoFiles.length)]; // Default
 
             if (wavesurfer) {
                 wavesurfer.load(demoFile);
