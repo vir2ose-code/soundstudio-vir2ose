@@ -625,44 +625,72 @@ document.addEventListener('DOMContentLoaded', () => {
     // ──────────────── AI Prompt Engine Logic ────────────────
     const genreAudioMap = {
         'Industrial Techno': [
-            'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Dark&Heavy.wav',
-            'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Warm & Analog.wav',
-            'sounds/audio gen/Industrial Techno/VIR2OSE Studios_Techno_Ethereal & Clear.wav'
+            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Analog Afterglow.wav',
+            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Crystal Grime.wav',
+            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Ethereal Engine.wav',
+            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Industrial Shadows.wav',
+            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Riot Logic.wav',
+            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Static Revolt.wav'
         ],
         'Luxury Chill-Hop & Jazz': [
-            'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Crystal Lounge.wav',
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Ethereal Dust.wav',
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Golden Hour Jazz.wav',
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Heavy Velvet.wav',
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Midnight Noir.wav',
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Nostalgic Nights.wav',
+            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Rebel Lounge.wav'
         ],
         'Dark Cinematic Orchestral': [
-            'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
+            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Abyssal Reach.wav',
+            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Ancient Signal.wav',
+            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Celestial Depths.wav',
+            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Faded Dynasty.wav',
+            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Riotous Echoes.wav',
+            "sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Titan's Shadow.wav",
+            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Void Echoes.wav'
         ],
         'Modern Hard-Hitting Drill': [
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.wav',
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Crystal Glide.wav',
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.wav',
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Heavy Industry Drill.wav',
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Riot Drill.wav',
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Shadow Glide.wav',
+            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Static Revolt Drill.wav'
         ],
         'Hypnotic Melodic House': [
-            'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
-            'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
-            'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+            'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Crystal Horizon.wav',
+            'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Heavy Pumping House.wav',
+            'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Rebel Pulse.wav'
         ],
         'Commercial POP': [
-            'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
-            'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
-            'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 1.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 2.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 1.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 2.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Nostalgic Pop Groove 1.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Nostalgic Pop Groove 2.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 1.wav',
+            'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 2.wav'
         ],
         'Authentic Rock': [
-            'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
-            'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
-            'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 1.wav',
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 2.wav',
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 1.wav',
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 2.wav',
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Heavy Rock Stomp.wav',
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 1.wav',
+            'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 2.wav'
         ],
         'Modern Reggaeton': [
-            'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
-            'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
-            'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_1.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_2.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_1.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_2.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 1.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 2.wav',
+            'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Reggaeton Instrumental 2.wav'
         ],
         'Urban Hip-Hop': [
             'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
@@ -670,9 +698,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Warm & Analog.wav'
         ],
         'Deep Meditation': [
-            'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
-            'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
-            'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Crystal Clear Meditation.wav',
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 1.wav',
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 2.wav',
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 1.wav',
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 2.wav',
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 2.wav',
+            'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 3.wav'
         ]
     };
 
@@ -1056,51 +1088,79 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Build the array of new available files in the audio gen folder
             const technoFiles = [
-                'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Dark&Heavy.wav',
-                'sounds/audio gen/Industrial Techno/VIR2OSE Studios_ Techno_Warm & Analog.wav',
-                'sounds/audio gen/Industrial Techno/VIR2OSE Studios_Techno_Ethereal & Clear.wav'
+                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Analog Afterglow.wav',
+                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Crystal Grime.wav',
+                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Ethereal Engine.wav',
+                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Industrial Shadows.wav',
+                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Riot Logic.wav',
+                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Static Revolt.wav'
             ];
 
             const houseFiles = [
-                'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
-                'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
-                'sounds/audio gen/Melodic House/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+                'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Crystal Horizon.wav',
+                'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Heavy Pumping House.wav',
+                'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Rebel Pulse.wav'
             ];
 
             const lofiFiles = [
-                'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Crystal Lounge.wav',
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Ethereal Dust.wav',
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Golden Hour Jazz.wav',
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Heavy Velvet.wav',
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Midnight Noir.wav',
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Nostalgic Nights.wav',
+                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Rebel Lounge.wav'
             ];
 
             const drillFiles = [
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.wav',
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Crystal Glide.wav',
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.wav',
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Heavy Industry Drill.wav',
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Riot Drill.wav',
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Shadow Glide.wav',
+                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Static Revolt Drill.wav'
             ];
 
             const cinematicFiles = [
-                'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
+                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Abyssal Reach.wav',
+                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Ancient Signal.wav',
+                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Celestial Depths.wav',
+                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Faded Dynasty.wav',
+                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Riotous Echoes.wav',
+                "sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Titan's Shadow.wav",
+                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Void Echoes.wav'
             ];
 
             const popFiles = [
-                'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Dark & Heavy.wav',
-                'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Ethereal & Clear.wav',
-                'sounds/audio gen/POP/VIR2OSE Studios_ Luxury Lofi_Warm & Analog.wav'
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 1.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 2.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 1.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 2.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Nostalgic Pop Groove 1.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Nostalgic Pop Groove 2.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 1.wav',
+                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 2.wav'
             ];
 
             const rockFiles = [
-                'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Dark & Heavy.wav',
-                'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Ethereal & Clear.wav',
-                'sounds/audio gen/Rock/VIR2OSE Studios_ Drill_Warm & Analog.wav'
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 1.wav',
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 2.wav',
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 1.wav',
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 2.wav',
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Heavy Rock Stomp.wav',
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 1.wav',
+                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 2.wav'
             ];
 
             const reggaetonFiles = [
-                'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Dark & Heavy.wav',
-                'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Ethereal & Clear.wav',
-                'sounds/audio gen/Reggaeton/VIR2OSE Studios_ Melodic_House_Warm & Analog.wav'
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_1.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_2.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_1.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_2.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 1.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 2.wav',
+                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Reggaeton Instrumental 2.wav'
             ];
 
             const hiphopFiles = [
@@ -1110,9 +1170,13 @@ document.addEventListener('DOMContentLoaded', () => {
             ];
 
             const meditationFiles = [
-                'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Dark & Heavy.wav',
-                'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Ethereal & Clear.wav',
-                'sounds/audio gen/Meditation/VIR2OSE Studios_ Cinematic Dark_Warm & Analog.wav'
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Crystal Clear Meditation.wav',
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 1.wav',
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 2.wav',
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 1.wav',
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 2.wav',
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 2.wav',
+                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 3.wav'
             ];
 
             // Select a demo file based on prompt content
