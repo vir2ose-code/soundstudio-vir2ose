@@ -108,8 +108,15 @@
                     <!-- Right: Contact Form -->
                     <div class="contact-form-card glass-panel-generator">
                         <h3 data-i18n="contact_form_title">SEND A MESSAGE</h3>
-                        <form action="#" method="POST" class="contact-form"
-                            onsubmit="event.preventDefault(); alert('Formular erfolgreich simuliert!');">
+                        <form class="contact-form"
+                            onsubmit="event.preventDefault(); 
+                                      const email = 'studio@goldenmirror.online';
+                                      const name = document.getElementById('name').value;
+                                      const userEmail = document.getElementById('email').value;
+                                      const subj = document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text;
+                                      const msg = document.getElementById('message').value;
+                                      const body = `Name: ${name}%0AEmail: ${userEmail}%0A%0A${msg}`;
+                                      window.location.href = `mailto:${email}?subject=Web Inquiry: ${subj}&body=${body}`;">
                             <div class="input-group-gen">
                                 <label for="name" data-i18n="contact_label_name">NAME</label>
                                 <input type="text" id="name" name="name" required placeholder="Dein Name...">
