@@ -108,7 +108,12 @@
                     <!-- Right: Contact Form -->
                     <div class="contact-form-card glass-panel-generator">
                         <h3 data-i18n="contact_form_title">SEND A MESSAGE</h3>
-                        <form id="contactForm" class="contact-form">
+                        <form action="https://formsubmit.co/studio@goldenmirror.online" method="POST"
+                            class="contact-form">
+                            <!-- FormSubmit Configurations -->
+                            <input type="text" name="_honey" style="display:none">
+                            <input type="hidden" name="_captcha" value="false">
+
                             <div class="input-group-gen">
                                 <label for="name" data-i18n="contact_label_name">NAME</label>
                                 <input type="text" id="name" name="name" required placeholder="Dein Name...">
@@ -121,12 +126,15 @@
 
                             <div class="input-group-gen">
                                 <label for="subject" data-i18n="contact_label_subject">BETREFF</label>
-                                <select id="subject" name="subject">
-                                    <option value="production" data-i18n="contact_opt_prod">Musikproduktion / Beatmaking
+                                <select id="subject" name="_subject">
+                                    <option value="Musikproduktion / Beatmaking" data-i18n="contact_opt_prod">
+                                        Musikproduktion / Beatmaking</option>
+                                    <option value="Mixing & Mastering" data-i18n="contact_opt_mix">Mixing & Mastering
                                     </option>
-                                    <option value="mixing" data-i18n="contact_opt_mix">Mixing & Mastering</option>
-                                    <option value="video" data-i18n="contact_opt_video">Video Sounddesign</option>
-                                    <option value="other" data-i18n="contact_opt_other">Sonstige Anfrage</option>
+                                    <option value="Video Sounddesign" data-i18n="contact_opt_video">Video Sounddesign
+                                    </option>
+                                    <option value="Sonstige Anfrage" data-i18n="contact_opt_other">Sonstige Anfrage
+                                    </option>
                                 </select>
                             </div>
 
@@ -140,6 +148,12 @@
                                 style="margin-top:20px;">
                                 NACHRICHT SENDEN
                             </button>
+
+                            <p
+                                style="text-align: center; margin-top: 15px; font-size: 0.75rem; color: rgba(230,230,230,0.5);">
+                                By sending this message, you agree to our <a href="privacy.html"
+                                    style="color: var(--gold); text-decoration: none;">Privacy Policy</a>.
+                            </p>
                         </form>
                     </div>
                 </div>
