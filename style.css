@@ -1696,3 +1696,44 @@ body::after {
 .site-footer .footer-link:hover {
     color: var(--gold-light);
 }
+
+/* =========================================================================
+   PRIVACY POLICY TYPOGRAPHY
+   ========================================================================= */
+.privacy-content h3 {
+    font-size: 1.1rem;
+    color: var(--silver);
+    /* Subtly lighter than paragraph text */
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.privacy-content p {
+    font-size: 0.85rem;
+    /* Smaller font */
+    line-height: 1.6;
+    /* Generous line height for readability */
+    color: var(--silver-dark);
+    /* Light-silver color */
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+    /* Lighter weight for subtlety */
+}
+
+.privacy-content strong {
+    font-weight: 500;
+    color: rgba(230, 230, 230, 0.85);
+    /* Slightly brighter for emphasis */
+}
+
+.privacy-content a {
+    color: var(--gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.privacy-content a:hover {
+    color: var(--gold-light);
+}
