@@ -1,8 +1,0 @@
-{
-    "name": "vir2ose-soundstudio",
-    "version": "1.0.0",
-    "description": "Backend API for VIR2OSE Sound Studio PWA",
-    "dependencies": {
-        "nodemailer": "^6.9.13"
-    }
-}
