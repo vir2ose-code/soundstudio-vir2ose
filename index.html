@@ -152,14 +152,14 @@
                     <div id="result-box-2" class="result-box" style="display: none; opacity: 0;">
                         <p id="generated-prompt-2" class="generated-prompt" style="display: none;"></p>
                         <div class="result-actions">
-                            <a id="download-btn" href="#" download onclick="showSuccessMessage()"
-                                class="btn btn-secondary btn-copy-2" data-i18n="gen_btn_download_2">
+                            <button id="listen-btn" onclick="toggleWaveformPlayback()"
+                                class="btn btn-secondary btn-copy-2" data-i18n="gen_listen_2">
                                 SOUND ANHÖREN
-                            </a>
+                            </button>
                         </div>
                         <div class="reset-wrapper">
-                            <a href="#" onclick="resetEngine2(event)" class="reset-link" data-i18n="gen_reset_2">Neuen
-                                Beat erstellen</a>
+                            <a id="download-btn" href="#" download class="reset-link"
+                                data-i18n="gen_download_2">Download Sound</a>
                         </div>
                     </div>
 

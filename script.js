@@ -157,11 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_copied': 'COPIED! ✓',
             'gen_playing': 'PLAYING... 🔊',
             'port_sample_house': 'Melodic House Vibe',
+            'gen_btn_generate_1': 'GENERATE PROMPTS',
             // Generator 2 EN
             'gen_title_2': 'AI-Sound Engine',
             'gen_subtitle_2': 'Generate exclusive sound variations in real-time.',
             'gen_btn_generate_2': 'GENERATE SOUND',
-            'gen_btn_download_2': 'LISTEN TO SOUND',
+            'gen_listen_2': 'LISTEN TO SOUND',
+            'gen_download_2': 'DOWNLOAD SOUND',
             'gen_btn_play_2': 'PLAY SOUND 🔊',
             'gen_playing_2': 'GENERATING... 🔊',
             'gen_status_ready': 'Ready for generation...',
@@ -266,11 +268,13 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_copied': 'SKOPIOWANO! ✓',
             'gen_playing': 'ODTWARZANIE... 🔊',
             'port_sample_house': 'Melodic House Vibe',
+            'gen_btn_generate_1': 'GENERATE PROMPTS',
             // Generator 2 PL
             'gen_title_2': 'AI-Sound Engine',
             'gen_subtitle_2': 'Generuj ekskluzywne wariacje dźwiękowe w czasie rzeczywistym.',
-            'gen_btn_generate_2': 'GENERUJ DŹWIĘK',
-            'gen_btn_download_2': 'POSŁUCHAJ DŹWIĘKU',
+            'gen_btn_generate_2': 'GENERATE SOUND',
+            'gen_listen_2': 'POSŁUCHAJ DŹWIĘKU',
+            'gen_download_2': 'POBIERZ DŹWIĘK',
             'gen_btn_play_2': 'GRAJ DŹWIĘK 🔊',
             'gen_playing_2': 'GENEROWANIE... 🔊',
             'gen_status_ready': 'Gotowy do generowania...',
@@ -733,6 +737,15 @@ document.addEventListener('DOMContentLoaded', () => {
             playBtn.classList.remove('playing');
             return;
         }
+
+        // If another sample is playing, stop it and reset its card
+        if (currentCard) {
+            currentCard.classList.remove('playing');
+        }
+
+        // Stop the generator audio if it was playing
+        audio.pause();
+        audio.loop = false;
 
         // Determine target file (random if array, else string)
         const targetSrc = Array.isArray(genreFiles)
