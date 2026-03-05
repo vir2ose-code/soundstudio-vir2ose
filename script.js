@@ -123,7 +123,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'contact_opt_video': 'Video Sounddesign',
             'contact_opt_other': 'Sonstige Anfrage',
             'contact_label_msg': 'NACHRICHT',
-            'contact_btn_send': 'NACHRICHT SENDEN'
+            'contact_btn_send': 'NACHRICHT SENDEN',
+            // Footer DE
+            'footer_copyright': '© Waldemar Krucinski Hannover 2026',
+            'footer_privacy': 'Datenschutz & Impressum'
         },
         'en': {
             'nav_studio': 'STUDIO',
@@ -234,7 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'contact_opt_video': 'Video Sound Design',
             'contact_opt_other': 'Other Inquiry',
             'contact_label_msg': 'MESSAGE',
-            'contact_btn_send': 'SEND MESSAGE'
+            'contact_btn_send': 'SEND MESSAGE',
+            // Footer EN
+            'footer_copyright': '© Waldemar Krucinski Hannover 2026',
+            'footer_privacy': 'Privacy Policy & Legal Notice'
         },
         'pl': {
             'nav_studio': 'STUDIO',
@@ -345,7 +351,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'contact_opt_video': 'Sound Design Wideo',
             'contact_opt_other': 'Inne zapytanie',
             'contact_label_msg': 'WIADOMOŚĆ',
-            'contact_btn_send': 'WYŚLIJ WIADOMOŚĆ'
+            'contact_btn_send': 'WYŚLIJ WIADOMOŚĆ',
+            // Footer PL
+            'footer_copyright': '© Waldemar Krucinski Hannover 2026',
+            'footer_privacy': 'Polityka prywatności & Nota prawna'
         }
     };
 
