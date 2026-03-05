@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
             textures = "massive dynamic range, expansive stereo imaging, hybrid synthesis, deep low-end rumble";
         } else if (genreVal.includes("Drill")) {
             bpm = "142 BPM";
-            instruments = "gliding 808 sub-bass, rapid-fire hi-hat rolls, syncopated hard snares, haunting choir atmospheres";
+            instruments = "gliding 808 sub-bass, rapid-fire hi-hat rolls, syncopated hard snares, dark atmospheric pads";
             textures = "tight low end, aggressive transients, subtle digital clipping";
         } else if (genreVal.includes("House")) {
             bpm = "124 BPM";
@@ -729,7 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
             textures = "gritty urban texture, smooth low-end bounce, vintage sampler coloring";
         } else if (genreVal.includes("Meditation")) {
             bpm = "60 BPM";
-            instruments = "crystal singing bowls, ethereal pad layers, soft chimes, ambient piano";
+            instruments = "crystal sound bowls, ethereal pad layers, soft chimes, ambient piano";
             textures = "washes of lush reverb, infinite sustain, binaural beats, extremely wide soundstage";
         }
 
