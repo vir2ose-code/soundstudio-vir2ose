@@ -705,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
             textures = "massive dynamic range, expansive stereo imaging, hybrid synthesis, deep low-end rumble";
         } else if (genreVal.includes("Drill")) {
             bpm = "142 BPM";
-            instruments = "gliding 808 sub-bass, rapid-fire hi-hat rolls, syncopated hard snares, haunting choir chops";
+            instruments = "gliding 808 sub-bass, rapid-fire hi-hat rolls, syncopated hard snares, haunting choir atmospheres";
             textures = "tight low end, aggressive transients, subtle digital clipping";
         } else if (genreVal.includes("House")) {
             bpm = "124 BPM";
@@ -713,19 +713,19 @@ document.addEventListener('DOMContentLoaded', () => {
             textures = "hypnotic groove, clear and punchy low-midrange, wide stereo delays";
         } else if (genreVal.includes("POP")) {
             bpm = "110 BPM";
-            instruments = "tight dry vocal chain, punchy pop snare, sub synth bass, acoustic guitars";
-            textures = "pristine high-end sheen, radio-ready limiting, ultra-clean mix, wide pop vocals";
+            instruments = "punchy pop snare, sub synth bass, acoustic guitars, bright synth leads";
+            textures = "pristine high-end sheen, radio-ready limiting, ultra-clean instrumental mix, wide stereo image";
         } else if (genreVal.includes("Rock")) {
             bpm = "135 BPM";
             instruments = "distorted electric guitars, heavy acoustic drum kit, driven bass guitar";
             textures = "live room ambiance, tube amp saturation, thick harmonic overdrive";
         } else if (genreVal.includes("Reggaeton")) {
             bpm = "95 BPM";
-            instruments = "dembow drum pattern, vocal chops, booming sub bass, nylon string guitar";
+            instruments = "dembow drum pattern, booming sub bass, nylon string guitar, bright synth plucks";
             textures = "punchy transients, rhythmic dance bounce, bright and crisp percussion";
         } else if (genreVal.includes("Hip-Hop")) {
             bpm = "90 BPM";
-            instruments = "sampled boom-bap drums, chopped vinyl samples, deep 808 sub";
+            instruments = "sampled boom-bap drums, chopped vinyl elements, deep 808 sub";
             textures = "gritty urban texture, smooth low-end bounce, vintage sampler coloring";
         } else if (genreVal.includes("Meditation")) {
             bpm = "60 BPM";
@@ -733,7 +733,7 @@ document.addEventListener('DOMContentLoaded', () => {
             textures = "washes of lush reverb, infinite sustain, binaural beats, extremely wide soundstage";
         }
 
-        const base = `${genreVal}, ${bpm}, ${instruments}, ${vibe.toLowerCase()} atmosphere, ${textures}, high fidelity, latent-diffusion optimized`;
+        const base = `${genreVal}, ${bpm}, pure instrumental, no vocals, ${instruments}, ${vibe.toLowerCase()} atmosphere, ${textures}, 44.1kHz high fidelity, latent-diffusion optimized`;
 
         /* 
         // Beispiel für zukünftigen API Call (Riffusion/Replicate)
