@@ -140,11 +140,13 @@ body::after {
 }
 
 .header-title-container {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+    margin-left: 2rem;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     pointer-events: none;
+    margin-top: 4px;
 }
 
 @media (max-width: 900px) {
@@ -153,18 +155,29 @@ body::after {
     }
 }
 
-.header-title {
-    font-family: 'Great Vibes', cursive;
-    font-size: 2.2rem;
-    color: var(--gold-light);
-    letter-spacing: 0.1em;
-    text-shadow:
-        1px 1px 0px rgba(110, 80, 30, 0.8),
-        2px 2px 5px rgba(0, 0, 0, 0.9),
-        0 0 15px rgba(197, 165, 90, 0.3);
-    margin: 0;
+.header-title-main {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #e8c872 0%, #b8923a 40%, #705218 80%, #302208 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 4px 3px rgba(0, 0, 0, 0.9)) drop-shadow(0px 0px 10px rgba(184, 146, 58, 0.2));
+    letter-spacing: 0.15em;
     line-height: 1;
-    z-index: 10;
+}
+
+.header-title-sub {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 500;
+    color: #8a6626;
+    letter-spacing: 0.4em;
+    margin-top: 4px;
+    margin-right: 0.3rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
 }
 
 .logo-img {
