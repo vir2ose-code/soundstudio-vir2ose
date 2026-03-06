@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vir2ose-app-cache-v14';
+const CACHE_NAME = 'vir2ose-app-cache-v15';
 const urlsToCache = [
     './',
     './index.html',

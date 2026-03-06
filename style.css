@@ -139,6 +139,34 @@ body::after {
     border-bottom: 1px solid rgba(197, 165, 90, 0.12);
 }
 
+.header-title-container {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .header-title-container {
+        display: none;
+    }
+}
+
+.header-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    color: var(--gold-light);
+    letter-spacing: 0.1em;
+    text-shadow:
+        1px 1px 0px rgba(110, 80, 30, 0.8),
+        2px 2px 5px rgba(0, 0, 0, 0.9),
+        0 0 15px rgba(197, 165, 90, 0.3);
+    margin: 0;
+    line-height: 1;
+    z-index: 10;
+}
+
 .logo-img {
     height: 55px;
     width: auto;
