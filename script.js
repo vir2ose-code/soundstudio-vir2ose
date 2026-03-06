@@ -28,6 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'btn_explore': 'ENTDECKE MEINE SOUND-SAMPLES',
             'btn_project': 'PROJEKT STARTEN',
             'scroll_text': 'SCROLLEN',
+            // Notepad DE
+            'note_hint': 'Schreibe deine neuen Lyrics...',
+            'note_btn_download': 'Als .txt Speichern',
             // Generator DE
             'gen_title': 'AI-Prompt Engine',
             'gen_subtitle': 'Konfiguriere deine Klang-Vision für die KI-Generierung.',
@@ -144,6 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'btn_explore': 'DISCOVER MY SOUND SAMPLES',
             'btn_project': 'START A PROJECT',
             'scroll_text': 'SCROLL',
+            // Notepad EN
+            'note_hint': 'Write your new lyrics...',
+            'note_btn_download': 'Save as .txt',
             // Generator EN
             'gen_title': 'AI-Prompt Engine',
             'gen_subtitle': 'Configure your sound vision for AI generation.',
@@ -262,6 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'btn_explore': 'DESCUBRE MIS MUESTRAS DE SONIDO',
             'btn_project': 'INICIAR UN PROYECTO',
             'scroll_text': 'DESPLAZARSE',
+            // Notepad ES
+            'note_hint': 'Escribe tus nuevas letras...',
+            'note_btn_download': 'Guardar como .txt',
             // Generator ES
             'gen_title': 'AI-Prompt Engine',
             'gen_subtitle': 'Configura tu visión sonora para la generación por IA.',
@@ -376,6 +385,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'btn_explore': 'POZNAJ MOJE PRÓBKI DŹWIĘKOWE',
             'btn_project': 'ROZPOCZNIJ PROJEKT',
             'scroll_text': 'PRZEWIŃ',
+            // Notepad PL
+            'note_hint': 'Napisz swój nowy tekst...',
+            'note_btn_download': 'Zapisz jako .txt',
             // Generator PL
             'gen_title': 'AI-Prompt Engine',
             'gen_subtitle': 'Konfiguruj swoją wizję dźwięku dla generowania przez AI.',
@@ -1386,4 +1398,58 @@ document.addEventListener('DOMContentLoaded', () => {
     window.startSoundGeneration = startSoundGeneration;
     window.showSuccessMessage = showSuccessMessage;
     window.resetEngine2 = resetEngine2;
+});
+
+
+// ──────────────── Lyrics Notepad Logic ────────────────
+window.toggleNotepad = function (e) {
+    if (e) e.preventDefault();
+    const overlay = document.getElementById('lyrics-overlay');
+    if (overlay) {
+        overlay.classList.toggle('active');
+        if (overlay.classList.contains('active')) {
+            setTimeout(() => document.getElementById('lyrics-text').focus(), 100);
+        }
+    }
+};
+
+window.downloadLyrics = function () {
+    const text = document.getElementById('lyrics-text').value;
+    if (!text.trim()) {
+        alert("Bitte schreibe zuerst einen Text.");
+        return;
+    }
+
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+
+    a.href = url;
+    a.download = 'VIR2OSE_Project_Lyrics.txt';
+    document.body.appendChild(a);
+    a.click();
+
+    setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+    }, 0);
+};
+
+// Bind Notepad to "START A PROJECT" buttons
+document.addEventListener('DOMContentLoaded', () => {
+    const projectBtns = document.querySelectorAll('.header-content .btn');
+    projectBtns.forEach(btn => {
+        if (btn.innerText.includes('PROJEKT') || btn.innerText.includes('PROJECT')) {
+            btn.onclick = window.toggleNotepad;
+            btn.href = "#"; // Disable anchor scroll jump
+        }
+    });
+
+    const exploreBtns = document.querySelectorAll('a[href="#studio"]');
+    exploreBtns.forEach(btn => {
+        btn.onclick = (e) => {
+            e.preventDefault();
+            document.getElementById('studio').scrollIntoView({ behavior: 'smooth' });
+        };
+    });
 });

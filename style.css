@@ -1778,3 +1778,159 @@ body::after {
 .privacy-content a:hover {
     color: var(--gold-light);
 }
+
+/* ──────────────── Lyrics Notepad Overlay ──────────────── */
+.lyrics-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.lyrics-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.lyrics-notepad {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    height: 70vh;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    transform: translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Enhancing the glass effect to look like a premium notepad */
+    background: linear-gradient(145deg, rgba(30, 30, 30, 0.8), rgba(15, 15, 15, 0.95));
+    border: 1px solid rgba(197, 165, 90, 0.3);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), inset 0 0 20px rgba(197, 165, 90, 0.05);
+}
+
+.lyrics-overlay.active .lyrics-notepad {
+    transform: translateY(0);
+}
+
+.close-notepad {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--silver);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-notepad:hover {
+    color: var(--gold-light);
+    transform: scale(1.1) rotate(90deg);
+}
+
+.notepad-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(197, 165, 90, 0.2);
+    padding-bottom: 1rem;
+}
+
+.animated-pencil {
+    font-size: 1.5rem;
+    color: var(--gold-light);
+    display: inline-block;
+    animation: scribble 2s ease-in-out infinite;
+    transform-origin: bottom left;
+}
+
+@keyframes scribble {
+    0% {
+        transform: rotate(0deg) translate(0, 0);
+    }
+
+    25% {
+        transform: rotate(15deg) translate(2px, -2px);
+    }
+
+    50% {
+        transform: rotate(0deg) translate(0, 0);
+    }
+
+    75% {
+        transform: rotate(-10deg) translate(-2px, -1px);
+    }
+
+    100% {
+        transform: rotate(0deg) translate(0, 0);
+    }
+}
+
+.notepad-hint {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.lyrics-textarea {
+    flex: 1;
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--silver-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    resize: none;
+    outline: none;
+    /* Subtle horizontal lines to mimic a real notepad */
+    background-image: repeating-linear-gradient(transparent, transparent 31px, rgba(255, 255, 255, 0.03) 31px, rgba(255, 255, 255, 0.03) 32px);
+    background-attachment: local;
+    padding: 0 10px;
+}
+
+.lyrics-textarea::placeholder {
+    color: rgba(200, 200, 200, 0.2);
+    font-style: italic;
+}
+
+.lyrics-textarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lyrics-textarea::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.lyrics-textarea::-webkit-scrollbar-thumb {
+    background: rgba(197, 165, 90, 0.3);
+    border-radius: 3px;
+}
+
+.lyrics-textarea::-webkit-scrollbar-thumb:hover {
+    background: rgba(197, 165, 90, 0.6);
+}
+
+.notepad-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+}
