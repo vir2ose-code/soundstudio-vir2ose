@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_tagline': 'DIE ZUKUNFT GEMEINSAM GESTALTEN',
             'powered_by': 'powered by',
             'btn_explore': 'ENTDECKE MEINE SOUND-SAMPLES',
-            'btn_project': 'PROJEKT STARTEN',
+            'btn_project': 'LYRICS & NOTIZEN SCHREIBEN',
             'scroll_text': 'SCROLLEN',
             // Notepad DE
             'note_hint': 'Schreibe deine neuen Lyrics...',
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_tagline': 'SHAPING THE FUTURE TOGETHER',
             'powered_by': 'powered by',
             'btn_explore': 'DISCOVER MY SOUND SAMPLES',
-            'btn_project': 'START A PROJECT',
+            'btn_project': 'WRITE LYRICS & NOTES',
             'scroll_text': 'SCROLL',
             // Notepad EN
             'note_hint': 'Write your new lyrics...',
@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_tagline': 'MOLDEANDO EL FUTURO JUNTOS',
             'powered_by': 'powered by',
             'btn_explore': 'DESCUBRE MIS MUESTRAS DE SONIDO',
-            'btn_project': 'INICIAR UN PROYECTO',
+            'btn_project': 'ESCRIBIR LETRAS Y NOTAS',
             'scroll_text': 'DESPLAZARSE',
             // Notepad ES
             'note_hint': 'Escribe tus nuevas letras...',
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_tagline': 'WSPÓLNIE KSZTAŁTUJEMY PRZYSZŁOŚĆ',
             'powered_by': 'powered by',
             'btn_explore': 'POZNAJ MOJE PRÓBKI DŹWIĘKOWE',
-            'btn_project': 'ROZPOCZNIJ PROJEKT',
+            'btn_project': 'PISZ TEKSTY I NOTATKI',
             'scroll_text': 'PRZEWIŃ',
             // Notepad PL
             'note_hint': 'Napisz swój nowy tekst...',
