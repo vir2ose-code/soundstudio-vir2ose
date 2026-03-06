@@ -1437,12 +1437,10 @@ window.downloadLyrics = function () {
 
 // Bind Notepad to "START A PROJECT" buttons
 document.addEventListener('DOMContentLoaded', () => {
-    const projectBtns = document.querySelectorAll('.header-content .btn');
+    const projectBtns = document.querySelectorAll('[data-i18n="btn_project"]');
     projectBtns.forEach(btn => {
-        if (btn.innerText.includes('PROJEKT') || btn.innerText.includes('PROJECT')) {
-            btn.onclick = window.toggleNotepad;
-            btn.href = "#"; // Disable anchor scroll jump
-        }
+        btn.onclick = window.toggleNotepad;
+        btn.href = "#"; // Disable anchor scroll jump
     });
 
     const exploreBtns = document.querySelectorAll('a[href="#studio"]');
