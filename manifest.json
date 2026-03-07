@@ -1,7 +1,12 @@
 {
+  "id": "com.goldenmirror.app",
   "name": "VIR2OSE Studio",
   "short_name": "VIR2OSE",
   "description": "VIR2OSE Sound Studio & Audio-Engineering",
+  "categories": [
+    "music",
+    "productivity"
+  ],
   "start_url": "https://goldenmirror.online/",
   "display": "standalone",
   "background_color": "#0a0a0a",
@@ -16,7 +21,22 @@
     {
       "src": "logo.ping.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "mockup.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "mockup.png",
+      "sizes": "640x640",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }

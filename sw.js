@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vir2ose-app-cache-v25';
+const CACHE_NAME = 'vir2ose-app-cache-v26';
 const urlsToCache = [
     './',
     './index.html',
@@ -6,6 +6,7 @@ const urlsToCache = [
     './portfolio.html',
     './services.html',
     './contact.html',
+    './offline.html',
     './style.css',
     './script.js',
     './logo.ping.png'
@@ -22,6 +23,9 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
+    // We only want to handle GET requests
+    if (event.request.method !== 'GET') return;
+
     event.respondWith(
         caches.match(event.request)
             .then(response => {
@@ -29,9 +33,13 @@ self.addEventListener('fetch', event => {
                 if (response) {
                     return response;
                 }
+
                 return fetch(event.request).catch(() => {
-                    // Optional: Return a fallback page or offline indicator here if wanted
-                    console.log('Service Worker: Fetch failed, offline mode.');
+                    // Fetch failed (network error). If HTML navigation, return offline page
+                    if (event.request.mode === 'navigate' ||
+                        (event.request.method === 'GET' && event.request.headers.get('accept').includes('text/html'))) {
+                        return caches.match('./offline.html');
+                    }
                 });
             })
     );
