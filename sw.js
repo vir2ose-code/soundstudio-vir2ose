@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vir2ose-app-cache-v27';
+const CACHE_NAME = 'vir2ose-app-cache-v28';
 const urlsToCache = [
     './',
     './index.html',
@@ -9,7 +9,8 @@ const urlsToCache = [
     './offline.html',
     './style.css',
     './script.js',
-    './logo.ping.png'
+    './logo.ping.png',
+    './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
