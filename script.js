@@ -25,9 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_sub': 'SAMPLE <span class="highlight">SOUNDDESIGN</span> BEATS',
             'title_tagline': 'DIE ZUKUNFT GEMEINSAM GESTALTEN',
             'powered_by': 'powered by',
-            'btn_explore': 'ENTDECKE MEINE SOUND-SAMPLES',
+            'btn_explore': 'GENRE OVERVIEW',
             'btn_project': 'LYRICS & NOTIZEN SCHREIBEN',
             'scroll_text': 'SCROLLEN',
+            // Portfolio
+            'port_title': 'GENRE OVERVIEW',
+            'port_subtitle': 'Entdecke exklusive Preview-Sounds aus allen 15 Genres.',
             // Notepad DE
             'note_hint': 'Schreibe deine neuen Lyrics...',
             'note_btn_download': 'Als .txt Speichern',
@@ -149,9 +152,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_sub': 'SAMPLE <span class="highlight">SOUNDDESIGN</span> BEATS',
             'title_tagline': 'SHAPING THE FUTURE TOGETHER',
             'powered_by': 'powered by',
-            'btn_explore': 'DISCOVER MY SOUND SAMPLES',
+            'btn_explore': 'GENRE OVERVIEW',
             'btn_project': 'WRITE LYRICS & NOTES',
             'scroll_text': 'SCROLL',
+            // Portfolio
+            'port_title': 'GENRE OVERVIEW',
+            'port_subtitle': 'Discover exclusive preview sounds from all 15 genres.',
             // Notepad EN
             'note_hint': 'Write your new lyrics...',
             'note_btn_download': 'Save as .txt',
@@ -275,9 +281,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_sub': 'SAMPLE <span class="highlight">SOUNDDESIGN</span> BEATS',
             'title_tagline': 'MOLDEANDO EL FUTURO JUNTOS',
             'powered_by': 'powered by',
-            'btn_explore': 'DESCUBRE MIS MUESTRAS DE SONIDO',
+            'btn_explore': 'GENRE OVERVIEW',
             'btn_project': 'ESCRIBIR LETRAS Y NOTAS',
             'scroll_text': 'DESPLAZARSE',
+            // Portfolio
+            'port_title': 'GENRE OVERVIEW',
+            'port_subtitle': 'Descubre sonidos de vista previa exclusivos de los 15 géneros.',
             // Notepad ES
             'note_hint': 'Escribe tus nuevas letras...',
             'note_btn_download': 'Guardar como .txt',
@@ -397,9 +406,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'title_sub': 'SAMPLE <span class="highlight">SOUNDDESIGN</span> BEATS',
             'title_tagline': 'WSPÓLNIE KSZTAŁTUJEMY PRZYSZŁOŚĆ',
             'powered_by': 'powered by',
-            'btn_explore': 'POZNAJ MOJE PRÓBKI DŹWIĘKOWE',
+            'btn_explore': 'GENRE OVERVIEW',
             'btn_project': 'PISZ TEKSTY I NOTATKI',
             'scroll_text': 'PRZEWIŃ',
+            // Portfolio
+            'port_title': 'GENRE OVERVIEW',
+            'port_subtitle': 'Odkryj ekskluzywne dźwięki poglądowe ze wszystkich 15 gatunków.',
             // Notepad PL
             'note_hint': 'Napisz swój nowy tekst...',
             'note_btn_download': 'Zapisz jako .txt',
