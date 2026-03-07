@@ -1193,10 +1193,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.playPortfolioSample = playPortfolioSample;
 
-    // Configuration Toggle for Future API Integration
+    // Configuration Constants
     const CONFIG = {
-        USE_REAL_API: false, // Set to true when the VIR2OSE API Key is available
-        API_ENDPOINT: 'https://api.example-audio-model.com/v1/generate' // Placeholder
+        USE_REAL_API: false, // Legacy boolean (Phase 9)
+        USE_AI_GENERATION: false, // New Hybrid Switch (Phase 28)
+        API_ENDPOINT: 'https://api.yourbackend.com/generate'
     };
 
     async function startSoundGeneration() {
@@ -1234,43 +1235,90 @@ document.addEventListener('DOMContentLoaded', () => {
 
         console.log("Input Prompt:", promptFromLeft);
 
-        if (CONFIG.USE_REAL_API) {
-            // ──────────────── REAL API INTEGRATION BLOCK ────────────────
-            console.log("Calling external Audio AI API...");
+        // ──────────────── HYBRID API INTEGRATION BLOCK ────────────────
+        if (CONFIG.USE_AI_GENERATION) {
+            console.log("Calling Vercel Serverless API (/api/generate)...");
             try {
-                // Placeholder for future fetch logic:
-                // const response = await fetch(CONFIG.API_ENDPOINT, {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer YOUR_API_KEY' },
-                //     body: JSON.stringify({ prompt: promptFromLeft })
-                // });
-                // const data = await response.json();
-                // const generatedAudioUrl = data.audio_url; 
+                // We await the response, but if we haven't wrapped startSoundGeneration in async,
+                // we handle it with Promises to keep the signature clean or wrap it. 
+                // We'll use a standard Promise flow here to match the existing non-async function structure.
 
-                // For now, simulate a fast return if toggled by mistake
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                throw new Error("Real API not yet configured. Falling back to simulation.");
+                fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ prompt: promptFromLeft })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.useFallback || data.error) {
+                            console.warn("API returned fallback flag or error:", data.error);
+                            runSimulationFallback(promptFromLeft, currentLang);
+                        } else if (data.audioUrl) {
+                            // Success from real AI
+                            statusDisplay.classList.remove('status-active');
+                            statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
+
+                            resultBox2.style.display = 'block';
+                            setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
+                            waveformContainer.style.display = 'block';
+
+                            currentSoundURL = data.audioUrl;
+                            if (wavesurfer) {
+                                wavesurfer.load(currentSoundURL);
+                                wavesurfer.once('ready', () => wavesurfer.play());
+                            }
+
+                            const downloadBtn = document.getElementById('download-btn');
+                            if (downloadBtn) {
+                                downloadBtn.href = currentSoundURL;
+                                downloadBtn.download = "VIR2OSE_AI_Audio.wav"; // or extract from url
+                                downloadBtn.classList.add('btn-breathe');
+                            }
+
+                            const promptOutput2 = document.getElementById('generated-prompt-2');
+                            if (promptOutput2) {
+                                promptOutput2.innerText = `VIR2OSE Engine URL: External API Gen`;
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Fetch failed completely. Triggering fallback.", err);
+                        runSimulationFallback(promptFromLeft, currentLang);
+                    });
+
+                // Return early so we don't run the simulation below immediately
+                return;
 
             } catch (error) {
-                console.warn(error.message);
-                // Fallback handled below if needed, or handle error state
+                console.error("API Error execution:", error.message);
+                // Fall down to simulation
             }
         }
 
         // ──────────────── SIMULATION BLOCK (Fallback/Current) ────────────────
+        runSimulationFallback(promptFromLeft, currentLang);
+    }
+
+    // Extracted simulation logic for cleaner Fallback handling
+    function runSimulationFallback(promptFromLeft, currentLang) {
         console.log("Starting 5-Second Bridge Simulation...");
-        // 2. Simulate Production Delay (Exactly 5 Seconds)
+        // Simulate Production Delay (Exactly 5 Seconds)
         setTimeout(() => {
-            statusDisplay.classList.remove('status-active');
-            statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
+            const statusDisplay = document.getElementById('status-display');
+            const statusText = statusDisplay ? statusDisplay.querySelector('p') : null;
+            const resultBox2 = document.getElementById('result-box-2');
+            const waveformContainer = document.getElementById('waveform-container');
+
+            if (statusDisplay) statusDisplay.classList.remove('status-active');
+            if (statusText) statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
 
             // Show result box with fade-in effect
-            resultBox2.style.display = 'block';
-            setTimeout(() => {
-                resultBox2.classList.add('result-box-show');
-            }, 10);
+            if (resultBox2) {
+                resultBox2.style.display = 'block';
+                setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
+            }
 
-            waveformContainer.style.display = 'block';
+            if (waveformContainer) waveformContainer.style.display = 'block';
 
             // Build the array of new available files in the audio gen folder
             const technoFiles = [
