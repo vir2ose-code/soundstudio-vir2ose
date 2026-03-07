@@ -1934,3 +1934,128 @@ body::after {
     margin-top: 1.5rem;
     padding-top: 1rem;
 }
+
+
+/* =========================================================================
+   NEWSLETTER SECTION
+   ========================================================================= */
+.newsletter-section {
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, transparent, rgba(5, 5, 5, 0.9));
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 10;
+}
+
+.newsletter-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba(197, 165, 90, 0.15);
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.newsletter-title {
+    font-family: 'Syncopate', sans-serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(197, 165, 90, 0.3);
+}
+
+.newsletter-subtitle {
+    font-size: 0.95rem;
+    color: var(--silver);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.newsletter-form .row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.newsletter-form .input-gen {
+    flex: 1;
+    margin-bottom: 0;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+#btn-newsletter {
+    padding: 12px 30px;
+    white-space: nowrap;
+    height: 48px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--gold);
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+}
+
+.checkbox-group label {
+    font-size: 0.85rem;
+    color: var(--silver);
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.gold-link {
+    color: var(--gold);
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+.gold-link:hover {
+    color: var(--white);
+    text-shadow: 0 0 10px rgba(197, 165, 90, 0.4);
+}
+
+.success-message {
+    color: var(--gold);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 20px;
+    text-shadow: 0 0 10px rgba(197, 165, 90, 0.3);
+    padding: 15px;
+    border: 1px solid rgba(197, 165, 90, 0.3);
+    background: rgba(197, 165, 90, 0.05);
+    border-radius: 8px;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin-top: 20px;
+}
+
+/* Newsletter Responsive Adjustments */
+@media (max-width: 600px) {
+    .newsletter-form .row {
+        flex-direction: column;
+    }
+    #btn-newsletter {
+        width: 100%;
+    }
+}

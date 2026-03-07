@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Portfolio
             'port_title': 'GENRE OVERVIEW',
             'port_subtitle': 'Entdecke exklusive Preview-Sounds aus allen 15 Genres.',
+            // Newsletter
+            'nl_title': 'STAY IN THE LOOP',
+            'nl_subtitle': 'Sichere dir exklusive Sound-Packs, Studio-Updates und Insider-Tipps direkt in dein Postfach.',
+            'nl_btn': 'ABONNIEREN',
+            'nl_privacy_text': 'Ich stimme zu, dass meine Daten verarbeitet werden. (<a href="privacy.html" target="_blank" class="gold-link">Datenschutz</a>)',
+            'nl_success': 'Genial! Danke für deine Anmeldung ✨',
+            'nl_error': 'Es gab ein Problem. Bitte versuche es noch einmal.',
             // Notepad DE
             'note_hint': 'Schreibe deine neuen Lyrics...',
             'note_btn_download': 'Als .txt Speichern',
@@ -158,6 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Portfolio
             'port_title': 'GENRE OVERVIEW',
             'port_subtitle': 'Discover exclusive preview sounds from all 15 genres.',
+            // Newsletter
+            'nl_title': 'STAY IN THE LOOP',
+            'nl_subtitle': 'Get exclusive sound packs, studio updates, and insider tips delivered straight to your inbox.',
+            'nl_btn': 'SUBSCRIBE',
+            'nl_privacy_text': 'I consent to the processing of my data. (<a href="privacy.html" target="_blank" class="gold-link">Privacy Policy</a>)',
+            'nl_success': 'Awesome! Thanks for subscribing ✨',
+            'nl_error': 'There was a problem. Please try again.',
             // Notepad EN
             'note_hint': 'Write your new lyrics...',
             'note_btn_download': 'Save as .txt',
@@ -287,6 +301,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Portfolio
             'port_title': 'GENRE OVERVIEW',
             'port_subtitle': 'Descubre sonidos de vista previa exclusivos de los 15 géneros.',
+            // Newsletter
+            'nl_title': 'STAY IN THE LOOP',
+            'nl_subtitle': 'Recibe paquetes de sonido exclusivos, actualizaciones de estudio y consejos de expertos en tu bandeja de entrada.',
+            'nl_btn': 'SUSCRIBIRSE',
+            'nl_privacy_text': 'Doy mi consentimiento para el procesamiento de mis datos. (<a href="privacy.html" target="_blank" class="gold-link">Política de Privacidad</a>)',
+            'nl_success': '¡Genial! Gracias por suscribirte ✨',
+            'nl_error': 'Hubo un problema. Por favor inténtelo de nuevo.',
             // Notepad ES
             'note_hint': 'Escribe tus nuevas letras...',
             'note_btn_download': 'Guardar como .txt',
@@ -412,6 +433,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Portfolio
             'port_title': 'GENRE OVERVIEW',
             'port_subtitle': 'Odkryj ekskluzywne dźwięki poglądowe ze wszystkich 15 gatunków.',
+            // Newsletter
+            'nl_title': 'STAY IN THE LOOP',
+            'nl_subtitle': 'Otrzymuj ekskluzywne pakiety dźwiękowe, aktualizacje ze studia i wskazówki bezpośrednio do swojej skrzynki.',
+            'nl_btn': 'ZAPISZ SIĘ',
+            'nl_privacy_text': 'Wyrażam zgodę na przetwarzanie moich danych. (<a href="privacy.html" target="_blank" class="gold-link">Polityka prywatności</a>)',
+            'nl_success': 'Świetnie! Dziękujemy za subskrypcję ✨',
+            'nl_error': 'Wystąpił problem. Proszę spróbować ponownie.',
             // Notepad PL
             'note_hint': 'Napisz swój nowy tekst...',
             'note_btn_download': 'Zapisz jako .txt',
@@ -1534,4 +1562,48 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('studio').scrollIntoView({ behavior: 'smooth' });
         };
     });
+});
+
+
+// ==========================================
+// Newsletter Form Submission (AJAX)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-newsletter');
+            const originalText = btn.innerHTML;
+            const successMsg = document.getElementById('nl-success-msg');
+            const errorMsg = document.getElementById('nl-error-msg');
+            
+            btn.innerHTML = '<span class="play-indicator" style="display:inline-flex; transform:scale(0.8)"><span></span><span></span><span></span></span>';
+            btn.disabled = true;
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            try {
+                const response = await fetch(this.action, {
+                    method: this.method,
+                    body: new FormData(this),
+                    headers: { 'Accept': 'application/json' }
+                });
+                
+                if (response.ok) {
+                    this.reset();
+                    successMsg.style.display = 'block';
+                } else {
+                    errorMsg.style.display = 'block';
+                }
+            } catch (error) {
+                errorMsg.style.display = 'block';
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                // Re-apply language immediately so button text restores correctly if user switched lang mid-flight\n                const currentLang = localStorage.getItem('lang') || 'en';
+                setLanguage(currentLang); 
+            }
+        });
+    }
 });

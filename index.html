@@ -241,10 +241,42 @@
     <!-- Scroll Indicator -->
     <div class="scroll-indicator" id="scroll-indicator">
         <div class="scroll-mouse">
-            <div class="scroll-wheel"></div>
+            <div class="scroll-scroll-wheel"></div>
         </div>
         <span class="scroll-text" data-i18n="scroll_text">SCROLL</span>
     </div>
+
+    <!-- ──────────────── Newsletter Section (Golden Mirror Style) ──────────────── -->
+    <section id="newsletter" class="newsletter-section">
+        <div class="newsletter-container glass-panel">
+            <h2 class="newsletter-title" data-i18n="nl_title">STAY IN THE LOOP</h2>
+            <p class="newsletter-subtitle" data-i18n="nl_subtitle">Sichere dir exklusive Sound-Packs, Studio-Updates und
+                Insider-Tipps direkt in dein Postfach.</p>
+
+            <form class="newsletter-form" action="https://formspree.io/f/xbjnvele" method="POST" id="newsletter-form">
+                <div class="form-group row">
+                    <input type="email" name="email" id="nl-email" required placeholder="name@domain.com"
+                        class="input-gen w-100">
+                    <button type="submit" class="btn btn-primary" id="btn-newsletter"
+                        data-i18n="nl_btn">ABONNIEREN</button>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="nl-privacy" name="privacy_consent" required>
+                    <label for="nl-privacy" data-i18n="nl_privacy_text">
+                        Ich stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage verarbeitet werden. (<a
+                            href="privacy.html" target="_blank" class="gold-link">Datenschutz</a>)
+                    </label>
+                </div>
+
+                <p id="nl-success-msg" class="success-message" style="display: none;" data-i18n="nl_success">Genial!
+                    Danke für deine Anmeldung ✨</p>
+                <p id="nl-error-msg" class="error-message" style="display: none;" data-i18n="nl_error">Es gab ein
+                    Problem. Bitte versuche es noch einmal.</p>
+            </form>
+        </div>
+    </section>
+
     <footer class="site-footer">
         <p>
             <span data-i18n="footer_copyright">© Waldemar Krucinski Hannover 2026</span>
