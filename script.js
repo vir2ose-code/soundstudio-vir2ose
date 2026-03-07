@@ -1566,44 +1566,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // ==========================================
-// Newsletter Form Submission (AJAX)
+// Newsletter Form Submission (MailerLite)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    const newsletterForm = document.getElementById('newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const btn = document.getElementById('btn-newsletter');
-            const originalText = btn.innerHTML;
-            const successMsg = document.getElementById('nl-success-msg');
-            const errorMsg = document.getElementById('nl-error-msg');
-            
-            btn.innerHTML = '<span class="play-indicator" style="display:inline-flex; transform:scale(0.8)"><span></span><span></span><span></span></span>';
-            btn.disabled = true;
-            successMsg.style.display = 'none';
-            errorMsg.style.display = 'none';
+    // MailerLite handles the fetch internally.
+    // We just listen for their custom success event to trigger our UI changes.
+    const successMsg = document.getElementById('nl-success-msg');
+    const errorMsg = document.getElementById('nl-error-msg');
+    const formGroup = document.querySelector('.newsletter-form .row');
 
-            try {
-                const response = await fetch(this.action, {
-                    method: this.method,
-                    body: new FormData(this),
-                    headers: { 'Accept': 'application/json' }
-                });
-                
-                if (response.ok) {
-                    this.reset();
-                    successMsg.style.display = 'block';
-                } else {
-                    errorMsg.style.display = 'block';
-                }
-            } catch (error) {
-                errorMsg.style.display = 'block';
-            } finally {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                // Re-apply language immediately so button text restores correctly if user switched lang mid-flight\n                const currentLang = localStorage.getItem('lang') || 'en';
-                setLanguage(currentLang); 
-            }
-        });
+    function ml_webform_success_149811802925205466() {
+        if (successMsg) successMsg.style.display = 'block';
+        if (errorMsg) errorMsg.style.display = 'none';
+        if (formGroup) formGroup.style.display = 'none'; // Hide inputs on success
     }
+
+    // Attach to global window object so ML script can find it
+    window.ml_webform_success_149811802925205466 = ml_webform_success_149811802925205466;
 });

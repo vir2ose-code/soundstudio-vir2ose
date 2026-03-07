@@ -2059,3 +2059,10 @@ body::after {
         width: 100%;
     }
 }
+
+
+/* MailerLite Overrides */
+.ml-block-form .loading { display: none !important; }
+.ml-block-form.ml-block-form--loading .loading { display: inline-flex !important; }
+.ml-block-form.ml-block-form--loading .primary { display: none !important; }
+

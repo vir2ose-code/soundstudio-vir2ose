@@ -18,6 +18,19 @@
     <link rel="stylesheet" href="style.css">
     <!-- Wavesurfer.js for Audio Visualization -->
     <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <!-- MailerLite Universal -->
+    <script>
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || [])
+                    .push(arguments);
+            }, l = d.createElement(e), l.async = 1, l.src = u,
+                n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+        })
+            (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+        ml('account', '2170312');
+    </script>
+    <!-- End MailerLite Universal -->
 </head>
 
 <body>
@@ -253,16 +266,25 @@
             <p class="newsletter-subtitle" data-i18n="nl_subtitle">Sichere dir exklusive Sound-Packs, Studio-Updates und
                 Insider-Tipps direkt in dein Postfach.</p>
 
-            <form class="newsletter-form" action="https://formspree.io/f/xbjnvele" method="POST" id="newsletter-form">
-                <div class="form-group row">
-                    <input type="email" name="email" id="nl-email" required placeholder="name@domain.com"
-                        class="input-gen w-100">
-                    <button type="submit" class="btn btn-primary" id="btn-newsletter"
+            <!-- MailerLite Form mapped to Golden Mirror Styles -->
+            <form class="newsletter-form ml-block-form"
+                action="https://assets.mailerlite.com/jsonp/1344446/forms/149811802925205466/subscribe"
+                data-code="149811802925205466" method="post" target="_blank" id="newsletter-form">
+                <div class="form-group row ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                    <input type="email" name="fields[email]" id="nl-email" required placeholder="name@domain.com"
+                        class="input-gen w-100 form-control">
+                    <button type="submit" class="btn btn-primary primary" id="btn-newsletter"
                         data-i18n="nl_btn">ABONNIEREN</button>
+                    <!-- MailerLite Loading Indicator -->
+                    <button disabled="disabled" style="display:none;" type="button" class="btn btn-primary loading"
+                        id="btn-newsletter-loading">
+                        <span class="play-indicator"
+                            style="display:inline-flex; transform:scale(0.8)"><span></span><span></span><span></span></span>
+                    </button>
                 </div>
 
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="nl-privacy" name="privacy_consent" required>
+                <div class="form-group checkbox-group ml-field-group ml-validate-required">
+                    <input type="checkbox" id="nl-privacy" name="opt_in" value="1" required>
                     <label for="nl-privacy" data-i18n="nl_privacy_text">
                         Ich stimme zu, dass meine Daten zur Bearbeitung meiner Anfrage verarbeitet werden. (<a
                             href="privacy.html" target="_blank" class="gold-link">Datenschutz</a>)
