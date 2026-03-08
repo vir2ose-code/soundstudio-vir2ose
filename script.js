@@ -613,7 +613,8 @@ document.addEventListener('DOMContentLoaded', () => {
             normalize: true,
             partialRender: true,
             interact: false,
-            mediaControls: false
+            mediaControls: false,
+            pixelRatio: 1
         });
     }
 
@@ -801,24 +802,36 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(heroSection);
     }
 
-    function animate() {
+    let lastFrameTime = 0;
+    const targetFPS = 30;
+    const frameInterval = 1000 / targetFPS;
+
+    function animate(currentTime) {
         requestAnimationFrame(animate);
 
         if (!isCanvasVisible) return; // Skip 100% of calculations if out of viewport
 
-        time += 0.002; // Glacial global increment
-        if (pCtx) {
-            pCtx.clearRect(0, 0, width, height);
-            drawGrid();
-            particles.forEach(p => { p.update(); p.draw(); });
-        }
-        drawLiquidWave();
+        if (currentTime === undefined) currentTime = performance.now();
+        const deltaTime = currentTime - lastFrameTime;
 
-        const ux = (mouseX - 0.5) * 2;
-        const uy = (mouseY - 0.5) * 2;
-        if (heroContent) heroContent.style.transform = `translate(${ux * 10}px, ${uy * 6}px)`;
+        if (deltaTime > frameInterval) {
+            // Adjust lastFrameTime to account for any excess time beyond the interval
+            lastFrameTime = currentTime - (deltaTime % frameInterval);
+
+            time += 0.002; // Glacial global increment
+            if (pCtx) {
+                pCtx.clearRect(0, 0, width, height);
+                drawGrid();
+                particles.forEach(p => { p.update(); p.draw(); });
+            }
+            drawLiquidWave();
+
+            const ux = (mouseX - 0.5) * 2;
+            const uy = (mouseY - 0.5) * 2;
+            if (heroContent) heroContent.style.transform = `translate(${ux * 10}px, ${uy * 6}px)`;
+        }
     }
-    animate();
+    requestAnimationFrame(animate);
 
     // Optimization: Throttle extremely fast mouse events using requestAnimationFrame to prevent global CSS custom property repaints
     let mouseTick = false;

@@ -2131,3 +2131,13 @@ body::after {
 .ml-block-form.ml-block-form--loading .primary {
     display: none !important;
 }
+/* Phase 32 CSS Performance Isolations */
+.hero {
+    contain: layout;
+}
+.generator-section {
+    contain: layout paint;
+}
+.mirror-container {
+    contain: layout;
+}
