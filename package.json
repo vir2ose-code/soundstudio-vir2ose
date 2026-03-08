@@ -1,0 +1,7 @@
+{
+    "name": "golden-mirror-studio",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Sound Studio Hannover AI Engine",
+    "private": true
+}

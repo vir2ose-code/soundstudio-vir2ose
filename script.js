@@ -818,16 +818,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animate();
 
-    // Optimization: Throttle extremely fast mouse events using requestAnimationFrame to prevent CSS custom property repaints
+    // Optimization: Throttle extremely fast mouse events using requestAnimationFrame to prevent global CSS custom property repaints
     let mouseTick = false;
+    const mouseLight = document.getElementById('mouse-light');
+
     document.addEventListener('mousemove', (e) => {
         targetMouseX = e.clientX / width;
         targetMouseY = e.clientY / height;
 
-        if (!mouseTick) {
+        if (!mouseTick && mouseLight) {
             requestAnimationFrame(() => {
-                document.documentElement.style.setProperty('--x', e.clientX + 'px');
-                document.documentElement.style.setProperty('--y', e.clientY + 'px');
+                // Apply ONLY to the mouse-light element, otherwise updating :root repaints the entire DOM!
+                mouseLight.style.setProperty('--x', e.clientX + 'px');
+                mouseLight.style.setProperty('--y', e.clientY + 'px');
                 mouseTick = false;
             });
             mouseTick = true;

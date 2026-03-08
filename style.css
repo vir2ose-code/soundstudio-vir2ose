@@ -86,7 +86,6 @@ body::before {
     border-radius: 50%;
     background: radial-gradient(circle at 40% 40%, rgba(197, 165, 90, 0.25) 0%, rgba(197, 165, 90, 0.08) 30%, transparent 70%);
     z-index: -2;
-    filter: blur(60px);
     transition: top 0.4s ease-out, right 0.4s ease-out;
     /* Performance: Isolate heavy blur to GPU */
     will-change: transform;
@@ -103,7 +102,6 @@ body::after {
     border-radius: 50%;
     background: radial-gradient(circle at 60% 60%, rgba(197, 165, 90, 0.12) 0%, transparent 70%);
     z-index: -2;
-    filter: blur(80px);
     animation: orbFloat 15s ease-in-out infinite alternate;
     will-change: transform;
     transform: translateZ(0);
