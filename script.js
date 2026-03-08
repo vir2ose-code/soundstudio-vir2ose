@@ -747,11 +747,12 @@ document.addEventListener('DOMContentLoaded', () => {
         wCtx.clearRect(0, 0, width, 300);
 
         const centerY = 235; // Lowered further for subtle horizon feel
+        // Optimization: Reduced ribbons per layer and layers overall
         const layers = [
-            { amp: 35, freq: 0.0015, speed: 0.12, color: 'rgba(197, 165, 90, 0.18)', ribbons: 6 },
-            { amp: 20, freq: 0.003, speed: -0.08, color: 'rgba(232, 213, 160, 0.12)', ribbons: 4 },
-            { amp: 45, freq: 0.001, speed: 0.05, color: 'rgba(138, 115, 64, 0.12)', ribbons: 5 },
-            { amp: 15, freq: 0.006, speed: 0.18, color: 'rgba(255, 255, 255, 0.06)', ribbons: 3 }
+            { amp: 35, freq: 0.0015, speed: 0.12, color: 'rgba(197, 165, 90, 0.18)', ribbons: 3 },
+            { amp: 20, freq: 0.003, speed: -0.08, color: 'rgba(232, 213, 160, 0.12)', ribbons: 2 },
+            { amp: 45, freq: 0.001, speed: 0.05, color: 'rgba(138, 115, 64, 0.12)', ribbons: 2 },
+            { amp: 15, freq: 0.006, speed: 0.18, color: 'rgba(255, 255, 255, 0.06)', ribbons: 1 }
         ];
 
         layers.forEach((l, i) => {
@@ -764,7 +765,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const ribbonOffset = r * 8;
                 wCtx.moveTo(0, centerY);
 
-                for (let x = 0; x <= width; x += 20) {
+                // Optimization: Doubled x step size from 20 to 40 for 50% less loop execution
+                for (let x = 0; x <= width; x += 40) {
                     const noise = Math.sin(x * 0.01 + time * 0.4 + r) * 1.5;
                     const y = centerY +
                         Math.sin(x * l.freq + time * l.speed + ribbonOffset + timeOffset) * l.amp +
@@ -783,7 +785,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Optimization: Cache hero selector completely outside loop
+    const heroContent = document.querySelector('.hero-content');
+    let isCanvasVisible = true;
+
+    // Optimization: Intersection Observer to pause expensive Canvas rendering when scrolled away
+    const waveVisualizer = document.querySelector('.visualizer');
+    if (waveVisualizer) {
+        const observer = new IntersectionObserver((entries) => {
+            isCanvasVisible = entries[0].isIntersecting || window.scrollY < window.innerHeight;
+        }, { threshold: 0.01 });
+        observer.observe(waveVisualizer);
+        observer.observe(document.querySelector('.header'));
+    }
+
     function animate() {
+        requestAnimationFrame(animate);
+
+        if (!isCanvasVisible) return; // Skip 100% of calculations if out of viewport
+
         time += 0.002; // Glacial global increment
         if (pCtx) {
             pCtx.clearRect(0, 0, width, height);
@@ -794,19 +814,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const ux = (mouseX - 0.5) * 2;
         const uy = (mouseY - 0.5) * 2;
-        const hero = document.querySelector('.hero-content');
-        if (hero) hero.style.transform = `translate(${ux * 10}px, ${uy * 6}px)`;
-
-        requestAnimationFrame(animate);
+        if (heroContent) heroContent.style.transform = `translate(${ux * 10}px, ${uy * 6}px)`;
     }
     animate();
 
+    // Optimization: Throttle extremely fast mouse events using requestAnimationFrame to prevent CSS custom property repaints
+    let mouseTick = false;
     document.addEventListener('mousemove', (e) => {
         targetMouseX = e.clientX / width;
         targetMouseY = e.clientY / height;
-        document.documentElement.style.setProperty('--x', e.clientX + 'px');
-        document.documentElement.style.setProperty('--y', e.clientY + 'px');
-    });
+
+        if (!mouseTick) {
+            requestAnimationFrame(() => {
+                document.documentElement.style.setProperty('--x', e.clientX + 'px');
+                document.documentElement.style.setProperty('--y', e.clientY + 'px');
+                mouseTick = false;
+            });
+            mouseTick = true;
+        }
+    }, { passive: true });
 
     // ──────────────── AI Prompt Engine Logic ────────────────
     const genreAudioMap = {
