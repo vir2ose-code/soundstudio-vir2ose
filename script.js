@@ -611,7 +611,9 @@ document.addEventListener('DOMContentLoaded', () => {
             responsive: true,
             height: 60,
             normalize: true,
-            partialRender: true
+            partialRender: true,
+            interact: false,
+            mediaControls: false
         });
     }
 
@@ -790,13 +792,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let isCanvasVisible = true;
 
     // Optimization: Intersection Observer to pause expensive Canvas rendering when scrolled away
-    const waveVisualizer = document.querySelector('.visualizer');
-    if (waveVisualizer) {
+    // Binding to '.hero' ensures the canvas fully stops rendering when the user scrolls down
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
         const observer = new IntersectionObserver((entries) => {
-            isCanvasVisible = entries[0].isIntersecting || window.scrollY < window.innerHeight;
+            isCanvasVisible = entries[0].isIntersecting;
         }, { threshold: 0.01 });
-        observer.observe(waveVisualizer);
-        observer.observe(document.querySelector('.header'));
+        observer.observe(heroSection);
     }
 
     function animate() {
@@ -826,7 +828,7 @@ document.addEventListener('DOMContentLoaded', () => {
         targetMouseX = e.clientX / width;
         targetMouseY = e.clientY / height;
 
-        if (!mouseTick && mouseLight) {
+        if (!mouseTick && mouseLight && isCanvasVisible) {
             requestAnimationFrame(() => {
                 // Apply ONLY to the mouse-light element, otherwise updating :root repaints the entire DOM!
                 mouseLight.style.setProperty('--x', e.clientX + 'px');
@@ -1580,6 +1582,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (downloadBtn) {
             downloadBtn.href = '#';
             downloadBtn.classList.remove('btn-breathe');
+        }
+
+        // Stop Wavesurfer background loop
+        if (wavesurfer) {
+            wavesurfer.pause();
+            wavesurfer.empty();
         }
     }
 
