@@ -3,6 +3,7 @@
   "name": "VIR2OSE Studio",
   "short_name": "VIR2OSE",
   "description": "VIR2OSE Sound Studio & Audio-Engineering",
+  "lang": "de-DE",
   "categories": [
     "music",
     "productivity"
