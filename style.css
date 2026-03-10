@@ -2131,13 +2131,59 @@ body::after {
 .ml-block-form.ml-block-form--loading .primary {
     display: none !important;
 }
+
 /* Phase 32 CSS Performance Isolations */
 .hero {
     contain: layout;
 }
+
 .generator-section {
     contain: layout paint;
 }
+
 .mirror-container {
     contain: layout;
+}
+
+.wave-section {
+    contain: layout paint;
+}
+
+.sound-section {
+    contain: layout paint;
+}
+
+.notepad-wrapper {
+    contain: layout paint;
+}
+
+.portfolio-section {
+    contain: layout paint;
+}
+
+.site-footer {
+    contain: layout paint;
+}
+
+/* GPU Forcing — push animated/canvas elements to compositor layer */
+#particles-canvas,
+#wave-canvas {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.gradient-3d {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.gold-glow-container {
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Phase 39: Animation Pause Class — toggled by Visibility API when tab is hidden */
+.paused-anim,
+.paused-anim * {
+    animation-play-state: paused !important;
 }

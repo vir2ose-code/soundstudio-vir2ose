@@ -616,6 +616,11 @@ document.addEventListener('DOMContentLoaded', () => {
             mediaControls: false,
             pixelRatio: 1
         });
+
+        // Phase 39: Wavesurfer idle mode — stop redrawing when audio finishes
+        wavesurfer.on('finish', () => {
+            wavesurfer.empty();
+        });
     }
 
     // ──────────────── Canvases ────────────────
@@ -713,7 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ──────────────── Liquid Gold Wave ────────────────
     const waveParticles = [];
-    const waveParticleCount = 60;
+    const waveParticleCount = 30;
     class WaveParticle {
         constructor() { this.reset(); }
         reset() {
@@ -752,10 +757,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const centerY = 235; // Lowered further for subtle horizon feel
         // Optimization: Reduced ribbons per layer and layers overall
         const layers = [
-            { amp: 35, freq: 0.0015, speed: 0.12, color: 'rgba(197, 165, 90, 0.18)', ribbons: 3 },
-            { amp: 20, freq: 0.003, speed: -0.08, color: 'rgba(232, 213, 160, 0.12)', ribbons: 2 },
-            { amp: 45, freq: 0.001, speed: 0.05, color: 'rgba(138, 115, 64, 0.12)', ribbons: 2 },
-            { amp: 15, freq: 0.006, speed: 0.18, color: 'rgba(255, 255, 255, 0.06)', ribbons: 1 }
+            { amp: 35, freq: 0.0015, speed: 0.12, color: 'rgba(197, 165, 90, 0.18)', ribbons: 2 },
+            { amp: 20, freq: 0.003, speed: -0.08, color: 'rgba(232, 213, 160, 0.12)', ribbons: 1 },
+            { amp: 45, freq: 0.001, speed: 0.05, color: 'rgba(138, 115, 64, 0.12)', ribbons: 1 }
         ];
 
         layers.forEach((l, i) => {
@@ -791,15 +795,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Optimization: Cache hero selector completely outside loop
     const heroContent = document.querySelector('.hero-content');
     let isCanvasVisible = true;
+    let isWaveVisible = true;
+    let isTabVisible = true;
 
-    // Optimization: Intersection Observer to pause expensive Canvas rendering when scrolled away
-    // Binding to '.hero' ensures the canvas fully stops rendering when the user scrolls down
+    // Phase 39: Visibility API — fully pause ALL rendering when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        isTabVisible = !document.hidden;
+        if (document.hidden) {
+            document.body.classList.add('paused-anim');
+        } else {
+            document.body.classList.remove('paused-anim');
+        }
+    });
+    window.addEventListener('blur', () => { isTabVisible = false; document.body.classList.add('paused-anim'); });
+    window.addEventListener('focus', () => { isTabVisible = true; document.body.classList.remove('paused-anim'); });
+
+    // Phase 39: Intersection Observer for hero canvas
     const heroSection = document.querySelector('.hero');
     if (heroSection) {
-        const observer = new IntersectionObserver((entries) => {
+        const heroObserver = new IntersectionObserver((entries) => {
             isCanvasVisible = entries[0].isIntersecting;
         }, { threshold: 0.01 });
-        observer.observe(heroSection);
+        heroObserver.observe(heroSection);
+    }
+
+    // Phase 39: Intersection Observer for wave section — only draw waves when visible
+    const waveSection = document.querySelector('.wave-section') || (waveCanvas ? waveCanvas.parentElement : null);
+    if (waveSection) {
+        const waveObserver = new IntersectionObserver((entries) => {
+            isWaveVisible = entries[0].isIntersecting;
+        }, { threshold: 0.01 });
+        waveObserver.observe(waveSection);
     }
 
     let lastFrameTime = 0;
@@ -809,26 +835,32 @@ document.addEventListener('DOMContentLoaded', () => {
     function animate(currentTime) {
         requestAnimationFrame(animate);
 
-        if (!isCanvasVisible) return; // Skip 100% of calculations if out of viewport
+        // Phase 39: Skip ALL calculations if tab is hidden or minimized
+        if (!isTabVisible) return;
 
         if (currentTime === undefined) currentTime = performance.now();
         const deltaTime = currentTime - lastFrameTime;
 
         if (deltaTime > frameInterval) {
-            // Adjust lastFrameTime to account for any excess time beyond the interval
             lastFrameTime = currentTime - (deltaTime % frameInterval);
 
-            time += 0.002; // Glacial global increment
-            if (pCtx) {
+            time += 0.002;
+
+            // Only draw hero canvas if it's in the viewport
+            if (isCanvasVisible && pCtx) {
                 pCtx.clearRect(0, 0, width, height);
                 drawGrid();
                 particles.forEach(p => { p.update(); p.draw(); });
-            }
-            drawLiquidWave();
 
-            const ux = (mouseX - 0.5) * 2;
-            const uy = (mouseY - 0.5) * 2;
-            if (heroContent) heroContent.style.transform = `translate(${ux * 10}px, ${uy * 6}px)`;
+                const ux = (mouseX - 0.5) * 2;
+                const uy = (mouseY - 0.5) * 2;
+                if (heroContent) heroContent.style.transform = `translate(${ux * 10}px, ${uy * 6}px)`;
+            }
+
+            // Phase 39: Only draw liquid wave if wave section is in viewport
+            if (isWaveVisible) {
+                drawLiquidWave();
+            }
         }
     }
     requestAnimationFrame(animate);
