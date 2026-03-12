@@ -46,11 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Konfiguriere deine Klang-Vision für die KI-Generierung.',
             'gen_label_style': 'KLANG-CHARAKTER (STYLE)',
             'gen_label_mood': 'ATMOSPHÄRE (MOOD)',
-            'gen_opt_industrial': 'Industrial Techno',
-            'gen_opt_lofi': 'Luxury Lofi',
-            'gen_opt_dark': 'Cinematic Dark',
-            'gen_opt_drill': 'Hard-Hitting Drill',
-            'gen_opt_house': 'Melodic House',
+            'gen_opt_industrial': 'Techno',
+            'gen_opt_lofi': 'Lofi Hiphop',
+            'gen_opt_dark': 'Cinematic',
+            'gen_opt_drill': 'Drill',
+            'gen_opt_house': 'House',
             'gen_opt_pop': 'POP',
             'gen_opt_rock': 'Rock',
             'gen_opt_reggaeton': 'Reggaeton',
@@ -180,11 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Configure your sound vision for AI generation.',
             'gen_label_style': 'SOUND CHARACTER (STYLE)',
             'gen_label_mood': 'ATMOSPHERE (MOOD)',
-            'gen_opt_industrial': 'Industrial Techno',
-            'gen_opt_lofi': 'Luxury Lofi',
-            'gen_opt_dark': 'Cinematic Dark',
-            'gen_opt_drill': 'Hard-Hitting Drill',
-            'gen_opt_house': 'Melodic House',
+            'gen_opt_industrial': 'Techno',
+            'gen_opt_lofi': 'Lofi Hiphop',
+            'gen_opt_dark': 'Cinematic',
+            'gen_opt_drill': 'Drill',
+            'gen_opt_house': 'House',
             'gen_opt_pop': 'POP',
             'gen_opt_rock': 'Rock',
             'gen_opt_reggaeton': 'Reggaeton',
@@ -316,11 +316,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Configura tu visión sonora para la generación por IA.',
             'gen_label_style': 'CARÁCTER DE SONIDO (ESTILO)',
             'gen_label_mood': 'ATMÓSFERA (CUBIERTA)',
-            'gen_opt_industrial': 'Industrial Techno',
-            'gen_opt_lofi': 'Luxury Lofi',
-            'gen_opt_dark': 'Cinematic Dark',
-            'gen_opt_drill': 'Hard-Hitting Drill',
-            'gen_opt_house': 'Melodic House',
+            'gen_opt_industrial': 'Techno',
+            'gen_opt_lofi': 'Lofi Hiphop',
+            'gen_opt_dark': 'Cinematic',
+            'gen_opt_drill': 'Drill',
+            'gen_opt_house': 'House',
             'gen_opt_pop': 'POP',
             'gen_opt_rock': 'Rock',
             'gen_opt_reggaeton': 'Reggaeton',
@@ -886,7 +886,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ──────────────── AI Prompt Engine Logic ────────────────
     const genreAudioMap = {
-        'Industrial Techno': [
+        'Techno': [
             'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Analog Afterglow.mp3',
             'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Crystal Grime.mp3',
             'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Ethereal Engine.mp3',
@@ -894,7 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Riot Logic.mp3',
             'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Static Revolt.mp3'
         ],
-        'Luxury Chill-Hop & Jazz': [
+        'Lofi Hiphop': [
             'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Crystal Lounge.mp3',
             'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Ethereal Dust.mp3',
             'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Golden Hour Jazz.mp3',
@@ -903,7 +903,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Nostalgic Nights.mp3',
             'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Rebel Lounge.mp3'
         ],
-        'Dark Cinematic Orchestral': [
+        'Cinematic': [
             'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Abyssal Reach.mp3',
             'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Ancient Signal.mp3',
             'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Celestial Depths.mp3',
@@ -912,7 +912,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Titan's Shadow.mp3",
             'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Void Echoes.mp3'
         ],
-        'Modern Hard-Hitting Drill': [
+        'Drill': [
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.mp3',
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Crystal Glide.mp3',
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.mp3',
@@ -921,12 +921,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Shadow Glide.mp3',
             'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Static Revolt Drill.mp3'
         ],
-        'Hypnotic Melodic House': [
+        'House': [
             'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Crystal Horizon.mp3',
             'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Heavy Pumping House.mp3',
             'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Rebel Pulse.mp3'
         ],
-        'Commercial POP': [
+        'Pop Music': [
             'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 1.mp3',
             'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 2.mp3',
             'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 1.mp3',
@@ -945,7 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 1.mp3',
             'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 2.mp3'
         ],
-        'Modern Reggaeton': [
+        'Reggaeton': [
             'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_1.mp3',
             'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_2.mp3',
             'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_1.mp3',
@@ -954,12 +954,12 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 2.mp3',
             'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Reggaeton Instrumental 2.mp3'
         ],
-        'Urban Hip-Hop': [
+        'Hip-Hop': [
             'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Dark & Heavy.mp3',
             'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Ethereal & Clear.mp3',
             'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Warm & Analog.mp3'
         ],
-        'Deep Meditation': [
+        'Meditation Music': [
             'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Crystal Clear Meditation.mp3',
             'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 1.mp3',
             'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 2.mp3',
@@ -967,6 +967,21 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 2.mp3',
             'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 2.mp3',
             'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 3.mp3'
+        ],
+        'Soul R&B': [
+            'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Ethereal R&B Groove 1.mp3',
+            'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Ethereal R&B Groove 2.mp3',
+            'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Warm Vintage Soul 1.mp3'
+        ],
+        'Reggae': [
+            'sounds/audio gen/Reggae/VIR2OSE_Soundstudio_Heavy Roots Dub 1.mp3',
+            'sounds/audio gen/Reggae/VIR2OSE_Soundstudio_Heavy Roots Dub 2.mp3',
+            'sounds/audio gen/Reggae/VIR2OSE_Soundstudio_Nostalgic Reggae Rhythm 1.mp3'
+        ],
+        'K-POP': [
+            'sounds/audio gen/K-POP/VIR2OSE_Soundstudio_Bright K-Pop Anthem 1.mp3',
+            'sounds/audio gen/K-POP/VIR2OSE_Soundstudio_Bright K-Pop Anthem 2.mp3',
+            'sounds/audio gen/K-POP/VIR2OSE_Soundstudio_Crystal Clear K-Pop 1.mp3'
         ]
     };
 
