@@ -887,44 +887,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // ──────────────── AI Prompt Engine Logic ────────────────
     const genreAudioMap = {
         'Techno': [
-            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Analog Afterglow.mp3',
-            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Crystal Grime.mp3',
-            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Ethereal Engine.mp3',
-            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Industrial Shadows.mp3',
-            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Riot Logic.mp3',
-            'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Static Revolt.mp3'
+            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Analog Afterglow.mp3',
+            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Crystal Grime.mp3',
+            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Ethereal Engine.mp3',
+            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Industrial Shadows.mp3',
+            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Riot Logic.mp3',
+            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Static Revolt.mp3'
         ],
         'Lofi Hiphop': [
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Crystal Lounge.mp3',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Ethereal Dust.mp3',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Golden Hour Jazz.mp3',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Heavy Velvet.mp3',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Midnight Noir.mp3',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Nostalgic Nights.mp3',
-            'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Rebel Lounge.mp3'
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Crystal Lounge.mp3',
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Ethereal Dust.mp3',
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Golden Hour Jazz.mp3',
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Heavy Velvet.mp3',
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Midnight Noir.mp3',
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Nostalgic Nights.mp3',
+            'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Rebel Lounge.mp3'
         ],
         'Cinematic': [
-            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Abyssal Reach.mp3',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Ancient Signal.mp3',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Celestial Depths.mp3',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Faded Dynasty.mp3',
-            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Riotous Echoes.mp3',
-            "sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Titan's Shadow.mp3",
-            'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Void Echoes.mp3'
+            'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Abyssal Reach.mp3',
+            'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Ancient Signal.mp3',
+            'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Celestial Depths.mp3',
+            'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Faded Dynasty.mp3',
+            'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Riotous Echoes.mp3',
+            "sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Titan's Shadow.mp3",
+            'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Void Echoes.mp3'
         ],
         'Drill': [
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.mp3',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Crystal Glide.mp3',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.mp3',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Heavy Industry Drill.mp3',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Riot Drill.mp3',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Shadow Glide.mp3',
-            'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Static Revolt Drill.mp3'
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.mp3',
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Crystal Glide.mp3',
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.mp3',
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Heavy Industry Drill.mp3',
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Riot Drill.mp3',
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Shadow Glide.mp3',
+            'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Static Revolt Drill.mp3'
         ],
         'House': [
-            'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Crystal Horizon.mp3',
-            'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Heavy Pumping House.mp3',
-            'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Rebel Pulse.mp3'
+            'sounds/audio gen/House/VIR2OSE_Soundstudio_Crystal Horizon.mp3',
+            'sounds/audio gen/House/VIR2OSE_Soundstudio_Heavy Pumping House.mp3',
+            'sounds/audio gen/House/VIR2OSE_Soundstudio_Rebel Pulse.mp3'
         ],
         'Pop Music': [
             'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 1.mp3',
@@ -979,9 +979,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Reggae/VIR2OSE_Soundstudio_Nostalgic Reggae Rhythm 1.mp3'
         ],
         'K-POP': [
-            'sounds/audio gen/K-POP/VIR2OSE_Soundstudio_Bright K-Pop Anthem 1.mp3',
-            'sounds/audio gen/K-POP/VIR2OSE_Soundstudio_Bright K-Pop Anthem 2.mp3',
-            'sounds/audio gen/K-POP/VIR2OSE_Soundstudio_Crystal Clear K-Pop 1.mp3'
+            'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Bright K-Pop Anthem 1.mp3',
+            'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Bright K-Pop Anthem 2.mp3',
+            'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Crystal Clear K-Pop 1.mp3'
         ]
     };
 
