@@ -36,14 +36,16 @@ body {
 
 /* Header Transformation (Global structure) */
 .app-header {
-    width: 100%;
-    padding: calc(12px + env(safe-area-inset-top)) 15px 12px;
+    width: 100vw; /* Ultra-wide enforcement */
+    padding: calc(12px + env(safe-area-inset-top)) 0 12px;
     background: linear-gradient(to bottom, rgba(10,10,10,1), rgba(10,10,10,0.8), transparent);
     display: flex;
     flex-direction: column;
     gap: 12px;
-    z-index: 1000; /* Priority layering */
+    z-index: 1000;
     position: relative;
+    left: 0;
+    top: 0;
 }
 
 .header-main-row {
@@ -51,14 +53,15 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    position: relative; /* Anchor for absolute centering */
-    min-height: 45px;
+    position: relative;
+    min-height: 50px;
+    padding: 0 20px; /* Precise 20px edge padding */
 }
 
 .header-left, .header-right {
     flex: 1;
     display: flex;
-    z-index: 2; /* Side elements above logo if they overlap */
+    z-index: 2;
 }
 
 .header-right {
@@ -74,14 +77,13 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 2px;
     z-index: 1;
     width: max-content;
 }
 
 .hamburger-menu {
-    width: 25px;
-    height: 18px;
+    width: 30px; /* Slightly larger for elegance */
+    height: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -98,12 +100,12 @@ body {
 
 .lang-flags {
     display: flex;
-    gap: 6px;
+    gap: 8px;
 }
 
 .lang-flag {
-    width: 20px;
-    height: 14px;
+    width: 24px; /* More visible flags */
+    height: 16px;
     border-radius: 2px;
     object-fit: cover;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
@@ -118,19 +120,21 @@ body {
 }
 
 .app-logo-small {
-    height: 32px;
-    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+    height: 40px; /* Fixed height as requested */
+    width: auto;
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
 }
 
 .logo-text-mini {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 2px;
 }
 
 .logo-name {
     font-family: 'Outfit', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     letter-spacing: 2px;
     font-weight: 700;
     color: #fff;
@@ -138,8 +142,8 @@ body {
 }
 
 .logo-studio {
-    font-size: 7px;
-    letter-spacing: 5px;
+    font-size: 8px;
+    letter-spacing: 4px;
     color: var(--gold);
     opacity: 0.9;
     margin-top: -2px;
@@ -152,18 +156,17 @@ body {
 }
 
 .logo-tagline {
-    font-size: 8px;
+    font-size: 9px;
     letter-spacing: 1px;
     color: var(--gold);
-    opacity: 0.6;
+    opacity: 0.5;
     text-transform: uppercase;
 }
 
 /* Header Adjustments for Desktop View of Smartphone App */
 @media (min-width: 768px) {
     .app-header {
-        max-width: 500px;
-        margin: 0 auto;
+        /* No max-width here, keep it 100vw for the wide feel */
         padding-top: 20px;
     }
 }
