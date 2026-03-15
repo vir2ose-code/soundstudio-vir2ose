@@ -31,26 +31,32 @@
     </div>
 
     <header class="app-header">
-        <div class="header-top-bar">
-            <div class="hamburger-menu" onclick="toggleDrawer()">
-                <span></span>
-                <span></span>
-                <span></span>
+        <div class="header-main-row">
+            <div class="header-left">
+                <div class="hamburger-menu" onclick="toggleDrawer()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <div class="lang-flags">
-                <img src="../DE.png" class="lang-flag" onclick="setLanguage('de')" alt="DE">
-                <img src="../EN.jpg" class="lang-flag" onclick="setLanguage('en')" alt="UK">
-                <img src="../PL.png" class="lang-flag" onclick="setLanguage('pl')" alt="PL">
-                <img src="../ES.png" class="lang-flag" onclick="setLanguage('es')" alt="ES">
+            <div class="header-center">
+                <img src="../logo.ping.png" alt="VIR2OSE Logo" class="app-logo-small">
+                <div class="logo-text-mini">
+                    <span class="logo-name">GOLDEN MIRROR</span>
+                    <span class="logo-studio">STUDIO</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="lang-flags">
+                    <img src="../DE.png" class="lang-flag" onclick="setLanguage('de')" alt="DE">
+                    <img src="../EN.jpg" class="lang-flag" onclick="setLanguage('en')" alt="UK">
+                    <img src="../PL.png" class="lang-flag" onclick="setLanguage('pl')" alt="PL">
+                    <img src="../ES.png" class="lang-flag" onclick="setLanguage('es')" alt="ES">
+                </div>
             </div>
         </div>
-        <div class="header-logo-center">
-            <img src="../logo.ping.png" alt="VIR2OSE Logo" class="app-logo-large">
-            <div class="logo-text-group">
-                <h1 class="logo-main">GOLDEN <span class="gold-gradient">MIRROR</span></h1>
-                <p class="logo-sub">STUDIO</p>
-                <div class="logo-tagline" data-i18n="title_tagline">DIE ZUKUNFT GEMEINSAM GESTALTEN</div>
-            </div>
+        <div class="header-tagline-row">
+            <div class="logo-tagline" data-i18n="title_tagline">DIE ZUKUNFT GEMEINSAM GESTALTEN</div>
         </div>
     </header>
 

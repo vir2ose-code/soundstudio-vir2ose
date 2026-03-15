@@ -1,6 +1,4 @@
-/**
- * VIR2OSE Smartphone App Logic - Phase 42
- */
+const USE_AI_GENERATION = false; // Hybrid Switch: ONLY use local MP3 libraries
 
 const translations = {
     'de': {
