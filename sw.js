@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vir2ose-app-cache-v39';
+const CACHE_NAME = 'vir2ose-app-cache-v44';
 const urlsToCache = [
     './',
     './index.html',
@@ -11,7 +11,10 @@ const urlsToCache = [
     './style.css',
     './script.js',
     './icon-192.png',
-    './icon-512.png'
+    './icon-512.png',
+    './smartphone-app/index.html',
+    './smartphone-app/style.css',
+    './smartphone-app/app.js'
 ];
 
 self.addEventListener('install', event => {
