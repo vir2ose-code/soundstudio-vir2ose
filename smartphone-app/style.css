@@ -36,12 +36,14 @@ body {
 
 /* Header Transformation (Global structure) */
 .app-header {
-    padding: calc(12px + env(safe-area-inset-top)) 15px 12px; /* 15px side padding */
-    background: linear-gradient(to bottom, rgba(10,10,10,0.98), transparent);
+    width: 100%;
+    padding: calc(12px + env(safe-area-inset-top)) 15px 12px;
+    background: linear-gradient(to bottom, rgba(10,10,10,1), rgba(10,10,10,0.8), transparent);
     display: flex;
     flex-direction: column;
     gap: 12px;
-    z-index: 900;
+    z-index: 1000; /* Priority layering */
+    position: relative;
 }
 
 .header-main-row {
@@ -49,11 +51,14 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative; /* Anchor for absolute centering */
+    min-height: 45px;
 }
 
 .header-left, .header-right {
     flex: 1;
     display: flex;
+    z-index: 2; /* Side elements above logo if they overlap */
 }
 
 .header-right {
@@ -61,12 +66,17 @@ body {
 }
 
 .header-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 4px;
-    flex: 0 0 auto;
+    gap: 2px;
+    z-index: 1;
+    width: max-content;
 }
 
 .hamburger-menu {
