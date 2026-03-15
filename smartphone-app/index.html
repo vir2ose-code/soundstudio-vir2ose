@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <title>VIR2OSE | Smartphone Studio</title>
+    <!-- Premium Fonts -->
+    <link rel="stylesheet" href="../fonts/fonts.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- PWA Support -->
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="manifest" href="../manifest.json">
+</head>
+<body class="smartphone-ui">
+    <!-- Static Background Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation Drawer -->
+    <div id="drawer-overlay" class="drawer-overlay" onclick="toggleDrawer()"></div>
+    <div id="nav-drawer" class="nav-drawer">
+        <div class="drawer-header">
+            <span class="close-drawer" onclick="toggleDrawer()">✕</span>
+        </div>
+        <nav class="drawer-nav">
+            <a href="#" onclick="switchTab('studio'); toggleDrawer();" data-i18n="nav_studio">STUDIO</a>
+            <a href="#" onclick="navigateTo('services')" data-i18n="nav_services">SERVICES</a>
+            <a href="#" onclick="navigateTo('about')" data-i18n="nav_about">ÜBER MICH</a>
+            <a href="#" onclick="switchTab('music'); toggleDrawer();" data-i18n="nav_portfolio">PORTFOLIO</a>
+            <a href="#" onclick="switchTab('mail'); toggleDrawer();" data-i18n="nav_contact">KONTAKT</a>
+        </nav>
+    </div>
+
+    <header class="app-header">
+        <div class="header-top-bar">
+            <div class="hamburger-menu" onclick="toggleDrawer()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="lang-flags">
+                <img src="../DE.png" class="lang-flag" onclick="setLanguage('de')" alt="DE">
+                <img src="../EN.jpg" class="lang-flag" onclick="setLanguage('en')" alt="UK">
+                <img src="../PL.png" class="lang-flag" onclick="setLanguage('pl')" alt="PL">
+                <img src="../ES.png" class="lang-flag" onclick="setLanguage('es')" alt="ES">
+            </div>
+        </div>
+        <div class="header-logo-center">
+            <img src="../logo.ping.png" alt="VIR2OSE Logo" class="app-logo-large">
+            <div class="logo-text-group">
+                <h1 class="logo-main">GOLDEN <span class="gold-gradient">MIRROR</span></h1>
+                <p class="logo-sub">STUDIO</p>
+                <div class="logo-tagline" data-i18n="title_tagline">DIE ZUKUNFT GEMEINSAM GESTALTEN</div>
+            </div>
+        </div>
+    </header>
+
+    <main id="app-content">
+        <!-- Tab 1: Studio (Home) -->
+        <section id="tab-studio" class="app-tab active">
+            <div class="hero-mini">
+                <h2 data-i18n="hero_title">SONGWRITING <span class="gold-gradient">UNTERWEGS</span></h2>
+                <div class="wave-container-mini">
+                    <canvas id="wave-canvas"></canvas>
+                </div>
+            </div>
+            <div class="quick-status">
+                <p data-i18n="studio_status">Bereit für deine Vision.</p>
+            </div>
+        </section>
+
+        <!-- Tab 2: Generator (Create) -->
+        <section id="tab-generator" class="app-tab">
+            <div class="generator-card glass">
+                <h3 data-i18n="gen_title">AI-Prompt Engine</h3>
+                <div class="input-group">
+                    <label data-i18n="gen_label_style">STYLE</label>
+                    <select id="genre">
+                        <option value="Rock">Rock</option>
+                        <option value="Techno">Techno</option>
+                        <option value="Lofi Hiphop">Lofi</option>
+                        <option value="Cinematic Orchestral">Cinematic</option>
+                    </select>
+                </div>
+                <button onclick="generatePrompt()" class="btn-gold" data-i18n="gen_btn_generate">GENERATE</button>
+                <div id="result-box" class="result-box">
+                    <p id="generated-prompt">...</p>
+                </div>
+            </div>
+
+            <!-- Focus Arrow Section -->
+            <div class="focus-arrow-container" onclick="scrollToElement('tab-generator-sound')">
+                <div class="focus-arrow-bounce">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 10L12 15L17 10" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <div id="tab-generator-sound" class="generator-card glass mt-large">
+                <h3 data-i18n="sound_engine_title">AI-Sound Engine</h3>
+                <div id="waveform-mini"></div>
+                <button onclick="startSoundGeneration()" class="btn-outline" data-i18n="gen_btn_compose">COMPOSE SOUND</button>
+            </div>
+        </section>
+
+        <!-- Tab 3: Music (Portfolio) -->
+        <section id="tab-music" class="app-tab">
+            <h2 class="tab-header" data-i18n="portfolio_title">PORTFOLIO</h2>
+            <div class="portfolio-list" id="portfolio-list">
+                <!-- Dynamic Content -->
+            </div>
+        </section>
+
+        <!-- Tab 4: Mail (Contact) -->
+        <section id="tab-mail" class="app-tab">
+            <h2 class="tab-header" data-i18n="contact_title">KONTAKT</h2>
+            <div class="contact-card glass">
+                <form id="contact-form">
+                    <input type="text" placeholder="Name" id="name" required>
+                    <input type="email" placeholder="Email" id="email" required>
+                    <textarea placeholder="Nachricht" id="message" rows="4"></textarea>
+                    <button type="submit" class="btn-gold">SEND</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" onclick="switchTab('studio')">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Studio</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('generator')">
+            <span class="nav-icon">✨</span>
+            <span class="nav-label">Create</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('music')">
+            <span class="nav-icon">🎵</span>
+            <span class="nav-label">Music</span>
+        </div>
+        <div class="nav-item" onclick="switchTab('mail')">
+            <span class="nav-icon">✉️</span>
+            <span class="nav-label">Mail</span>
+        </div>
+    </nav>
+
+    <!-- Essential Scripts -->
+    <script src="https://unpkg.com/wavesurfer.js@7"></script>
+    <script src="app.js"></script>
+</body>
+</html>
