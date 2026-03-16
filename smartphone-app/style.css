@@ -119,8 +119,8 @@ body {
     box-shadow: 0 0 8px var(--gold);
 }
 
-.app-logo-small {
-    height: 40px; /* Fixed height as requested */
+.app-logo-large {
+    height: 40px;
     width: auto;
     filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
 }
@@ -163,13 +163,71 @@ body {
     text-transform: uppercase;
 }
 
-/* Header Adjustments for Desktop View of Smartphone App */
-@media (min-width: 768px) {
-    .app-header {
-        /* No max-width here, keep it 100vw for the wide feel */
-        padding-top: 20px;
-    }
+/* Focus Arrow */
+.focus-arrow-container {
+    display: flex;
+    justify-content: center;
+    padding: 2.5rem 0;
+    cursor: pointer;
 }
+
+.focus-arrow-bounce {
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+/* Newsletter Styles */
+.newsletter-card {
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.nl-subtitle {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+}
+
+.nl-form-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.nl-form-mobile input[type="email"] {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    color: #fff;
+    font-family: 'Outfit', sans-serif;
+}
+
+.nl-privacy-check {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    opacity: 0.6;
+    text-align: left;
+}
+
+.status-msg {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.status-msg.success { color: #4ade80; background: rgba(74, 222, 128, 0.1); }
+.status-msg.error { color: #f87171; background: rgba(248, 113, 113, 0.1); }
+.status-msg.info { color: #60a5fa; background: rgba(96, 165, 250, 0.1); }
 
 /* Focus Arrow Animation */
 .focus-arrow-container {

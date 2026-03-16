@@ -40,7 +40,7 @@
                 </div>
             </div>
             <div class="header-center">
-                <img src="../logo.ping.png" alt="VIR2OSE Logo" class="app-logo-small">
+                <img src="../logo.ping.png" alt="VIR2OSE Logo" class="app-logo-large">
                 <div class="logo-text-mini">
                     <span class="logo-name">GOLDEN MIRROR</span>
                     <span class="logo-studio">STUDIO</span>
@@ -127,6 +127,21 @@
                     <textarea placeholder="Nachricht" id="message" rows="4"></textarea>
                     <button type="submit" class="btn-gold">SEND</button>
                 </form>
+            </div>
+
+            <!-- Newsletter Integration -->
+            <div class="newsletter-card glass mt-large">
+                <h3 data-i18n="nl_title">STAY IN THE LOOP</h3>
+                <p class="nl-subtitle" data-i18n="nl_subtitle">Updates & Sound Packs direkt aufs Handy.</p>
+                <form id="newsletter-form-mobile" class="nl-form-mobile">
+                    <input type="email" placeholder="name@domain.com" id="nl-email-mobile" required>
+                    <button type="submit" class="btn-gold" data-i18n="nl_btn">ABONNIEREN</button>
+                    <div class="nl-privacy-check">
+                        <input type="checkbox" id="nl-privacy-mobile" required>
+                        <label for="nl-privacy-mobile" data-i18n="nl_privacy_text">Datenschutz akzeptieren</label>
+                    </div>
+                </form>
+                <p id="nl-status-mobile" class="status-msg"></p>
             </div>
         </section>
     </main>

@@ -169,6 +169,42 @@ function scrollToElement(id) {
     }
 }
 
+// ──────────────── Newsletter Integration (Phase 49) ────────────────
+async function handleNewsletterMobile(event) {
+    event.preventDefault();
+    const email = document.getElementById('nl-email-mobile').value;
+    const status = document.getElementById('nl-status-mobile');
+    const button = event.target.querySelector('button');
+
+    if (!email) return;
+
+    status.innerText = "⏳ Verbinde...";
+    status.className = "status-msg info";
+    button.disabled = true;
+
+    try {
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            status.innerText = "✨ Willkommen im Mirror!";
+            status.className = "status-msg success";
+            document.getElementById('newsletter-form-mobile').reset();
+        } else {
+            throw new Error(data.message || 'Submission failed');
+        }
+    } catch (err) {
+        status.innerText = "❌ Fehler. Bitte erneut versuchen.";
+        status.className = "status-msg error";
+        button.disabled = false;
+    }
+}
+
 // ──────────────── Portfolio Initialization ────────────────
 function initPortfolio() {
     const list = document.getElementById('portfolio-list');
@@ -332,4 +368,8 @@ window.addEventListener('load', () => {
     updateUI();
     initPortfolio();
     initWavesurfer();
+
+    // Newsletter Listener
+    const nlForm = document.getElementById('newsletter-form-mobile');
+    if (nlForm) nlForm.addEventListener('submit', handleNewsletterMobile);
 });
