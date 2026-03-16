@@ -1920,6 +1920,17 @@ body::after {
         font-size: 0.9rem;
     }
 
+    .generator-section input, 
+    .generator-section select {
+        width: 100% !important;
+        padding: 15px !important;
+        font-size: 1rem !important;
+    }
+
+    .input-group-gen {
+        margin-bottom: 25px;
+    }
+
     /* Focus Arrow Mobile */
     .focus-arrow-mobile {
         display: flex;
