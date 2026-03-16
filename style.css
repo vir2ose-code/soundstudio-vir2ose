@@ -1846,8 +1846,10 @@ body::after {
     }
 
     .logo-img-new {
-        height: 35px !important; /* Adjusted for better mobile fit */
+        height: 30px !important; /* 5x smaller than the initial large display */
         width: auto !important;
+        mix-blend-mode: screen; /* Effectively removes white background on dark */
+        filter: brightness(1.2) contrast(1.1); /* Pop the gold after blending */
     }
 
     .nav {
