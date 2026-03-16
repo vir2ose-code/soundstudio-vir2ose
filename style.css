@@ -1827,38 +1827,40 @@ body::after {
         justify-content: space-between !important;
         display: flex !important;
         width: 100% !important;
+        align-items: center !important;
     }
 
-    /* Column 1: Hamburger (Top Left) */
+    /* Row 1, Left: Hamburger */
     .header-left {
         order: 1 !important;
-        flex: 1 !important;
+        flex: 1 1 50% !important;
         display: flex !important;
         justify-content: flex-start !important;
         align-items: center !important;
     }
 
-    /* Column 2: Flags (Top Right) */
+    /* Row 1, Right: Flags */
     .header-right {
         order: 2 !important;
-        flex: 1 !important;
+        flex: 1 1 50% !important;
         display: flex !important;
         justify-content: flex-end !important;
         align-items: center !important;
     }
 
-    /* Column 3: Logo (Bottom Center) */
+    /* Row 2, Center: Logo */
     .header-center {
         order: 3 !important;
+        flex: 1 1 100% !important;
         width: 100% !important;
         margin-top: 20px !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+        text-align: center !important;
         position: static !important;
         transform: none !important;
-        text-align: center !important;
     }
 
     .nav {
@@ -1874,8 +1876,9 @@ body::after {
     }
 
     .logo-img {
-        height: 45px !important;
+        height: 40px !important;
     }
+}
 
     .header-center {
         order: 3;
