@@ -1834,9 +1834,6 @@ body::after {
     .logo-img-new {
         height: 45px !important;
         width: auto !important;
-        mix-blend-mode: multiply !important;
-        /* Reverted to subtle polish for the new asset */
-        filter: contrast(1.1) brightness(1.1) !important;
         display: block !important;
         background-color: transparent !important;
         margin-left: -5px !important;
