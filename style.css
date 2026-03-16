@@ -1829,13 +1829,15 @@ body::after {
     }
 
     .header-left {
-        order: 1;
-        flex: 0 0 auto;
+        order: 1 !important;
+        flex: 0 0 auto !important;
+        display: block !important;
     }
 
     .header-right {
-        order: 2;
-        flex: 0 0 auto;
+        order: 2 !important;
+        flex: 0 0 auto !important;
+        display: block !important;
     }
 
     .header-center {
@@ -1849,8 +1851,10 @@ body::after {
     }
 
     .hamburger-menu {
-        display: flex;
-        padding: 0;
+        display: flex !important;
+        padding: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
     .header-title-container {
