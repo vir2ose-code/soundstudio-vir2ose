@@ -266,15 +266,19 @@ body::after {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
-    z-index: 1100;
+    z-index: 1500 !important;
     padding: 10px;
+    width: 45px !important;
+    height: 45px !important;
+    justify-content: center;
+    align-items: center;
 }
 
 .hamburger-menu span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background: var(--gold);
+    display: block !important;
+    width: 25px !important;
+    height: 2px !important;
+    background: var(--gold) !important;
     border-radius: 2px;
     transition: 0.3s;
 }
@@ -1812,7 +1816,7 @@ body::after {
     background: rgba(15, 15, 15, 0.8);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
     .header {
         padding: 10px 15px;
         min-height: auto;
