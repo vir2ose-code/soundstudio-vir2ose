@@ -1835,6 +1835,8 @@ body::after {
         height: 45px !important;
         width: auto !important;
         mix-blend-mode: screen !important; /* Hide black background */
+        /* Crushing near-black pixels to absolute black for perfect screen blending */
+        filter: brightness(0.8) contrast(1.8) !important;
         display: block !important;
         background-color: transparent !important;
         margin-left: -5px !important;
