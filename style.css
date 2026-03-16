@@ -1830,12 +1830,22 @@ body::after {
         align-items: center !important;
     }
 
-    /* Row 2, Left: New Logo */
+    .logo-img-new {
+        height: 45px !important; /* 1.5x larger than before (30px -> 45px) */
+        width: auto !important;
+        mix-blend-mode: multiply !important;
+        filter: contrast(1.1) brightness(1.1);
+        display: block !important;
+        background-color: transparent !important;
+        margin-left: -5px !important; /* Move a bit more left */
+    }
+
+    /* Row 2, Left: New Logo Positioning Refinement */
     .header-center {
         order: 3 !important;
         flex: 1 1 100% !important;
         width: 100% !important;
-        margin-top: 15px !important;
+        margin-top: 10px !important; /* Higher (was 15px) */
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -1843,15 +1853,7 @@ body::after {
         text-align: left !important;
         position: static !important;
         transform: none !important;
-    }
-
-    .logo-img-new {
-        height: 30px !important;
-        width: auto !important;
-        mix-blend-mode: multiply !important;
-        filter: contrast(1.1) brightness(1.1);
-        display: block !important;
-        background-color: transparent !important;
+        padding-left: 15px !important; /* Align with hamburger */
     }
 
     .nav {
