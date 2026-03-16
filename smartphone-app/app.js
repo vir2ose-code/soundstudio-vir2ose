@@ -99,6 +99,16 @@ function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('appLang', lang);
     document.body.lang = lang; // Drive CSS strict language visibility
+    
+    // Update active flag glow
+    document.querySelectorAll('.lang-flag').forEach(flag => {
+        if (flag.onclick.toString().includes(`'${lang}'`)) {
+            flag.classList.add('active');
+        } else {
+            flag.classList.remove('active');
+        }
+    });
+
     updateUI();
     initPortfolio();
 }

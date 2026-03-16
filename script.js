@@ -564,9 +564,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.innerHTML = translations[lang][key];
             }
         });
-        document.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
-        const activeOpt = document.getElementById(`lang-${lang}`);
-        if (activeOpt) activeOpt.classList.add('active');
+        
+        // Update active class on flags
+        document.querySelectorAll('.lang-flag').forEach(flag => {
+            if (flag.onclick.toString().includes(`'${lang}'`)) {
+                flag.classList.add('active');
+            } else {
+                flag.classList.remove('active');
+            }
+        });
+        
         setTimeout(matchTitleWidths, 50);
     }
 

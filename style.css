@@ -347,51 +347,33 @@ body::after {
 }
 
 /* Language Selector */
-.lang-selector-nav {
+.lang-flags {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding-left: 0.5rem;
-}
-
-.lang-option {
-    cursor: pointer;
-    color: var(--silver-dark);
-    font-size: 0.75rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: flex;
-    /* vertical alignment for flags */
-    align-items: center;
-}
-
-.lang-option:hover {
-    color: var(--gold-light);
-}
-
-.lang-option.active {
-    color: var(--gold);
-    text-shadow: 0 0 8px rgba(197, 165, 90, 0.5);
+    gap: 12px;
 }
 
 .lang-flag {
-    width: 22px;
+    width: 32px;
     height: auto;
-    border-radius: 2px;
-    transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.45;
-    /* Inactive text color equivalent */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    filter: grayscale(20%);
 }
 
-.lang-option.active .lang-flag {
+.lang-flag:hover {
     opacity: 1;
-    filter: drop-shadow(0 0 5px rgba(197, 165, 90, 0.5));
+    transform: scale(1.1);
+    filter: grayscale(0%) brightness(1.1);
 }
 
-.lang-option:hover .lang-flag {
-    transform: scale(1.15);
+.lang-flag.active {
     opacity: 1;
-    filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+    filter: grayscale(0%) drop-shadow(0 0 8px #FFD700);
+    transform: scale(1.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
 .lang-sep {
