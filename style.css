@@ -1846,10 +1846,12 @@ body::after {
     }
 
     .logo-img-new {
-        height: 30px !important; /* 5x smaller than requested relative to original */
+        height: 30px !important;
         width: auto !important;
-        mix-blend-mode: multiply; /* Standard for removing white background on dark */
-        filter: contrast(1.2) brightness(1.1);
+        mix-blend-mode: multiply !important;
+        filter: contrast(1.1) brightness(1.1);
+        display: block !important;
+        background-color: transparent !important;
     }
 
     .nav {
