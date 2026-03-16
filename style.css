@@ -1835,8 +1835,8 @@ body::after {
         height: 45px !important;
         width: auto !important;
         mix-blend-mode: multiply !important;
-        /* Ultra-aggressive: force the grey box to white so multiply kills it */
-        filter: contrast(2.2) brightness(1.4) saturate(1.1) !important;
+        /* Reverted to subtle polish for the new asset */
+        filter: contrast(1.1) brightness(1.1) !important;
         display: block !important;
         background-color: transparent !important;
         margin-left: -5px !important;
