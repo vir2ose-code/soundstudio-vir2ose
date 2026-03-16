@@ -1834,6 +1834,7 @@ body::after {
     .logo-img-new {
         height: 45px !important;
         width: auto !important;
+        mix-blend-mode: screen !important; /* Hide black background */
         display: block !important;
         background-color: transparent !important;
         margin-left: -5px !important;
