@@ -129,7 +129,7 @@ body::after {
 }
 
 /* ──────────────── Top Navigation ──────────────── */
-.header {
+.app-header {
     position: absolute;
     top: 0;
     left: 0;
@@ -1815,7 +1815,7 @@ body::after {
 }
 
 @media (max-width: 850px) {
-    .header {
+    .app-header {
         padding: 10px 15px;
         min-height: auto;
         height: auto;
@@ -1824,18 +1824,33 @@ body::after {
     .header-main-row {
         flex-wrap: wrap;
         justify-content: space-between;
+        display: flex !important;
     }
 
     .header-left {
         order: 1 !important;
-        flex: 0 0 auto !important;
-        display: block !important;
+        flex: 1 !important;
+        display: flex !important;
+        justify-content: flex-start;
     }
 
     .header-right {
         order: 2 !important;
-        flex: 0 0 auto !important;
-        display: block !important;
+        flex: 1 !important;
+        display: flex !important;
+        justify-content: flex-end;
+    }
+
+    .header-center {
+        order: 3 !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: center !important;
+        position: static !important;
+        transform: none !important;
     }
 
     .header-center {
