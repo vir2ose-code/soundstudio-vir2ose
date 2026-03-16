@@ -1729,3 +1729,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Attach to global window object so ML script can find it
     window.ml_webform_success_149811802925205466 = ml_webform_success_149811802925205466;
 });
+
+// ──────────────── Drawer Logic (Phase 50) ────────────────
+function toggleDrawer() {
+    const drawer = document.getElementById('nav-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    if (drawer && overlay) {
+        drawer.classList.toggle('active');
+        overlay.classList.toggle('active');
+    }
+}

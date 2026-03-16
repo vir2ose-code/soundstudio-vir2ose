@@ -56,35 +56,50 @@
     <!-- Animated 3D Gradient Overlay -->
     <div class="gradient-3d"></div>
 
-    <header class="header" id="header">
-        <a href="#" class="logo-link">
-            <img src="logo.ping.png" alt="VIR2OSE Music Production" class="logo-img">
-        </a>
-        <div class="header-title-container">
-            <div class="header-title-main">GOLDEN MIRROR</div>
-            <div class="header-title-sub">STUDIO</div>
+    <!-- Navigation Drawer -->
+    <div id="drawer-overlay" class="drawer-overlay" onclick="toggleDrawer()"></div>
+    <div id="nav-drawer" class="nav-drawer">
+        <div class="drawer-header">
+            <span class="close-drawer" onclick="toggleDrawer()">✕</span>
         </div>
-        <nav class="nav" id="nav">
-            <a href="#studio" data-i18n="nav_studio">STUDIO</a> <span class="dot">•</span>
-            <a href="services.html" data-i18n="nav_services">SERVICES</a> <span class="dot">•</span>
-            <a href="about.html" data-i18n="nav_about">ABOUT</a> <span class="dot">•</span>
-            <a href="portfolio.html" data-i18n="nav_portfolio">PORTFOLIO</a> <span class="dot">•</span>
+        <nav class="drawer-nav">
+            <a href="#studio" onclick="toggleDrawer()" data-i18n="nav_studio">STUDIO</a>
+            <a href="services.html" data-i18n="nav_services">SERVICES</a>
+            <a href="about.html" data-i18n="nav_about">ABOUT</a>
+            <a href="portfolio.html" data-i18n="nav_portfolio">PORTFOLIO</a>
             <a href="contact.html" data-i18n="nav_contact">CONTACT</a>
-            <span class="dot">•</span>
-            <div class="lang-selector-nav">
-                <span class="lang-option" onclick="setLanguage('de')" id="lang-de"><img src="DE.png" alt="Deutsch"
-                        class="lang-flag"></span>
-                <span class="lang-sep">|</span>
-                <span class="lang-option" onclick="setLanguage('en')" id="lang-en"><img src="EN.jpg" alt="English"
-                        class="lang-flag"></span>
-                <span class="lang-sep">|</span>
-                <span class="lang-option" onclick="setLanguage('pl')" id="lang-pl"><img src="PL.png" alt="Polski"
-                        class="lang-flag"></span>
-                <span class="lang-sep">|</span>
-                <span class="lang-option" onclick="setLanguage('es')" id="lang-es"><img src="ES.png" alt="Español"
-                        class="lang-flag"></span>
-            </div>
         </nav>
+    </div>
+
+    <header class="header" id="header">
+        <div class="header-main-row">
+            <div class="header-left">
+                <div class="hamburger-menu" onclick="toggleDrawer()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <a href="#" class="logo-link">
+                    <img src="logo.ping.png" alt="VIR2OSE Music Production" class="logo-img">
+                </a>
+                <div class="header-title-container">
+                    <div class="header-title-main">GOLDEN MIRROR</div>
+                    <div class="header-title-sub">STUDIO</div>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <div class="lang-selector-nav">
+                    <span class="lang-option" onclick="setLanguage('de')" id="lang-de"><img src="DE.png" alt="Deutsch" class="lang-flag"></span>
+                    <span class="lang-option" onclick="setLanguage('en')" id="lang-en"><img src="EN.jpg" alt="English" class="lang-flag"></span>
+                    <span class="lang-option" onclick="setLanguage('pl')" id="lang-pl"><img src="PL.png" alt="Polski" class="lang-flag"></span>
+                    <span class="lang-option" onclick="setLanguage('es')" id="lang-es"><img src="ES.png" alt="Español" class="lang-flag"></span>
+                </div>
+            </div>
+        </div>
     </header>
 
     <!-- Elegant Audio Wave Background -->
