@@ -1717,24 +1717,52 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ==========================================
-// Newsletter Form Submission (MailerLite)
-// ==========================================
+// ──────────────── Newsletter Form Submission (Phase 58) ────────────────
 document.addEventListener('DOMContentLoaded', () => {
-    // MailerLite handles the fetch internally.
-    // We just listen for their custom success event to trigger our UI changes.
-    const successMsg = document.getElementById('nl-success-msg');
-    const errorMsg = document.getElementById('nl-error-msg');
-    const formGroup = document.querySelector('.newsletter-form .row');
+    const nlForm = document.getElementById('newsletter-form');
+    if (!nlForm) return;
 
-    function ml_webform_success_149811802925205466() {
-        if (successMsg) successMsg.style.display = 'block';
+    nlForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const emailInput = document.getElementById('nl-email');
+        if (!emailInput) return;
+
+        const email = emailInput.value;
+        const submitBtn = document.getElementById('btn-newsletter');
+        const loadingBtn = document.getElementById('btn-newsletter-loading');
+        const successMsg = document.getElementById('nl-success-msg');
+        const errorMsg = document.getElementById('nl-error-msg');
+        const formRow = nlForm.querySelector('.form-group.row');
+
+        // Reset UI
         if (errorMsg) errorMsg.style.display = 'none';
-        if (formGroup) formGroup.style.display = 'none'; // Hide inputs on success
-    }
+        if (submitBtn) submitBtn.style.display = 'none';
+        if (loadingBtn) loadingBtn.style.display = 'inline-block';
 
-    // Attach to global window object so ML script can find it
-    window.ml_webform_success_149811802925205466 = ml_webform_success_149811802925205466;
+        try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                if (successMsg) successMsg.style.display = 'block';
+                if (formRow) formRow.style.display = 'none';
+            } else {
+                throw new Error(result.message || 'Subscription failed');
+            }
+        } catch (error) {
+            console.error('Newsletter Error:', error);
+            if (errorMsg) errorMsg.style.display = 'block';
+            if (submitBtn) submitBtn.style.display = 'inline-block';
+        } finally {
+            if (loadingBtn) loadingBtn.style.display = 'none';
+        }
+    });
 });
 
 // ──────────────── Drawer Logic (Phase 50) ────────────────

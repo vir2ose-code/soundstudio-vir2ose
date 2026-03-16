@@ -30,7 +30,7 @@ export default async function handler(req, res) {
             },
             body: JSON.stringify({
                 email: email,
-                groups: ['146447787332142318'], // Example Group ID if needed, otherwise omit
+                groups: ['149811802925205466'], // Updated to use the form ID as group if needed, or user specified group
                 status: 'active'
             })
         });
