@@ -586,30 +586,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const main = document.querySelector('.title-main');
         const sub = document.querySelector('.title-sub');
         if (!main || !sub) return;
-        sub.st// ──────────────── Mobile Navigation Drawer Logic ────────────────
-function toggleDrawer() {
-    const drawer = document.getElementById('nav-drawer');
-    const overlay = document.getElementById('drawer-overlay');
-    if (drawer && overlay) {
-        drawer.classList.toggle('active');
-        overlay.classList.toggle('active');
-    }
-}
-
-// Add event listener for overlay close
-document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('drawer-overlay');
-    if (overlay) {
-        overlay.addEventListener('click', () => {
-            const drawer = document.getElementById('nav-drawer');
-            if (drawer) {
-                drawer.classList.remove('active');
-                overlay.classList.remove('active');
-            }
-        });
-    }
-});
-yle.letterSpacing = '0.1em';
+        sub.style.letterSpacing = '0.1em';
         document.fonts.ready.then(() => {
             const mainWidth = main.getBoundingClientRect().width;
             const subNaturalWidth = sub.getBoundingClientRect().width;
