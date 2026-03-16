@@ -1815,11 +1815,11 @@ body::after {
 
     /* Row 1, Left: Hamburger */
     .header-left {
-        order: 1 !important;
-        flex: 1 1 50% !important;
+        flex: 1 !important;
         display: flex !important;
-        justify-content: flex-start !important;
         align-items: center !important;
+        gap: 15px !important; /* Space between hamburger and logo */
+        justify-content: flex-start !important;
     }
 
     /* Row 1, Right: Flags */
@@ -1831,7 +1831,7 @@ body::after {
         align-items: center !important;
     }
 
-    .logo-img-new {
+    .logo-img-new, #logo-premium {
         height: 45px !important;
         width: auto !important;
         /* Force screen blend to remove the black box from the new asset */
@@ -1839,23 +1839,12 @@ body::after {
         filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)) !important;
         display: block !important;
         background-color: transparent !important;
-        margin-left: -5px !important; /* Pull left to counteract image internal padding */
+        margin-left: 0 !important;
     }
 
     /* Row 2, Left: Logo Aligned with Hamburger */
     .header-center {
-        order: 3 !important;
-        flex: 1 1 100% !important;
-        width: 100% !important;
-        margin-top: 5px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        justify-content: flex-start !important;
-        text-align: left !important;
-        position: static !important;
-        transform: none !important;
-        padding-left: 10px !important; /* Slightly less than 15px to account for hamburger's own positioning */
+        display: none !important; /* Hidden in favor of header-left logo placement */
     }
 
     .nav {
