@@ -1830,19 +1830,24 @@ body::after {
         align-items: center !important;
     }
 
-    /* Row 2, Center: Logo */
+    /* Row 2, Left: New Logo */
     .header-center {
         order: 3 !important;
         flex: 1 1 100% !important;
         width: 100% !important;
-        margin-top: 20px !important;
+        margin-top: 15px !important;
         display: flex !important;
         flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
+        align-items: flex-start !important;
+        justify-content: flex-start !important;
+        text-align: left !important;
         position: static !important;
         transform: none !important;
+    }
+
+    .logo-img-new {
+        height: 35px !important; /* Adjusted for better mobile fit */
+        width: auto !important;
     }
 
     .nav {
@@ -1850,11 +1855,7 @@ body::after {
     }
 
     .header-title-container {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        margin-left: 0 !important;
-        margin-top: 5px !important;
+        display: none !important;
     }
 
     .logo-img {
