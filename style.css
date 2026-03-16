@@ -1834,11 +1834,12 @@ body::after {
     .logo-img-new {
         height: 45px !important;
         width: auto !important;
-        /* Native transparency with golden glow */
+        /* Force screen blend to remove the black box from the new asset */
+        mix-blend-mode: screen !important;
         filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)) !important;
         display: block !important;
         background-color: transparent !important;
-        margin-left: 0 !important; /* Start aligned with container padding */
+        margin-left: -5px !important; /* Pull left to counteract image internal padding */
     }
 
     /* Row 2, Left: Logo Aligned with Hamburger */
@@ -1854,7 +1855,7 @@ body::after {
         text-align: left !important;
         position: static !important;
         transform: none !important;
-        padding-left: 15px !important; /* Perfect match with .header-left padding for alignment */
+        padding-left: 10px !important; /* Slightly less than 15px to account for hamburger's own positioning */
     }
 
     .nav {
