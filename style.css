@@ -1814,12 +1814,14 @@ body::after {
     }
 
     /* Row 1, Left: Hamburger */
+    /* Row 1, Left: Hamburger & Logo Aligned */
     .header-left {
         flex: 1 !important;
         display: flex !important;
         align-items: center !important;
-        gap: 15px !important; /* Space between hamburger and logo */
+        gap: 15px !important; 
         justify-content: flex-start !important;
+        padding-left: 15px !important; /* Global horizontal padding */
     }
 
     /* Row 1, Right: Flags */
@@ -1831,20 +1833,20 @@ body::after {
         align-items: center !important;
     }
 
-    .logo-img-new, #logo-premium {
+    #logo-premium {
         height: 45px !important;
         width: auto !important;
-        /* Force screen blend to remove the black box from the new asset */
+        /* Absolute force for screen blend to kill black box */
         mix-blend-mode: screen !important;
-        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5)) !important;
+        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6)) !important;
         display: block !important;
         background-color: transparent !important;
-        margin-left: 0 !important;
+        margin: 0 !important;
     }
 
     /* Row 2, Left: Logo Aligned with Hamburger */
     .header-center {
-        display: none !important; /* Hidden in favor of header-left logo placement */
+        display: none !important;
     }
 
     .nav {
