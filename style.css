@@ -1839,10 +1839,18 @@ body::after {
         justify-content: flex-start !important;
         padding: 5px 0 10px 15px !important; /* Matches hamburger padding */
         margin-top: -5px !important; /* Tighten vertical gap */
+        background: none !important;
+        border: none !important;
+    }
+
+    .logo-link {
+        background: none !important;
+        border: none !important;
+        display: inline-block !important;
     }
 
     #logo-premium {
-        height: 55px !important; /* Slightly larger as requested */
+        height: 38px !important; /* Smaller as requested */
         width: auto !important;
         mix-blend-mode: screen !important; /* Force black transparency */
         filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4)) !important;
@@ -1851,6 +1859,7 @@ body::after {
         border: none !important;
         margin: 0 !important;
         -webkit-user-drag: none;
+        pointer-events: none; /* Make "unactive" as implied by user */
     }
 
     .header-center {
