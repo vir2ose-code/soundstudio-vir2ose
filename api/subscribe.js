@@ -1,50 +1,35 @@
-/**
- * Vercel Serverless Function: MailerLite Subscription Handler
- * Securely uses MAILERLITE_API_KEY from environment variables.
- */
-
 export default async function handler(req, res) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({ message: 'Method not allowed' });
-    }
+  const IS_AI_ENABLED = false; // KI bleibt deaktiviert
 
-    const { email } = req.body;
-    const apiKey = process.env.MAILERLITE_API_KEY;
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-    if (!email) {
-        return res.status(400).json({ message: 'Email is required' });
-    }
+  const { email } = req.body;
+  const apiKey = process.env.MAILERLITE_API_KEY;
 
-    if (!apiKey) {
-        console.error('MAILERLITE_API_KEY is not set in Vercel environment.');
-        return res.status(500).json({ message: 'Server configuration error' });
-    }
+  if (!apiKey) {
+    console.error("Fehler: MAILERLITE_API_KEY fehlt in den Umgebungsvariablen!");
+    return res.status(500).json({ error: 'Konfigurationsfehler auf dem Server' });
+  }
 
-    try {
-        const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                email: email,
-                groups: ['149811802925205466'], // Updated to use the form ID as group if needed, or user specified group
-                status: 'active'
-            })
-        });
+  try {
+    const response = await fetch('https://connect.mailerlite.com/api/subscribers', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({ email })
+    });
 
-        const data = await response.json();
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message || 'MailerLite Fehler');
 
-        if (response.ok) {
-            return res.status(200).json({ message: 'Success', id: data.data.id });
-        } else {
-            console.error('MailerLite API error:', data);
-            return res.status(response.status).json({ message: data.message || 'MailerLite subscription failed' });
-        }
-    } catch (error) {
-        console.error('Subscription handler error:', error);
-        return res.status(500).json({ message: 'Internal server error' });
-    }
+    return res.status(200).json({ success: true, data });
+  } catch (error) {
+    console.error("Abo-Fehler:", error.message);
+    return res.status(500).json({ error: error.message });
+  }
 }
