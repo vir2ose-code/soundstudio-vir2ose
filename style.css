@@ -1814,14 +1814,13 @@ body::after {
     }
 
     /* Row 1, Left: Hamburger */
-    /* Row 1, Left: Hamburger & Logo Aligned */
+    /* Row 1, Left: Hamburger */
     .header-left {
         flex: 1 !important;
         display: flex !important;
         align-items: center !important;
-        gap: 15px !important; 
         justify-content: flex-start !important;
-        padding-left: 15px !important; /* Global horizontal padding */
+        padding-left: 15px !important; /* Global horizontal alignment start */
     }
 
     /* Row 1, Right: Flags */
@@ -1833,18 +1832,27 @@ body::after {
         align-items: center !important;
     }
 
-    #logo-premium {
-        height: 45px !important;
-        width: auto !important;
-        /* Absolute force for screen blend to kill black box */
-        mix-blend-mode: screen !important;
-        filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6)) !important;
-        display: block !important;
-        background-color: transparent !important;
-        margin: 0 !important;
+    /* Row 2: Logo Aligned with Hamburger Left Edge */
+    .header-logo-row {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+        padding: 5px 0 10px 15px !important; /* Matches hamburger padding */
+        margin-top: -5px !important; /* Tighten vertical gap */
     }
 
-    /* Row 2, Left: Logo Aligned with Hamburger */
+    #logo-premium {
+        height: 55px !important; /* Slightly larger as requested */
+        width: auto !important;
+        mix-blend-mode: screen !important; /* Force black transparency */
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4)) !important;
+        display: block !important;
+        background: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+        -webkit-user-drag: none;
+    }
+
     .header-center {
         display: none !important;
     }
