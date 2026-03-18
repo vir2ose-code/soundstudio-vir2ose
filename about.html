@@ -9,7 +9,7 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0a0a0a">
     <link rel="stylesheet" href="fonts/fonts.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=82">
 </head>
 
 <body>
@@ -22,21 +22,16 @@
     <!-- Animated 3D Gradient Overlay -->
     <div class="gradient-3d"></div>
 
-    <header class="header" id="header">
-        <a href="index.html" class="logo-link">
-            <img src="logo.ping.png" alt="VIR2OSE Music Production" class="logo-img">
-        </a>
-        <div class="header-title-container">
-            <div class="header-title-main">GOLDEN MIRROR</div>
-            <div class="header-title-sub">STUDIO</div>
-        </div>
-        <nav class="nav" id="nav">
-            <a href="index.html#studio" data-i18n="nav_studio">STUDIO</a> <span class="dot">•</span>
-            <a href="services.html" data-i18n="nav_services">SERVICES</a> <span class="dot">•</span>
-            <a href="about.html" data-i18n="nav_about" class="active">ABOUT</a> <span class="dot">•</span>
-            <a href="portfolio.html" data-i18n="nav_portfolio">PORTFOLIO</a> <span class="dot">•</span>
-            <a href="contact.html" data-i18n="nav_contact">CONTACT</a>
-            <span class="dot">•</span>
+    <header class="app-header" id="header">
+        <div class="header-main-row">
+            <div class="header-left">
+                <div class="hamburger-menu" onclick="toggleDrawer()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
             <div class="header-right">
                 <div class="language-switcher">
                     <img src="DE.png" alt="DE" class="lang-flag" onclick="setLanguage('de')">
@@ -45,9 +40,8 @@
                     <img src="ES.png" alt="ES" class="lang-flag" onclick="setLanguage('es')">
                 </div>
             </div>
-        </nav>
+        </div>
 
-        <!-- NEW: Dedicated Logo Row for perfect alignment (Phase 59) -->
         <div class="header-logo-row">
             <a href="index.html" class="logo-link">
                 <img src="Golden Mirror Studio LOGO NEW NEW .png" alt="GOLDEN MIRROR STUDIO" class="logo-img-new" id="logo-premium">
