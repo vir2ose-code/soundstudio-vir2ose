@@ -1729,7 +1729,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!emailInput) return;
 
         const email = emailInput.value;
-        const submitBtn = document.getElementById('btn-newsletter');
+        const submitBtn = document.getElementById('btn-newsletter-submit');
         const loadingBtn = document.getElementById('btn-newsletter-loading');
         const successMsg = document.getElementById('nl-success-msg');
         const errorMsg = document.getElementById('nl-error-msg');
