@@ -2259,19 +2259,26 @@ body::after {
 
 .newsletter-form .row {
     display: flex;
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 25px;
-    align-items: center;
+    align-items: stretch;
 }
 
 .newsletter-form .input-gen {
-    flex: 1;
     margin-bottom: 0;
     padding: 12px 20px;
     width: 100%;
+    background: rgba(15, 17, 21, 0.6);
+    border: 1px solid rgba(197, 165, 90, 0.2);
+    border-radius: 12px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
 }
 
-#btn-newsletter {
+#btn-newsletter,
+#btn-newsletter-loading {
+    width: 100%;
     padding: 12px 30px;
     white-space: nowrap;
     height: 48px;
