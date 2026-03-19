@@ -1254,42 +1254,44 @@ body::after {
 
 .workflow-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 2.2rem;
-    letter-spacing: 8px;
+    font-size: 1.6rem;
+    letter-spacing: 4px;
     color: var(--gold);
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(197, 165, 90, 0.2);
+    text-shadow: 0 0 10px rgba(197, 165, 90, 0.15);
+    opacity: 0.85;
 }
 
 .workflow-content {
     color: var(--silver);
     font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.8;
     letter-spacing: 0.02em;
     font-weight: 300;
 }
 
 .workflow-intro {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
     color: var(--white);
     margin-bottom: 40px;
     font-weight: 400;
     line-height: 1.6;
+    opacity: 0.9;
 }
 
 .workflow-content p {
     margin-bottom: 30px;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
 .workflow-highlight {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: var(--gold-light);
     font-style: italic;
     margin-top: 50px;
-    opacity: 1 !important;
+    opacity: 0.9 !important;
 }
 
 .workflow-actions {
