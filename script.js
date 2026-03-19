@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'note_hint': 'Schreibe deine neuen Lyrics...',
             'note_btn_download': 'Als .txt Speichern',
             // Generator DE
-            'gen_title': 'AI-Prompt Engine',
+            'gen_title': 'AI-PROMPT ENGINE',
             'gen_subtitle': 'Konfiguriere deine Klang-Vision für die KI-Generierung.',
             'gen_label_style': 'KLANG-CHARAKTER (STYLE)',
             'gen_label_mood': 'ATMOSPHÄRE (MOOD)',
