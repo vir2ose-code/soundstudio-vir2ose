@@ -1938,15 +1938,15 @@ body::after {
     /* Wider Panels and Elements */
     .mirror-container {
         flex-direction: column;
-        gap: 40px;
-        padding: 0 15px;
-        margin-top: 100px; /* Compacted for mobile */
+        gap: 20px;
+        padding: 0 5px;
+        margin-top: 20px;
     }
 
     .glass-panel-generator {
         width: 100% !important;
         max-width: none !important;
-        padding: 40px 25px;
+        padding: 50px 30px;
     }
 
     .btn {
@@ -1956,25 +1956,32 @@ body::after {
     }
 
     .generator-title {
-        font-size: 1.6rem;
+        font-size: 2.2rem;
         letter-spacing: 2px;
+        line-height: 1.2;
     }
 
-    .title-main {
-        font-size: 1.15rem !important; /* Slightly smaller to prevent cut-off */
-        letter-spacing: 2px !important;
-        white-space: nowrap !important;
+    .generator-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
     }
 
-    .title-sub {
-        font-size: 0.7rem !important;
-        letter-spacing: 2px !important;
+    .titles-wrapper,
+    .title-tagline {
+        display: none !important;
+    }
+
+    .powered-by {
+        font-size: 1.8rem !important;
+        margin-bottom: 25px;
+        opacity: 0.8;
     }
 
     /* Scaling buttons */
     .cta-button, .btn-primary, .btn-secondary {
-        padding: 10px 18px !important;
-        font-size: 0.8rem !important;
+        padding: 18px 30px !important;
+        font-size: 1rem !important;
+        letter-spacing: 2px !important;
     }
 
     .generator-section input, 
