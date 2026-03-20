@@ -1798,7 +1798,7 @@ body::after {
     background: rgba(15, 15, 15, 0.8);
 }
 
-@media (max-width: 850px) {
+@media (max-width: 768px) {
     .app-header {
         padding: 10px 20px !important;
         min-height: auto !important;
@@ -1864,8 +1864,16 @@ body::after {
         pointer-events: none; /* Make "unactive" as implied by user */
     }
 
-    .header-center {
+    .header-logo-row {
         display: none !important;
+    }
+
+    .header-center {
+        order: 3 !important;
+        flex: 1 1 100% !important;
+        justify-content: flex-start !important;
+        margin-top: 10px !important;
+        padding-left: 15px !important;
     }
 
     .nav {
@@ -1877,18 +1885,9 @@ body::after {
     }
 
     .logo-img {
-        height: 40px !important;
-    }
-}
-
-    .header-center {
-        order: 3;
-        width: 100%;
-        margin-top: 15px;
-        position: static;
-        transform: none;
-        justify-content: center;
-        gap: 1rem;
+        height: 48px !important;
+        mix-blend-mode: screen !important;
+        filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.4)) !important;
     }
 
     .hamburger-menu {
@@ -1966,15 +1965,22 @@ body::after {
         margin-bottom: 40px;
     }
 
-    .titles-wrapper,
-    .title-tagline {
+    .titles-wrapper {
         display: none !important;
     }
 
+    .title-tagline {
+        font-size: 1.1rem !important;
+        margin-bottom: 5px !important;
+        text-align: center;
+        display: block !important;
+    }
+
     .powered-by {
-        font-size: 1.8rem !important;
+        font-size: 1.2rem !important;
         margin-bottom: 25px;
         opacity: 0.8;
+        text-align: center;
     }
 
     /* Scaling buttons */
@@ -1993,6 +1999,7 @@ body::after {
 
     .input-group-gen {
         margin-bottom: 25px;
+    }
 }
 
 /* =========================================================================

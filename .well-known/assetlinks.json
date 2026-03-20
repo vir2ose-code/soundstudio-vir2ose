@@ -2,7 +2,7 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.goldenmirror.studio.Launcher",
+    "package_name": "com.goldenmirror.studio",
     "sha256_cert_fingerprints": [
       "F6:A3:35:E4:0C:0E:64:9F:5C:30:17:80:60:6C:C7:99:98:8C:63:73:C6:64:1B:77:4F:9E:C1:9D:61:52:95:90"
     ]
