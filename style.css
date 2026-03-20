@@ -130,7 +130,7 @@ body::after {
 
 /* ──────────────── Top Navigation ──────────────── */
 .app-header {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -261,9 +261,8 @@ body::after {
 }
 
 /* Hamburger Menu */
-/* Hamburger Menu - Standardized */
 .hamburger-menu {
-    display: none;
+    display: flex;
     width: 30px;
     height: 20px;
     flex-direction: column;
