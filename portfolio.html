@@ -16,6 +16,23 @@
     <div id="mouse-light"></div>
     <audio id="preview-audio" style="display: none;"></audio>
 
+    <!-- Lyrics Notepad Overlay -->
+    <div id="lyrics-overlay" class="lyrics-overlay">
+        <div class="lyrics-notepad glass-panel-generator">
+            <button class="close-notepad" onclick="toggleNotepad()" aria-label="Close Notepad">×</button>
+            <div class="notepad-header">
+                <span class="animated-pencil">✎</span>
+                <span class="notepad-hint" data-i18n="note_hint">Schreibe deine neuen Lyrics...</span>
+            </div>
+            <textarea id="lyrics-text" class="lyrics-textarea" placeholder="..." spellcheck="false"></textarea>
+            <div class="notepad-footer">
+                <button class="btn btn-outline" onclick="downloadLyrics()">
+                    <span data-i18n="note_btn_download">Als .txt Speichern</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Particle Canvas Background -->
     <canvas id="particles-canvas"></canvas>
 
@@ -230,7 +247,7 @@
                 </div>
 
                 <div style="text-align: center; margin-top: 60px;">
-                    <a href="contact.html" class="btn btn-primary" data-i18n="btn_project">START A PROJECT</a>
+                    <button onclick="toggleNotepad()" class="btn btn-primary" style="padding: 18px 30px; font-size: 1rem; cursor: pointer; border: none; font-family: 'Outfit', sans-serif; font-weight: 600; letter-spacing: 2px;" data-i18n="btn_project">START A PROJECT</button>
                 </div>
             </div>
         </section>
