@@ -2521,4 +2521,25 @@ body::after {
         grid-template-columns: 1fr !important;
         gap: 30px !important;
     }
+    
+    /* 5. Services Grid Fix */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    .service-card {
+        padding: 25px 20px !important;
+    }
+
+    /* 6. Contact/Portfolio Button Fix */
+    .contact-btn, .portfolio-page .btn {
+        width: 100% !important;
+        max-width: 280px !important;
+        white-space: normal !important;
+        height: auto !important;
+        line-height: 1.4 !important;
+        padding: 15px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
 }
