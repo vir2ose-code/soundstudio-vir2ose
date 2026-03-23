@@ -2543,3 +2543,33 @@ body::after {
         margin-right: auto !important;
     }
 }
+
+/* --- Phase 41: Mobile Lyrics Button UX Logic --- */
+.mobile-lyrics-container {
+    display: none;
+}
+
+@media (max-width: 1200px) {
+    /* Hide the original Hero Lyrics button on Mobile */
+    .cta-group [data-i18n="btn_project"] {
+        display: none !important;
+    }
+    
+    /* Show the new chronological UX Analytics button below generators */
+    .mobile-lyrics-container {
+        display: flex !important;
+        justify-content: center;
+        order: 4;
+        width: 100%;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .mobile-lyrics-container .btn {
+        width: 100% !important;
+        max-width: 320px !important;
+        padding: 18px 20px !important;
+        font-size: 1rem !important;
+        margin: 0 auto;
+    }
+}
