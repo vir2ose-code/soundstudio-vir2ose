@@ -1872,7 +1872,7 @@ body::after {
         flex: 1 1 100% !important;
         justify-content: flex-start !important;
         margin-top: 10px !important;
-        padding-left: 15px !important;
+        padding-left: 0 !important;
     }
 
     .nav {
