@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Konfiguriere deine Klang-Vision für die KI-Generierung.',
             'gen_label_style': 'KLANG-CHARAKTER (STYLE)',
             'gen_label_mood': 'ATMOSPHÄRE (MOOD)',
-            'gen_opt_industrial': 'Techno',
+            'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Lofi Hiphop',
             'gen_opt_dark': 'Cinematic',
             'gen_opt_drill': 'Drill',
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Configure your sound vision for AI generation.',
             'gen_label_style': 'SOUND CHARACTER (STYLE)',
             'gen_label_mood': 'ATMOSPHERE (MOOD)',
-            'gen_opt_industrial': 'Techno',
+            'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Lofi Hiphop',
             'gen_opt_dark': 'Cinematic',
             'gen_opt_drill': 'Drill',
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Configura tu visión sonora para la generación por IA.',
             'gen_label_style': 'CARÁCTER DE SONIDO (ESTILO)',
             'gen_label_mood': 'ATMÓSFERA (CUBIERTA)',
-            'gen_opt_industrial': 'Techno',
+            'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Lofi Hiphop',
             'gen_opt_dark': 'Cinematic',
             'gen_opt_drill': 'Drill',
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Konfiguruj swoją wizję dźwięku dla generowania przez AI.',
             'gen_label_style': 'CHARAKTER DŹWIĘKU (STYLE)',
             'gen_label_mood': 'ATMOSFERA (MOOD)',
-            'gen_opt_industrial': 'Industrialne Techno',
+            'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Luksusowe Lofi',
             'gen_opt_dark': 'Mroczne Cinematic',
             'gen_opt_drill': 'Mocny Drill',
@@ -893,13 +893,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ──────────────── AI Prompt Engine Logic ────────────────
     const genreAudioMap = {
-        'Techno': [
-            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Analog Afterglow.mp3',
-            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Crystal Grime.mp3',
-            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Ethereal Engine.mp3',
-            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Industrial Shadows.mp3',
-            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Riot Logic.mp3',
-            'sounds/audio gen/Techno/VIR2OSE_Soundstudio_Static Revolt.mp3'
+        'Cyberpunk': [
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Analog Afterglow.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Crystal Grime.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Crystal Industry.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Ethereal Engine.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Ethereal Grime.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Gritty Circuit.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Industrial Shadows.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Neon Grit.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Riot Logic.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Static Revolt.mp3',
+            'sounds/audio gen/Cyberpunk/VIR2OSE_Soundstudio_Vintage Distortion.mp3'
         ],
         'Lofi Hiphop': [
             'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Crystal Lounge.mp3',
