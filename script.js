@@ -931,7 +931,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Nostalgic Nights.mp3',
             'sounds/audio gen/Lofi Hiphop/VIR2OSE_Soundstudio_Rebel Lounge.mp3'
         ],
-        'Cinematic': [
+        'Cinematic Orchestral': [
             'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Abyssal Reach.mp3',
             'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Ancient Signal.mp3',
             'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Celestial Depths.mp3',
@@ -940,7 +940,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Titan's Shadow.mp3",
             'sounds/audio gen/Cinematc/VIR2OSE_Soundstudio_Void Echoes.mp3'
         ],
-        'Drill': [
+        'Drill Rap': [
             'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.mp3',
             'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Crystal Glide.mp3',
             'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.mp3',
@@ -949,7 +949,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Shadow Glide.mp3',
             'sounds/audio gen/Drill/VIR2OSE_Soundstudio_Static Revolt Drill.mp3'
         ],
-        'House': [
+        'House Music': [
             'sounds/audio gen/House/VIR2OSE_Soundstudio_Crystal Horizon.mp3',
             'sounds/audio gen/House/VIR2OSE_Soundstudio_Heavy Pumping House.mp3',
             'sounds/audio gen/House/VIR2OSE_Soundstudio_Rebel Pulse.mp3'
@@ -964,7 +964,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 1.mp3',
             'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 2.mp3'
         ],
-        'Authentic Rock': [
+        'Rock': [
             'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 1.mp3',
             'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 2.mp3',
             'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 1.mp3',
@@ -1010,6 +1010,23 @@ document.addEventListener('DOMContentLoaded', () => {
             'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Bright K-Pop Anthem 1.mp3',
             'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Bright K-Pop Anthem 2.mp3',
             'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Crystal Clear K-Pop 1.mp3'
+        ],
+        'Heavy Metal': [
+            'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Analog Grind (Instrumental).mp3',
+            'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Crystal Grind (Instrumental).mp3',
+            'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Dark Logic 2.mp3',
+            'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Ethereal Metal (Instrumental).mp3',
+            'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Iron Pulse 1.mp3',
+            'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Mechanical Nostalgia (Instrumental).mp3'
+        ],
+        'EDM': [
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Analog Horizon 1.mp3',
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Analog Horizon 2.mp3',
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Crystal Clear Peak (Instrumental).mp3',
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Ethereal Flow 1.mp3',
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Ethereal Flow 2.mp3',
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Midnight Pulse (Instrumental).mp3',
+            'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Neon Drive (Instrumental).mp3'
         ]
     };
 
