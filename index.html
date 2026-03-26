@@ -211,7 +211,8 @@
                     <!-- NEW CONTROLS: Play/Pause & EQ -->
                     <div id="player-controls" class="player-controls" style="display: flex;">
                         <button id="btn-play-pause-ui" class="btn-play-pause-ui" onclick="toggleWaveformPlayback()">
-                            <span id="play-pause-icon">▶</span>
+                            <span id="play-pause-icon" style="font-size: 1.2rem; transform: translateY(1px);">▶</span>
+                            <span>PLAY / PAUSE</span>
                         </button>
                         
                         <div class="eq-controls">
@@ -237,10 +238,6 @@
                                 class="btn btn-secondary btn-copy-2" data-i18n="gen_listen_2">
                                 SOUND ANHÖREN
                             </button>
-                        </div>
-                        <div class="reset-wrapper">
-                            <a id="download-btn" href="#" download class="reset-link"
-                                data-i18n="gen_download_2">Download Sound</a>
                         </div>
                     </div>
 
