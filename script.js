@@ -1272,8 +1272,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function playDemo() {
+        const genreEl = document.getElementById('genre');
+        const genreKey = genreEl ? genreEl.value : 'Cyberpunk';
+        const demoFiles = genreAudioMap[genreKey] || genreAudioMap['Cyberpunk'];
+        const demoFile = Array.isArray(demoFiles) ? demoFiles[Math.floor(Math.random() * demoFiles.length)] : demoFiles;
+
+        if (wavesurfer && demoFile) {
+            wavesurfer.load(demoFile);
+            currentSoundURL = demoFile;
+            wavesurfer.once('ready', () => { 
+                wavesurfer.play(); 
+                initWebAudioEQ();
+            });
+        }
+    }
+
     function toggleWaveformPlayback() {
         if (!wavesurfer) return;
+
+        if (!currentSoundURL) {
+            playDemo();
+            const playPauseIcon = document.getElementById('play-pause-icon');
+            const btnUI = document.getElementById('btn-play-pause-ui');
+            if (playPauseIcon) {
+                playPauseIcon.innerText = '⏸';
+                playPauseIcon.style.marginLeft = '0px';
+                if(btnUI) btnUI.style.paddingLeft = '0px';
+            }
+            return;
+        }
         
         wavesurfer.playPause();
         
@@ -1295,11 +1323,6 @@ document.addEventListener('DOMContentLoaded', () => {
     window.toggleWaveformPlayback = toggleWaveformPlayback;
     window.applyConfiguration = applyConfiguration;
     window.playDemo = playDemo;
-    window.copyPrompt = copyPrompt;
-
-    window.generatePrompt2 = generatePrompt2;
-    window.playDemo2 = playDemo2;
-    window.copyPrompt2 = copyPrompt2;
 
     // Smooth scrolling for the EXPLORE button (only if target exists on page)
     const exploreBtn = document.querySelector('a[href="#samples"]');
