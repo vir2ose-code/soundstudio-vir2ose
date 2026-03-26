@@ -1213,6 +1213,69 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(e => console.error("Portfolio playback failed:", e));
     }
 
+    let eqInitialized = false;
+
+    function initWebAudioEQ() {
+        if (eqInitialized || !wavesurfer || !wavesurfer.backend || !wavesurfer.backend.ac) return;
+
+        try {
+            const ac = wavesurfer.backend.ac;
+
+            const lowEQ = ac.createBiquadFilter();
+            lowEQ.type = "lowshelf";
+            lowEQ.frequency.value = 150; // Deep bass focus
+            lowEQ.gain.value = 0;
+
+            const midEQ = ac.createBiquadFilter();
+            midEQ.type = "peaking";
+            midEQ.frequency.value = 1000;
+            midEQ.Q.value = 1.0;
+            midEQ.gain.value = 0;
+
+            const highEQ = ac.createBiquadFilter();
+            highEQ.type = "highshelf";
+            highEQ.frequency.value = 4000; // Crisp highs
+            highEQ.gain.value = 0;
+
+            wavesurfer.backend.setFilters([lowEQ, midEQ, highEQ]);
+
+            // Attach listeners
+            const lowSlider = document.getElementById('eq-low');
+            const midSlider = document.getElementById('eq-mid');
+            const highSlider = document.getElementById('eq-high');
+
+            if(lowSlider) lowSlider.addEventListener('input', e => lowEQ.gain.value = parseFloat(e.target.value));
+            if(midSlider) midSlider.addEventListener('input', e => midEQ.gain.value = parseFloat(e.target.value));
+            if(highSlider) highSlider.addEventListener('input', e => highEQ.gain.value = parseFloat(e.target.value));
+
+            eqInitialized = true;
+            console.log("Web Audio EQ Initialized for Wavesurfer");
+        } catch (e) {
+            console.error("Web Audio EQ Init failed:", e);
+        }
+    }
+
+    function toggleWaveformPlayback() {
+        if (!wavesurfer) return;
+        
+        wavesurfer.playPause();
+        
+        const playPauseIcon = document.getElementById('play-pause-icon');
+        const btnUI = document.getElementById('btn-play-pause-ui');
+        if (playPauseIcon) {
+            if (wavesurfer.isPlaying()) {
+                playPauseIcon.innerText = '⏸';
+                playPauseIcon.style.marginLeft = '0px';
+                if(btnUI) btnUI.style.paddingLeft = '0px';
+            } else {
+                playPauseIcon.innerText = '▶';
+                playPauseIcon.style.marginLeft = '5px';
+                if(btnUI) btnUI.style.paddingLeft = '6px';
+            }
+        }
+    }
+
+    window.toggleWaveformPlayback = toggleWaveformPlayback;
     window.applyConfiguration = applyConfiguration;
     window.playDemo = playDemo;
     window.copyPrompt = copyPrompt;
@@ -1249,7 +1312,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     async function startSoundGeneration() {
-        const promptFromLeft = document.getElementById('generated-prompt').innerText;
+        const summaryTextEl = document.getElementById('summary-text');
+        const promptFromLeft = summaryTextEl ? summaryTextEl.innerText : '';
         const statusDisplay = document.getElementById('status-display');
         const statusText = statusDisplay.querySelector('p');
         const waveformContainer = document.getElementById('waveform-container');
@@ -1367,6 +1431,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (waveformContainer) waveformContainer.style.display = 'block';
+
+            const playerControls = document.getElementById('player-controls');
+            if (playerControls) {
+                playerControls.style.display = 'flex';
+                // Reset icon to Pause immediately since playback auto-starts
+                const playIcon = document.getElementById('play-pause-icon');
+                if (playIcon) playIcon.innerText = '⏸';
+            }
 
             // Build the array of new available files in the audio gen folder
             const technoFiles = [
@@ -1532,6 +1604,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 wavesurfer.load(demoFile);
                 wavesurfer.once('ready', () => {
                     wavesurfer.play();
+                    initWebAudioEQ();
                 });
             }
 
@@ -1589,9 +1662,12 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDisplay.classList.remove('status-active');
         statusText.innerText = translations[currentLang]['gen_status_ready'] || 'Bereit...';
 
-        // Hide waveform
+        // Hide waveform & controls
         const waveformContainer = document.getElementById('waveform-container');
         if (waveformContainer) waveformContainer.style.display = 'none';
+        
+        const playerControls = document.getElementById('player-controls');
+        if (playerControls) playerControls.style.display = 'none';
 
         // Reset prompt link variable
         currentSoundURL = '';

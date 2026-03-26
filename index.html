@@ -31,7 +31,7 @@
 
 <body>
     <div id="mouse-light"></div>
-    <audio id="preview-audio" style="display: none;"></audio>
+    <audio id="preview-audio" style="display: none;" crossorigin="anonymous"></audio>
 
     <!-- Lyrics Notepad Overlay -->
     <div id="lyrics-overlay" class="lyrics-overlay">
@@ -201,6 +201,28 @@
 
                     <div id="waveform-container" class="waveform-container">
                         <div id="waveform"></div>
+                    </div>
+
+                    <!-- NEW CONTROLS: Play/Pause & EQ -->
+                    <div id="player-controls" class="player-controls" style="display: none;">
+                        <button id="btn-play-pause-ui" class="btn-play-pause-ui" onclick="toggleWaveformPlayback()">
+                            <span id="play-pause-icon">▶</span>
+                        </button>
+                        
+                        <div class="eq-controls">
+                            <div class="eq-slider-group">
+                                <input type="range" id="eq-low" min="-12" max="12" value="0" class="eq-slider">
+                                <label>LOW</label>
+                            </div>
+                            <div class="eq-slider-group">
+                                <input type="range" id="eq-mid" min="-12" max="12" value="0" class="eq-slider">
+                                <label>MID</label>
+                            </div>
+                            <div class="eq-slider-group">
+                                <input type="range" id="eq-high" min="-12" max="12" value="0" class="eq-slider">
+                                <label>HIGH</label>
+                            </div>
+                        </div>
                     </div>
 
                     <button onclick="startSoundGeneration()" class="btn btn-primary btn-gen"
