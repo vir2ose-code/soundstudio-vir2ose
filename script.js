@@ -1414,14 +1414,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Extracted simulation logic for cleaner Fallback handling
     function runSimulationFallback(promptFromLeft, currentLang) {
         console.log("Starting 5-Second Bridge Simulation...");
+
+        // Check for advanced inputs (Tempo, Key, Time)
+        const tempoVal = document.getElementById('tempo') ? document.getElementById('tempo').value.trim() : '';
+        const keyVal = document.getElementById('tonart') ? document.getElementById('tonart').value.trim() : '';
+        const timeVal = document.getElementById('takt') ? document.getElementById('takt').value.trim() : '';
+
+        const hasAdvancedInput = tempoVal !== '' || keyVal !== '' || timeVal !== '';
+
         // Simulate Production Delay (Exactly 5 Seconds)
         setTimeout(() => {
             const statusDisplay = document.getElementById('status-display');
             const statusText = statusDisplay ? statusDisplay.querySelector('p') : null;
             const resultBox2 = document.getElementById('result-box-2');
             const waveformContainer = document.getElementById('waveform-container');
+            const playerControls = document.getElementById('player-controls');
 
             if (statusDisplay) statusDisplay.classList.remove('status-active');
+            
+            if (hasAdvancedInput) {
+                if (statusText) statusText.innerText = "Custom Generation requires active API Backend.";
+                
+                if (resultBox2) {
+                    resultBox2.style.display = 'block';
+                    setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
+                }
+                
+                const promptOutput2 = document.getElementById('generated-prompt-2');
+                if (promptOutput2) promptOutput2.innerText = `Warten auf neue Generierung - Custom-Eingaben erkannt...`;
+                
+                // Hide waveform & controls
+                if (waveformContainer) waveformContainer.style.display = 'none';
+                if (playerControls) playerControls.style.display = 'none';
+                return; // Stop here, don't load a file
+            }
+
+            // Normal Library Fallback
             if (statusText) statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
 
             // Show result box with fade-in effect
@@ -1432,175 +1460,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (waveformContainer) waveformContainer.style.display = 'block';
 
-            const playerControls = document.getElementById('player-controls');
             if (playerControls) {
                 playerControls.style.display = 'flex';
-                // Reset icon to Pause immediately since playback auto-starts
                 const playIcon = document.getElementById('play-pause-icon');
                 if (playIcon) playIcon.innerText = '⏸';
             }
 
-            // Build the array of new available files in the audio gen folder
-            const technoFiles = [
-                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Analog Afterglow.mp3',
-                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Crystal Grime.mp3',
-                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Ethereal Engine.mp3',
-                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Industrial Shadows.mp3',
-                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Riot Logic.mp3',
-                'sounds/audio gen/Industrial Techno/VIR2OSE_Soundstudio_Static Revolt.mp3'
-            ];
+            // Centralized Library Lookup
+            const genreEl = document.getElementById('genre');
+            const genreKey = genreEl ? genreEl.value : 'Cyberpunk';
+            
+            const demoFiles = genreAudioMap[genreKey] || genreAudioMap['Cyberpunk'];
+            const demoFile = Array.isArray(demoFiles) 
+                ? demoFiles[Math.floor(Math.random() * demoFiles.length)] 
+                : demoFiles;
 
-            const houseFiles = [
-                'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Crystal Horizon.mp3',
-                'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Heavy Pumping House.mp3',
-                'sounds/audio gen/Melodic House/VIR2OSE_Soundstudio_Rebel Pulse.mp3'
-            ];
-
-            const lofiFiles = [
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Crystal Lounge.mp3',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Ethereal Dust.mp3',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Golden Hour Jazz.mp3',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Heavy Velvet.mp3',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Midnight Noir.mp3',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Nostalgic Nights.mp3',
-                'sounds/audio gen/Luxury Lofi/VIR2OSE_Soundstudio_Rebel Lounge.mp3'
-            ];
-
-            const drillFiles = [
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Analog Drill Echoes.mp3',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Crystal Glide.mp3',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Ethereal Drill Pushing.mp3',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Heavy Industry Drill.mp3',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Riot Drill.mp3',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Shadow Glide.mp3',
-                'sounds/audio gen/Hard-Hitting Drill/VIR2OSE_Soundstudio_Static Revolt Drill.mp3'
-            ];
-
-            const cinematicFiles = [
-                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Abyssal Reach.mp3',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Ancient Signal.mp3',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Celestial Depths.mp3',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Faded Dynasty.mp3',
-                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Riotous Echoes.mp3',
-                "sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Titan's Shadow.mp3",
-                'sounds/audio gen/Cinematc Dark/VIR2OSE_Soundstudio_Void Echoes.mp3'
-            ];
-
-            const popFiles = [
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 1.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Bright Analog Pop Instrumental 2.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 1.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Ethereal Pop Instrumental 2.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Nostalgic Pop Groove 1.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Nostalgic Pop Groove 2.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 1.mp3',
-                'sounds/audio gen/POP/VIR2OSE_Soundstudio_Pop Beat 2.mp3'
-            ];
-
-            const rockFiles = [
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 1.mp3',
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive (115 BPM) 2.mp3',
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 1.mp3',
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Ethereal Rock Drive 2.mp3',
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Heavy Rock Stomp.mp3',
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 1.mp3',
-                'sounds/audio gen/Rock/VIR2OSE_Soundstudio_Nostalgic Rock Stomp 2.mp3'
-            ];
-
-            const reggaetonFiles = [
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_1.mp3',
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Dembow 110_2.mp3',
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_1.mp3',
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Nostalgic Reggaeton 120_2.mp3',
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 1.mp3',
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Ominous Dembow 2.mp3',
-                'sounds/audio gen/Reggaeton/VIR2OSE_Soundstudio_Reggaeton Instrumental 2.mp3'
-            ];
-
-            const hiphopFiles = [
-                'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Dark & Heavy.mp3',
-                'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Ethereal & Clear.mp3',
-                'sounds/audio gen/Hip-Hop/VIR2OSE Studios_ Drill_Warm & Analog.mp3'
-            ];
-
-            const meditationFiles = [
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Crystal Clear Meditation.mp3',
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 1.mp3',
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Native Earth Meditation 2.mp3',
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 1.mp3',
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Meditation 2.mp3',
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 2.mp3',
-                'sounds/audio gen/Meditation/VIR2OSE_Soundstudio_Nostalgic Stillness 3.mp3'
-            ];
-
-            const metalFiles = [
-                'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Analog Grind (Instrumental).mp3',
-                'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Crystal Grind (Instrumental).mp3',
-                'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Dark Logic 2.mp3',
-                'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Ethereal Metal (Instrumental).mp3',
-                'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Iron Pulse 1.mp3',
-                'sounds/audio gen/Metal/VIR2OSE_Soundstudio_Mechanical Nostalgia (Instrumental).mp3'
-            ];
-
-            const edmFiles = [
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Analog Horizon 1.mp3',
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Analog Horizon 2.mp3',
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Crystal Clear Peak (Instrumental).mp3',
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Ethereal Flow 1.mp3',
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Ethereal Flow 2.mp3',
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Midnight Pulse (Instrumental).mp3',
-                'sounds/audio gen/EDM/VIR2OSE_Soundstudio_Neon Drive (Instrumental).mp3'
-            ];
-
-            const soulFiles = [
-                'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Analog R&B (Instrumental).mp3',
-                'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Golden Era Vibe (Instrumental).mp3',
-                'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Golden Groove (Instrumental).mp3',
-                'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Midnight Soul (Instrumental).mp3',
-                'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Soul Motion (Instrumental).mp3',
-                'sounds/audio gen/Soul/VIR2OSE_Soundstudio_Vintage Soul (Instrumental).mp3'
-            ];
-
-            const reggaeFiles = [
-                'sounds/audio gen/Reggea/VIR2OSE_SoundstudioMidnight Dub (Instrumental).mp3',
-                'sounds/audio gen/Reggea/VIR2OSE_Soundstudio_Analog Horizon (Instrumental).mp3',
-                'sounds/audio gen/Reggea/VIR2OSE_Soundstudio_Horizon Dub.mp3',
-                'sounds/audio gen/Reggea/VIR2OSE_Soundstudio_Starlight Roots.mp3',
-                'sounds/audio gen/Reggea/VIR2OSE_Soundstudio_Stepping Echoes.mp3',
-                'sounds/audio gen/Reggea/VIR2OSE_Soundstudio_Vintage Dub Pulse (Instrumental).mp3'
-            ];
-
-            const kpopFiles = [
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Analog K-Pop (Instrumental).mp3',
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Crystal Pop Edge (Instrumental).mp3',
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Ethereal K-Pop Groove (Instrumental).mp3',
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Ethereal K-Pop Harmony (Instrumental).mp3',
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Midnight Dance (Instrumental).mp3',
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Midnight Pop Beats (Instrumental).mp3',
-                'sounds/audio gen/K-Pop/VIR2OSE_Soundstudio_Nostalgic Idol Vibe (Instrumental).mp3'
-            ];
-
-            // Select a demo file based on prompt content
-            let demoFile = '';
-
-            const p = promptFromLeft.toLowerCase();
-            if (p.includes("house")) demoFile = houseFiles[Math.floor(Math.random() * houseFiles.length)];
-            else if (p.includes("lofi") || p.includes("chill") || p.includes("jazz")) demoFile = lofiFiles[Math.floor(Math.random() * lofiFiles.length)];
-            else if (p.includes("drill")) demoFile = drillFiles[Math.floor(Math.random() * drillFiles.length)];
-            else if (p.includes("cinematic")) demoFile = cinematicFiles[Math.floor(Math.random() * cinematicFiles.length)];
-            else if (p.includes("pop")) demoFile = popFiles[Math.floor(Math.random() * popFiles.length)];
-            else if (p.includes("rock")) demoFile = rockFiles[Math.floor(Math.random() * rockFiles.length)];
-            else if (p.includes("reggaeton")) demoFile = reggaetonFiles[Math.floor(Math.random() * reggaetonFiles.length)];
-            else if (p.includes("hip-hop")) demoFile = hiphopFiles[Math.floor(Math.random() * hiphopFiles.length)];
-            else if (p.includes("meditation")) demoFile = meditationFiles[Math.floor(Math.random() * meditationFiles.length)];
-            else if (p.includes("metal")) demoFile = metalFiles[Math.floor(Math.random() * metalFiles.length)];
-            else if (p.includes("edm") || p.includes("electronic")) demoFile = edmFiles[Math.floor(Math.random() * edmFiles.length)];
-            else if (p.includes("soul")) demoFile = soulFiles[Math.floor(Math.random() * soulFiles.length)];
-            else if (p.includes("reggae")) demoFile = reggaeFiles[Math.floor(Math.random() * reggaeFiles.length)];
-            else if (p.includes("k-pop")) demoFile = kpopFiles[Math.floor(Math.random() * kpopFiles.length)];
-            else demoFile = technoFiles[Math.floor(Math.random() * technoFiles.length)]; // Default
-
-            if (wavesurfer) {
+            if (wavesurfer && demoFile) {
                 wavesurfer.load(demoFile);
                 wavesurfer.once('ready', () => {
                     wavesurfer.play();
@@ -1612,9 +1487,9 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSoundURL = demoFile;
             const downloadBtn = document.getElementById('download-btn');
             if (downloadBtn) {
-                downloadBtn.href = currentSoundURL;
+                downloadBtn.href = currentSoundURL || '#';
                 // Dynamically name the download file based on the selected file path
-                const fileName = currentSoundURL.split('/').pop();
+                const fileName = currentSoundURL ? currentSoundURL.split('/').pop() : 'VIR2OSE.wav';
                 downloadBtn.download = fileName;
                 downloadBtn.classList.add('btn-breathe'); // Pulse effect
             }
