@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Konfiguriere deine Klang-Vision für die KI-Generierung.',
             'gen_label_style': 'KLANG-CHARAKTER (STYLE)',
             'gen_label_mood': 'ATMOSPHÄRE (MOOD)',
+            'gen_label_tempo': 'TEMPO (BPM)',
+            'gen_label_tonart': 'TONART (KEY)',
+            'gen_label_takt': 'TAKT (TIME)',
+            'gen_btn_apply': 'ÜBERNEHMEN & WEITER',
             'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Lofi Hiphop',
             'gen_opt_dark': 'Cinematic',
@@ -180,6 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Configure your sound vision for AI generation.',
             'gen_label_style': 'SOUND CHARACTER (STYLE)',
             'gen_label_mood': 'ATMOSPHERE (MOOD)',
+            'gen_label_tempo': 'TEMPO (BPM)',
+            'gen_label_tonart': 'KEY (TONALITY)',
+            'gen_label_takt': 'TIME SIGNATURE',
+            'gen_btn_apply': 'APPLY & CONTINUE',
             'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Lofi Hiphop',
             'gen_opt_dark': 'Cinematic',
@@ -316,6 +324,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Configura tu visión sonora para la generación por IA.',
             'gen_label_style': 'CARÁCTER DE SONIDO (ESTILO)',
             'gen_label_mood': 'ATMÓSFERA (CUBIERTA)',
+            'gen_label_tempo': 'TEMPO (BPM)',
+            'gen_label_tonart': 'TONALIDAD (CLAVE)',
+            'gen_label_takt': 'COMPÁS',
+            'gen_btn_apply': 'APLICAR Y CONTINUAR',
             'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Lofi Hiphop',
             'gen_opt_dark': 'Cinematic',
@@ -448,6 +460,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'gen_subtitle': 'Konfiguruj swoją wizję dźwięku dla generowania przez AI.',
             'gen_label_style': 'CHARAKTER DŹWIĘKU (STYLE)',
             'gen_label_mood': 'ATMOSFERA (MOOD)',
+            'gen_label_tempo': 'TEMPO (BPM)',
+            'gen_label_tonart': 'TONACJA (KLUCZ)',
+            'gen_label_takt': 'METRUM',
+            'gen_btn_apply': 'ZASTOSUJ I DALEJ',
             'gen_opt_industrial': 'Cyberpunk',
             'gen_opt_lofi': 'Luksusowe Lofi',
             'gen_opt_dark': 'Mroczne Cinematic',
@@ -997,108 +1013,55 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    function generatePrompt() {
+    function applyConfiguration() {
         const genreEl = document.getElementById('genre');
         const vibeEl = document.getElementById('vibe');
-        const resultBox = document.getElementById('result-box');
-        const promptEl = document.getElementById('generated-prompt');
+        const tempoEl = document.getElementById('tempo');
+        const tonartEl = document.getElementById('tonart');
+        const taktEl = document.getElementById('takt');
 
-        if (!genreEl || !vibeEl || !resultBox || !promptEl) return;
+        if (!genreEl || !vibeEl) return;
 
-        const genreVal = genreEl.value;
-        const vibe = vibeEl.value;
+        const genreVal = genreEl.options[genreEl.selectedIndex].text;
+        const vibeVal = vibeEl.options[vibeEl.selectedIndex].text;
+        
+        const tempo = (tempoEl && tempoEl.value) ? tempoEl.value : '-';
+        const tonart = (tonartEl && tonartEl.value) ? tonartEl.value : '-';
+        const takt = (taktEl && taktEl.value) ? taktEl.value : '-';
 
-        let bpm = "120 BPM";
-        let instruments = "analog synths, crisp drum machines";
-        let textures = "balanced mix, clean digital output";
+        const summary = `${genreVal} | ${vibeVal} | ${tempo} BPM | Key: ${tonart} | Time: ${takt}`;
 
-        if (genreVal.includes("Techno")) {
-            bpm = "130 BPM";
-            instruments = "heavy distorted kick drum, metallic percussion, aggressive 909 hi-hats";
-            textures = "sub-bass focus, gritty analog saturation, industrial grit";
-        } else if (genreVal.includes("Lofi") || genreVal.includes("Jazz") || genreVal.includes("Chill")) {
-            bpm = "85 BPM";
-            instruments = "dusty upright piano, humanized swung drum break, deep acoustic standup bass";
-            textures = "12-bit sampler warmth, tape wow and flutter, subtle vinyl crackle, lo-fi saturation";
-        } else if (genreVal.includes("Cinematic")) {
-            bpm = "80 BPM";
-            instruments = "booming taiko ensembles, atonal string risers, granular synth drones";
-            textures = "massive dynamic range, expansive stereo imaging, hybrid synthesis, deep low-end rumble";
-        } else if (genreVal.includes("Drill")) {
-            bpm = "142 BPM";
-            instruments = "gliding 808 sub-bass, rapid-fire hi-hat rolls, syncopated hard snares, dark atmospheric pads";
-            textures = "tight low end, aggressive transients, subtle digital clipping";
-        } else if (genreVal.includes("House")) {
-            bpm = "124 BPM";
-            instruments = "deep Moog bassline, classic 909 claps, lush polyphonic pad chords";
-            textures = "hypnotic groove, clear and punchy low-midrange, wide stereo delays";
-        } else if (genreVal.includes("POP")) {
-            bpm = "110 BPM";
-            instruments = "punchy pop snare, sub synth bass, acoustic guitars, bright synth leads";
-            textures = "pristine high-end sheen, radio-ready limiting, ultra-clean instrumental mix, wide stereo image";
-        } else if (genreVal.includes("Rock")) {
-            bpm = "135 BPM";
-            instruments = "distorted electric guitars, heavy acoustic drum kit, driven bass guitar";
-            textures = "live room ambiance, tube amp saturation, thick harmonic overdrive";
-        } else if (genreVal.includes("Reggaeton")) {
-            bpm = "95 BPM";
-            instruments = "dembow drum pattern, booming sub bass, nylon string guitar, bright synth plucks";
-            textures = "punchy transients, rhythmic dance bounce, bright and crisp percussion";
-        } else if (genreVal.includes("Hip-Hop")) {
-            bpm = "90 BPM";
-            instruments = "sampled boom-bap drums, chopped vinyl elements, deep 808 sub";
-            textures = "gritty urban texture, smooth low-end bounce, vintage sampler coloring";
-        } else if (genreVal.includes("Meditation")) {
-            bpm = "60 BPM";
-            instruments = "crystal sound bowls, ethereal pad layers, soft chimes, ambient piano";
-            textures = "washes of lush reverb, infinite sustain, binaural beats, extremely wide soundstage";
+        const summaryBox = document.getElementById('config-summary');
+        const summaryText = document.getElementById('summary-text');
+
+        if (summaryBox && summaryText) {
+            summaryText.innerText = summary;
+            summaryBox.style.display = 'block';
         }
 
-        const base = `${genreVal}, ${bpm}, pure instrumental, no vocals, ${instruments}, ${vibe.toLowerCase()} atmosphere, ${textures}, 44.1kHz high fidelity, latent-diffusion optimized`;
-
-        /* 
-        // Beispiel für zukünftigen API Call (Riffusion/Replicate)
-        async function generateRealSound(prompt) {
-            showLoadingSpinner();
-            try {
-                const audioUrl = await callAudioModelAPI(prompt); 
-                const player = document.getElementById('audio-player');
-                player.src = audioUrl;
-                player.style.display = 'block';
-            } catch(e) {
-                console.error("API Error", e);
-            }
-            hideLoadingSpinner();
+        const rightSide = document.querySelector('.right-side');
+        if (rightSide) {
+            // Smooth scroll to the 2nd Generator
+            rightSide.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
-        */
 
-        promptEl.innerText = base;
-        resultBox.style.display = 'block';
-        setTimeout(() => {
-            resultBox.classList.add('result-box-show');
-        }, 10);
-
-        // Reset right-side engine state for fresh generation
         const rightEngine = document.getElementById('prompt-generator-container-2');
-        const resultBox2 = document.getElementById('result-box-2');
-        const statusText2 = document.getElementById('status-display') ? document.getElementById('status-display').querySelector('p') : null;
-
-        if (resultBox2) {
-            resultBox2.style.display = 'none';
-            resultBox2.classList.remove('result-box-show');
-        }
-        if (statusText2) {
-            statusText2.innerText = translations[currentLang]['gen_status_ready'] || 'Bereit...';
-        }
-
         if (rightEngine) {
             rightEngine.classList.remove('engine-pulse');
-            void rightEngine.offsetWidth; // Force reflow for animation restart
+            void rightEngine.offsetWidth; // Force reflow
             rightEngine.classList.add('engine-pulse');
         }
 
-        // Auto-play preview (force start)
-        // playDemo(true); 
+        const generateBtn = document.querySelector('.right-side .btn-gen');
+        if (generateBtn) {
+            generateBtn.style.transition = 'all 0.3s ease';
+            generateBtn.style.transform = 'scale(1.05)';
+            generateBtn.style.boxShadow = '0 0 20px rgba(255, 215, 0, 0.8)';
+            setTimeout(() => {
+                generateBtn.style.transform = 'scale(1)';
+                generateBtn.style.boxShadow = 'none';
+            }, 800);
+        }
     }
 
     function playDemo(forcePlay = false) {
@@ -1146,25 +1109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function copyPrompt() {
-        const promptText = document.getElementById('generated-prompt').innerText;
-        const currentLang = localStorage.getItem('lang') || 'en';
-        const successMsg = translations[currentLang]['gen_copied'] || 'COPIED! ✓';
-
-        navigator.clipboard.writeText(promptText).then(() => {
-            const copyBtn = document.querySelector('.btn-copy');
-            const originalText = copyBtn.innerText;
-            copyBtn.innerText = successMsg;
-            copyBtn.style.background = 'var(--gold)';
-            copyBtn.style.color = '#000';
-
-            setTimeout(() => {
-                copyBtn.innerText = originalText;
-                copyBtn.style.background = '';
-                copyBtn.style.color = '';
-            }, 2000);
-        });
-    }
+    // copyPrompt removed
 
     // ──────────────── AI Sound Engine 2 Logic (Mirror) ────────────────
     function generatePrompt2() {
@@ -1268,7 +1213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(e => console.error("Portfolio playback failed:", e));
     }
 
-    window.generatePrompt = generatePrompt;
+    window.applyConfiguration = applyConfiguration;
     window.playDemo = playDemo;
     window.copyPrompt = copyPrompt;
 

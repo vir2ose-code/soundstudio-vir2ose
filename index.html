@@ -143,18 +143,22 @@
                         </select>
                     </div>
 
-                    <button onclick="generatePrompt()" class="btn btn-primary btn-gen" data-i18n="gen_btn_generate">
-                        GENERATE PROMPTS
-                    </button>
-
-                    <div id="result-box" class="result-box">
-                        <p id="generated-prompt" class="generated-prompt"></p>
-                        <div class="result-actions">
-                            <button onclick="copyPrompt()" class="btn btn-secondary btn-copy" data-i18n="gen_btn_copy">
-                                PROMPT KOPIEREN
-                            </button>
-                        </div>
+                    <div class="input-group-gen">
+                        <label data-i18n="gen_label_tempo">TEMPO (BPM)</label>
+                        <input type="text" id="tempo" placeholder="z.B. 120" class="custom-input">
                     </div>
+                    <div class="input-group-gen">
+                        <label data-i18n="gen_label_tonart">TONART (KEY)</label>
+                        <input type="text" id="tonart" placeholder="z.B. C-Moll" class="custom-input">
+                    </div>
+                    <div class="input-group-gen">
+                        <label data-i18n="gen_label_takt">TAKT</label>
+                        <input type="text" id="takt" placeholder="z.B. 4/4" class="custom-input">
+                    </div>
+
+                    <button onclick="applyConfiguration()" class="btn btn-primary btn-gen" data-i18n="gen_btn_apply">
+                        ÜBERNEHMEN & WEITER
+                    </button>
                 </div>
             </section>
         </div>
@@ -189,6 +193,10 @@
 
                     <div id="status-display" class="status-display">
                         <p data-i18n="gen_status_ready">Bereit für die Generierung...</p>
+                    </div>
+
+                    <div id="config-summary" class="config-summary" style="display: none; padding: 15px; margin-bottom: 20px; background: rgba(0,0,0,0.6); border-radius: 8px; border: 1px solid rgba(255,215,0,0.3); font-size: 0.95rem; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
+                        <span id="summary-text" style="color: #ffd700; font-family: 'Outfit', sans-serif; letter-spacing: 1px;"></span>
                     </div>
 
                     <div id="waveform-container" class="waveform-container">
