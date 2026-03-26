@@ -760,6 +760,12 @@ body::after {
     background: rgba(15, 17, 21, 0.8);
 }
 
+.custom-input {
+    background-image: none !important;
+    padding-right: 15px !important;
+    cursor: text !important;
+}
+
 .btn-gen {
     width: 100%;
     margin-top: 10px;
