@@ -1,31 +1,65 @@
 // /api/generate.js
+// Vercel Serverless Function for Replicate Audio Generation Polling
 export default async function handler(req, res) {
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+    
+    // Load the user's secret Replicate Token
     const apiKey = process.env.REPLICATE_API_TOKEN;
-    if (!apiKey) return res.status(501).json({ error: 'REPLICATE_API_TOKEN missing' });
+    if (!apiKey) {
+        return res.status(501).json({ error: 'REPLICATE_API_TOKEN missing', useFallback: true });
+    }
 
-    if (req.body.prompt === "debug_probe") {
+    const { prompt, predictionId } = req.body;
+
+    if (predictionId) {
+        // === POLLING LOGIC ===
+        // The frontend periodically asks us if the Replicate task is finished.
         try {
-            // Probe 1: Models Endpoint metadata
-            const getModel = await fetch('https://api.replicate.com/v1/models/meta/musicgen', {
+            const getResponse = await fetch(`https://api.replicate.com/v1/predictions/${predictionId}`, {
                 headers: { 'Authorization': `Bearer ${apiKey}` }
             });
-            const modelData = await getModel.json();
-            
-            // Probe 2: Try running the most robust simple payload
-            const postTest = await fetch('https://api.replicate.com/v1/predictions', {
+            const data = await getResponse.json();
+            return res.status(200).json(data); 
+        } catch (e) {
+            console.error('Polling Error:', e);
+            return res.status(500).json({ error: 'Polling failed' });
+        }
+    } 
+    
+    if (prompt) {
+        // === INITIALIZATION LOGIC ===
+        // We tell Replicate to start processing the prompt on Meta's MusicGen.
+        try {
+            const postResponse = await fetch('https://api.replicate.com/v1/predictions', {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify({
-                    version: "b05b1dff1d8c6b63d14b0faa5d59e6af84057a412221ebee460c1d1a1b1b0b00",
-                    input: { prompt: "test" }
+                    version: "671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
+                    input: {
+                        prompt: prompt,
+                        model_version: "stereo-large",
+                        duration: 8
+                    }
                 })
             });
-            const postData = await postTest.json();
-
-            return res.status(200).json({ modelData, postData });
+            
+            const data = await postResponse.json();
+            
+            if (!postResponse.ok || data.error || data.detail) {
+                console.error("Replicate API Error:", data);
+                return res.status(500).json({ error: data.detail || data.error || 'Unknown Replicate Error' });
+            }
+            
+            // Return the task ID immediately so Vercel doesn't hit the 10-second timeout!
+            return res.status(200).json({ predictionId: data.id });
         } catch (e) {
-            return res.status(500).json({ error: e.message });
+            console.error('Init Error:', e);
+            return res.status(500).json({ error: 'Init failed' });
         }
     }
-    return res.status(400).json({ error: "Probe sleeping" });
+    
+    return res.status(400).json({ error: 'Invalid request' });
 }
