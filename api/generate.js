@@ -30,14 +30,13 @@ export default async function handler(req, res) {
         // === INITIALIZATION LOGIC ===
         // We tell Replicate to start processing the prompt on Meta's MusicGen.
         try {
-            const postResponse = await fetch('https://api.replicate.com/v1/predictions', {
+            const postResponse = await fetch('https://api.replicate.com/v1/models/meta/musicgen/predictions', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Token ${apiKey}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    version: "b05b1dff1d8c6b63d14b0faa5d59e6af84057a412221ebee460c1d1a1b1b0b00",
                     input: {
                         prompt: prompt,
                         duration: 8
