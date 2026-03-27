@@ -1399,10 +1399,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 const initData = await initRes.json();
 
-                // If Vercel has no API Key, or Replicate errored instantly, fallback cleanly
-                if (initData.useFallback || initData.error || !initData.predictionId) {
-                    console.warn("Real API Error or Missing Token, Triggering Fail-Safe:", initData.error);
-                    runSimulationFallback(promptFromLeft, currentLang);
+                // If Vercel has no API Key, or Replicate errored instantly, display error then fallback
+                if (initRes.status !== 200 || initData.useFallback || initData.error || !initData.predictionId) {
+                    const errMsg = initData.error || "Kein Token oder API Fehler.";
+                    console.warn("Real API Error or Missing Token, Triggering Fail-Safe:", errMsg);
+                    if (statusText) {
+                        statusText.innerText = `API Fehler: ${errMsg}`;
+                        statusText.style.color = '#ff4444';
+                    }
+                    setTimeout(() => {
+                        if (statusText) statusText.style.color = '';
+                        runSimulationFallback(promptFromLeft, currentLang);
+                    }, 4000);
                     return;
                 }
 
@@ -1455,7 +1463,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else if (pollData.status === 'failed' || pollData.status === 'canceled') {
                             clearInterval(pollInterval);
                             console.error("Replicate task failed:", pollData.error);
-                            runSimulationFallback(promptFromLeft, currentLang);
+                            if (statusText) {
+                                statusText.innerText = `Replicate Fehler: ${pollData.error}`;
+                                statusText.style.color = '#ff4444';
+                            }
+                            setTimeout(() => {
+                                if (statusText) statusText.style.color = '';
+                                runSimulationFallback(promptFromLeft, currentLang);
+                            }, 4000);
                         } else {
                             // Status is "starting" or "processing" -> Keep waiting!
                             if (statusText && pollData.status === 'processing') {

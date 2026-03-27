@@ -30,26 +30,26 @@ export default async function handler(req, res) {
         // === INITIALIZATION LOGIC ===
         // We tell Replicate to start processing the prompt on Meta's MusicGen.
         try {
-            const postResponse = await fetch('https://api.replicate.com/v1/models/meta/musicgen/predictions', {
+            const postResponse = await fetch('https://api.replicate.com/v1/predictions', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Token ${apiKey}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
+                    version: "b05b1dff1d8c6b63d14b0faa5d59e6af84057a412221ebee460c1d1a1b1b0b00",
                     input: {
                         prompt: prompt,
-                        model_version: "stereo-chord",
-                        output_format: "mp3",
-                        normalization_strategy: "loudness"
+                        duration: 8
                     }
                 })
             });
             
             const data = await postResponse.json();
-            if (data.error) {
-                console.error("Replicate API Error:", data.error);
-                return res.status(500).json({ error: data.error });
+            
+            if (!postResponse.ok || data.error || data.detail) {
+                console.error("Replicate API Error:", data);
+                return res.status(500).json({ error: data.detail || data.error || 'Unknown Replicate Error' });
             }
             
             // Return the task ID immediately so Vercel doesn't hit the 10-second timeout!
