@@ -1,65 +1,64 @@
 // /api/generate.js
-// Vercel Serverless Function for Hybrid Audio Generation
-
+// Vercel Serverless Function for Replicate Audio Generation Polling
 export default async function handler(req, res) {
-    // 1. Only allow POST requests
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-
-    // 2. Extract the prompt parameters
-    const { prompt } = req.body;
-
-    if (!prompt) {
-        return res.status(400).json({ error: 'Prompt is required' });
-    }
-
-    // 3. Check for the AI API Key in Environment Variables
-    const apiKey = process.env.AI_API_KEY;
-
-    // 4. Hybrid Switch Logic
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+    
+    // Load the user's secret Replicate Token
+    const apiKey = process.env.REPLICATE_API_TOKEN;
     if (!apiKey) {
-        // Fallback: If no API key is set in Vercel, we simulate the failure cleanly.
-        // The frontend script.js checks for this 501 error to automatically load local files.
-        return res.status(501).json({
-            error: 'AI_API_KEY not configured. Falling back to local library.',
-            useFallback: true
-        });
+        return res.status(501).json({ error: 'REPLICATE_API_TOKEN missing', useFallback: true });
     }
 
-    try {
-        // [PLACEHOLDER FOR REAL API (e.g. Replicate / MusicGen / Riffusion)]
-        // Example logic for the future:
-        /*
-        const replicateResponse = await fetch('https://api.replicate.com/v1/predictions', {
-            method: 'POST',
-            headers: {
-                'Authorization': `Token ${apiKey}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                version: "b05b1dff1d8c6b6... [Model Version]",
-                input: {
-                    prompt_a: prompt,
-                    denoising: 0.75,
-                }
-            })
-        });
-        
-        const data = await replicateResponse.json();
-        const audioUrl = data.output; // simplified
-        return res.status(200).json({ audioUrl });
-        */
+    const { prompt, predictionId } = req.body;
 
-        // For now, if the key *is* set but the API isn't built out, return a simulated 
-        // external URL or fallback flag anyway so the flow doesn't break.
-        return res.status(501).json({
-            error: 'API endpoint logic pending integration. Falling back to local library.',
-            useFallback: true
-        });
-
-    } catch (error) {
-        console.error('API Error:', error);
-        return res.status(500).json({ error: 'Failed to generate audio via external API.' });
+    if (predictionId) {
+        // === POLLING LOGIC ===
+        // The frontend periodically asks us if the Replicate task is finished.
+        try {
+            const getResponse = await fetch(`https://api.replicate.com/v1/predictions/${predictionId}`, {
+                headers: { 'Authorization': `Token ${apiKey}` }
+            });
+            const data = await getResponse.json();
+            return res.status(200).json(data); 
+        } catch (e) {
+            console.error('Polling Error:', e);
+            return res.status(500).json({ error: 'Polling failed' });
+        }
+    } 
+    
+    if (prompt) {
+        // === INITIALIZATION LOGIC ===
+        // We tell Replicate to start processing the prompt on Meta's MusicGen.
+        try {
+            const postResponse = await fetch('https://api.replicate.com/v1/models/meta/musicgen/predictions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${apiKey}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    input: {
+                        prompt: prompt,
+                        model_version: "stereo-chord",
+                        output_format: "mp3",
+                        normalization_strategy: "loudness"
+                    }
+                })
+            });
+            
+            const data = await postResponse.json();
+            if (data.error) {
+                console.error("Replicate API Error:", data.error);
+                return res.status(500).json({ error: data.error });
+            }
+            
+            // Return the task ID immediately so Vercel doesn't hit the 10-second timeout!
+            return res.status(200).json({ predictionId: data.id });
+        } catch (e) {
+            console.error('Init Error:', e);
+            return res.status(500).json({ error: 'Init failed' });
+        }
     }
+
+    return res.status(400).json({ error: 'Invalid request body' });
 }

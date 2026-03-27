@@ -1347,8 +1347,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Configuration Constants
     const CONFIG = {
         USE_REAL_API: false, // Legacy boolean (Phase 9)
-        USE_AI_GENERATION: false, // New Hybrid Switch (Phase 28)
-        API_ENDPOINT: 'https://api.yourbackend.com/generate'
+        USE_AI_GENERATION: true, // Activated! Route through Replicate API
+        API_ENDPOINT: '/api/generate'
     };
 
     async function startSoundGeneration() {
@@ -1389,24 +1389,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ──────────────── HYBRID API INTEGRATION BLOCK ────────────────
         if (CONFIG.USE_AI_GENERATION) {
-            console.log("Calling Vercel Serverless API (/api/generate)...");
+            console.log("Routing via Vercel Backend to Replicate API...");
             try {
-                // We await the response, but if we haven't wrapped startSoundGeneration in async,
-                // we handle it with Promises to keep the signature clean or wrap it. 
-                // We'll use a standard Promise flow here to match the existing non-async function structure.
-
-                fetch('/api/generate', {
+                // 1. Send the Prompt to Vercel (which pings Replicate)
+                const initRes = await fetch('/api/generate', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ prompt: promptFromLeft })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.useFallback || data.error) {
-                            console.warn("API returned fallback flag or error:", data.error);
-                            runSimulationFallback(promptFromLeft, currentLang);
-                        } else if (data.audioUrl) {
-                            // Success from real AI
+                });
+                const initData = await initRes.json();
+
+                // If Vercel has no API Key, or Replicate errored instantly, fallback cleanly
+                if (initData.useFallback || initData.error || !initData.predictionId) {
+                    console.warn("Real API Error or Missing Token, Triggering Fail-Safe:", initData.error);
+                    runSimulationFallback(promptFromLeft, currentLang);
+                    return;
+                }
+
+                // 2. Poll Replicate for the track status every 3 seconds to avoid 10s Serverless Timeouts!
+                const pollInterval = setInterval(async () => {
+                    try {
+                        const pollRes = await fetch('/api/generate', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ predictionId: initData.predictionId })
+                        });
+                        const pollData = await pollRes.json();
+                        
+                        if (pollData.status === 'succeeded') {
+                            clearInterval(pollInterval);
+                            const audioUrl = pollData.output; // MusicGen returns a URL string
+                            
                             statusDisplay.classList.remove('status-active');
                             statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
 
@@ -1414,36 +1427,38 @@ document.addEventListener('DOMContentLoaded', () => {
                             setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
                             waveformContainer.style.display = 'block';
 
-                            currentSoundURL = data.audioUrl;
-                            if (wavesurfer) {
+                            currentSoundURL = audioUrl;
+                            if (wavesurfer && currentSoundURL) {
                                 wavesurfer.load(currentSoundURL);
-                                wavesurfer.once('ready', () => wavesurfer.play());
+                                wavesurfer.once('ready', () => { 
+                                    wavesurfer.play(); 
+                                    initWebAudioEQ(); 
+                                    const playIcon = document.getElementById('play-pause-icon');
+                                    if (playIcon) playIcon.innerText = '⏸';
+                                });
                             }
-
-                            const downloadBtn = document.getElementById('download-btn');
-                            if (downloadBtn) {
-                                downloadBtn.href = currentSoundURL;
-                                downloadBtn.download = "VIR2OSE_AI_Audio.wav"; // or extract from url
-                                downloadBtn.classList.add('btn-breathe');
-                            }
-
-                            const promptOutput2 = document.getElementById('generated-prompt-2');
-                            if (promptOutput2) {
-                                promptOutput2.innerText = `VIR2OSE Engine URL: External API Gen`;
+                        } else if (pollData.status === 'failed' || pollData.status === 'canceled') {
+                            clearInterval(pollInterval);
+                            console.error("Replicate task failed:", pollData.error);
+                            runSimulationFallback(promptFromLeft, currentLang);
+                        } else {
+                            // Status is "starting" or "processing" -> Keep waiting!
+                            if (statusText && pollData.status === 'processing') {
+                                statusText.innerText = "KI rendert Audio (ca. 10-25 Sek)...";
                             }
                         }
-                    })
-                    .catch(err => {
-                        console.error("Fetch failed completely. Triggering fallback.", err);
+                    } catch (err) {
+                        clearInterval(pollInterval);
+                        console.error("Polling crash:", err);
                         runSimulationFallback(promptFromLeft, currentLang);
-                    });
+                    }
+                }, 3000);
+                
+                return; // Early return to avoid running simulation below
 
-                // Return early so we don't run the simulation below immediately
-                return;
-
-            } catch (error) {
-                console.error("API Error execution:", error.message);
-                // Fall down to simulation
+            } catch (err) {
+                console.error("API Call crash:", err);
+                runSimulationFallback(promptFromLeft, currentLang);
             }
         }
 
