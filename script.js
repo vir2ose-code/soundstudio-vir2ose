@@ -1437,6 +1437,21 @@ document.addEventListener('DOMContentLoaded', () => {
                                     if (playIcon) playIcon.innerText = '⏸';
                                 });
                             }
+
+                            const downloadBtn = document.getElementById('download-btn');
+                            if (downloadBtn) {
+                                downloadBtn.href = currentSoundURL;
+                                downloadBtn.download = `VIR2OSE_AI_Audio_${Date.now()}.mp3`;
+                                downloadBtn.classList.add('btn-breathe');
+                                
+                                fetch(currentSoundURL)
+                                    .then(res => res.blob())
+                                    .then(blob => {
+                                        const blobUrl = URL.createObjectURL(blob);
+                                        downloadBtn.href = blobUrl;
+                                    })
+                                    .catch(e => console.error("Blob download failed:", e));
+                            }
                         } else if (pollData.status === 'failed' || pollData.status === 'canceled') {
                             clearInterval(pollInterval);
                             console.error("Replicate task failed:", pollData.error);

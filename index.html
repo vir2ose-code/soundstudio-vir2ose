@@ -233,11 +233,14 @@
 
                     <div id="result-box-2" class="result-box" style="display: none; opacity: 0;">
                         <p id="generated-prompt-2" class="generated-prompt" style="display: none;"></p>
-                        <div class="result-actions">
+                        <div class="result-actions" style="display: flex; flex-direction: column; gap: 10px;">
                             <button id="listen-btn" onclick="toggleWaveformPlayback()"
                                 class="btn btn-secondary btn-copy-2" data-i18n="gen_listen_2">
                                 SOUND ANHÖREN
                             </button>
+                            <a id="download-btn" href="#" download class="btn btn-secondary" style="text-align: center; text-decoration: none;" data-i18n="gen_download_2">
+                                SOUND DOWNLOADEN
+                            </a>
                         </div>
                     </div>
 
