@@ -41,7 +41,7 @@ export default async function handler(req, res) {
                     input: {
                         prompt: prompt,
                         model_version: "stereo-large",
-                        duration: 8
+                        duration: 15
                     }
                 })
             });
