@@ -33,11 +33,11 @@ export default async function handler(req, res) {
             const postResponse = await fetch('https://api.replicate.com/v1/predictions', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Token ${apiKey}`,
+                    'Authorization': `Bearer ${apiKey}`,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    version: "671ac645ce5e552cc63a54a2bbff63fcf7980430f5d50ce73ee1ee8cc6144e58",
+                    version: "b05b1dff1d8c6b63d14b0faa5d59e6af84057a412221ebee460c1d1a1b1b0b00",
                     input: {
                         prompt: prompt,
                         model_version: "stereo-chord",
