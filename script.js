@@ -611,8 +611,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (subNaturalWidth > 0 && charCount > 0) {
                 const diff = mainWidth - subNaturalWidth;
                 const currentSpacing = parseFloat(getComputedStyle(sub).letterSpacing) || 0;
-                const extraPerChar = diff / charCount;
-                const newSpacing = currentSpacing + extraPerChar;
+                const newSpacing = currentSpacing + (diff / charCount);
                 sub.style.letterSpacing = `${newSpacing}px`;
             }
         });
@@ -1048,12 +1047,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const summary = `${genreVal} | ${vibeVal} | ${tempo} BPM | Key: ${tonart} | Time: ${takt}`;
 
-        const summaryBox = document.getElementById('config-summary');
         const summaryText = document.getElementById('summary-text');
 
-        if (summaryBox && summaryText) {
-            summaryText.innerText = summary;
-            summaryBox.style.display = 'block';
+        if (summaryText) {
+            summaryText.value = summary;
+            summaryText.style.display = 'block';
         }
 
         const rightSide = document.querySelector('.right-side');
@@ -1230,46 +1228,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }).catch(e => console.error("Portfolio playback failed:", e));
     }
 
-    let eqInitialized = false;
+    function initScrubber() {
+        const scrubber = document.getElementById('audio-scrubber');
+        const timeCurrent = document.getElementById('scrubber-time-current');
+        const timeTotal = document.getElementById('scrubber-time-total');
+        
+        if (!scrubber || !wavesurfer) return;
 
-    function initWebAudioEQ() {
-        if (eqInitialized || !wavesurfer || !wavesurfer.backend || !wavesurfer.backend.ac) return;
+        // Auto update scrubber as tune plays
+        wavesurfer.on('audioprocess', function() {
+            if(wavesurfer.getDuration() > 0) {
+                const percent = (wavesurfer.getCurrentTime() / wavesurfer.getDuration()) * 100;
+                scrubber.value = percent;
+                timeCurrent.innerText = formatTime(wavesurfer.getCurrentTime());
+            }
+        });
 
-        try {
-            const ac = wavesurfer.backend.ac;
+        // Update total time when track loads
+        wavesurfer.on('ready', function() {
+            if (timeTotal) timeTotal.innerText = formatTime(wavesurfer.getDuration());
+            if (timeCurrent) timeCurrent.innerText = "0:00";
+            scrubber.value = 0;
+        });
 
-            const lowEQ = ac.createBiquadFilter();
-            lowEQ.type = "lowshelf";
-            lowEQ.frequency.value = 150; // Deep bass focus
-            lowEQ.gain.value = 0;
+        // User scrubs slider manually
+        scrubber.addEventListener('input', function(e) {
+            const percent = e.target.value / 100;
+            wavesurfer.seekTo(percent);
+            timeCurrent.innerText = formatTime(wavesurfer.getCurrentTime());
+        });
+    }
 
-            const midEQ = ac.createBiquadFilter();
-            midEQ.type = "peaking";
-            midEQ.frequency.value = 1000;
-            midEQ.Q.value = 1.0;
-            midEQ.gain.value = 0;
-
-            const highEQ = ac.createBiquadFilter();
-            highEQ.type = "highshelf";
-            highEQ.frequency.value = 4000; // Crisp highs
-            highEQ.gain.value = 0;
-
-            wavesurfer.backend.setFilters([lowEQ, midEQ, highEQ]);
-
-            // Attach listeners
-            const lowSlider = document.getElementById('eq-low');
-            const midSlider = document.getElementById('eq-mid');
-            const highSlider = document.getElementById('eq-high');
-
-            if(lowSlider) lowSlider.addEventListener('input', e => lowEQ.gain.value = parseFloat(e.target.value));
-            if(midSlider) midSlider.addEventListener('input', e => midEQ.gain.value = parseFloat(e.target.value));
-            if(highSlider) highSlider.addEventListener('input', e => highEQ.gain.value = parseFloat(e.target.value));
-
-            eqInitialized = true;
-            console.log("Web Audio EQ Initialized for Wavesurfer");
-        } catch (e) {
-            console.error("Web Audio EQ Init failed:", e);
-        }
+    // Helper for mm:ss
+    function formatTime(seconds) {
+        const m = Math.floor(seconds / 60);
+        const s = Math.floor(seconds % 60);
+        return m + ":" + (s < 10 ? '0' : '') + s;
     }
 
     function playDemo() {
@@ -1283,7 +1277,6 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSoundURL = demoFile;
             wavesurfer.once('ready', () => { 
                 wavesurfer.play(); 
-                initWebAudioEQ();
             });
         }
     }
@@ -1353,7 +1346,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function startSoundGeneration() {
         const summaryTextEl = document.getElementById('summary-text');
-        const promptFromLeft = summaryTextEl ? summaryTextEl.innerText : '';
+        const promptFromLeft = summaryTextEl ? summaryTextEl.value : '';
         const statusDisplay = document.getElementById('status-display');
         const statusText = statusDisplay.querySelector('p');
         const waveformContainer = document.getElementById('waveform-container');
@@ -1440,7 +1433,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 wavesurfer.load(currentSoundURL);
                                 wavesurfer.once('ready', () => { 
                                     wavesurfer.play(); 
-                                    initWebAudioEQ(); 
                                     const playIcon = document.getElementById('play-pause-icon');
                                     if (playIcon) playIcon.innerText = '⏸';
                                 });
@@ -1564,7 +1556,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 wavesurfer.load(demoFile);
                 wavesurfer.once('ready', () => {
                     wavesurfer.play();
-                    initWebAudioEQ();
                 });
             }
 

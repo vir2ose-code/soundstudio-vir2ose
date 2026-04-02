@@ -195,9 +195,7 @@
                         <p data-i18n="gen_status_ready">Bereit für die Generierung...</p>
                     </div>
 
-                    <div id="config-summary" class="config-summary" style="display: none; padding: 15px; margin-bottom: 20px; background: rgba(0,0,0,0.6); border-radius: 8px; border: 1px solid rgba(255,215,0,0.3); font-size: 0.95rem; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.5);">
-                        <span id="summary-text"></span>
-                    </div>
+                    <textarea id="summary-text" style="display: none; width: 100%; height: 80px; padding: 15px; margin-bottom: 20px; background: rgba(0,0,0,0.6); color: var(--gold); border-radius: 8px; border: 1px solid rgba(255,215,0,0.5); font-family: inherit; font-size: 0.95rem; text-align: center; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); resize: vertical; margin-top: 10px;"></textarea>
 
                     <div id="waveform-container" class="waveform-container">
                         <div id="waveform"></div>
@@ -215,18 +213,11 @@
                             <span>PLAY / PAUSE</span>
                         </button>
                         
-                        <div class="eq-controls">
-                            <div class="eq-slider-group">
-                                <input type="range" id="eq-low" min="-12" max="12" value="0" class="eq-slider">
-                                <label>LOW</label>
-                            </div>
-                            <div class="eq-slider-group">
-                                <input type="range" id="eq-mid" min="-12" max="12" value="0" class="eq-slider">
-                                <label>MID</label>
-                            </div>
-                            <div class="eq-slider-group">
-                                <input type="range" id="eq-high" min="-12" max="12" value="0" class="eq-slider">
-                                <label>HIGH</label>
+                        <div class="scrubber-controls" style="flex: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 20px;">
+                            <input type="range" id="audio-scrubber" min="0" max="100" value="0" class="eq-slider" style="width: 100%;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--gold); margin-top: 5px; opacity: 0.8;">
+                                <span id="scrubber-time-current">0:00</span>
+                                <span id="scrubber-time-total">0:00</span>
                             </div>
                         </div>
                     </div>
