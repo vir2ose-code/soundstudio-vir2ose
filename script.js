@@ -1291,6 +1291,18 @@ document.addEventListener('DOMContentLoaded', () => {
             wavesurfer.once('ready', () => { 
                 wavesurfer.play(); 
             });
+
+            const statusText = document.querySelector('#status-display p');
+            const waveformContainer = document.getElementById('waveform-container');
+            const playerControls = document.getElementById('player-controls');
+            
+            if (statusText) statusText.style.display = 'none';
+            if (waveformContainer) waveformContainer.style.display = 'block';
+            if (playerControls) {
+                playerControls.style.display = 'flex';
+                const playIcon = document.getElementById('play-pause-icon');
+                if (playIcon) playIcon.innerText = '⏸';
+            }
         }
     }
 
@@ -1435,7 +1447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             const audioUrl = pollData.output; // MusicGen returns a URL string
                             
                             statusDisplay.classList.remove('status-active');
-                            statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
+                            statusText.style.display = 'none';
 
                             resultBox2.style.display = 'block';
                             setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
@@ -1540,7 +1552,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Normal Library Fallback
-            if (statusText) statusText.innerText = translations[currentLang]['gen_status_done'] || "Generierung abgeschlossen!";
+            if (statusText) statusText.style.display = 'none';
 
             // Show result box with fade-in effect
             if (resultBox2) {
@@ -1624,6 +1636,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const statusDisplay = document.getElementById('status-display');
         const statusText = statusDisplay.querySelector('p');
         statusDisplay.classList.remove('status-active');
+        statusText.style.display = 'block';
         statusText.innerText = translations[currentLang]['gen_status_ready'] || 'Bereit...';
 
         // Hide waveform & controls
