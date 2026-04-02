@@ -2591,7 +2591,7 @@ body::after {
     filter: brightness(1.2);
 }
 
-.generated-prompt, #summary-text {
+.generated-prompt {
     background: linear-gradient(to right, #ffeb99, #ffd700, #d4af37, #ffeb99);
     background-size: 200% auto;
     -webkit-background-clip: text;
