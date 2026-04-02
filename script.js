@@ -639,6 +639,8 @@ document.addEventListener('DOMContentLoaded', () => {
             pixelRatio: 1
         });
 
+        initScrubber();
+
         // Phase 39: Wavesurfer idle mode — stop redrawing when audio finishes
         wavesurfer.on('finish', () => {
             wavesurfer.empty();
@@ -1235,9 +1237,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!scrubber || !wavesurfer) return;
 
+        let isScrubbing = false;
+
+        scrubber.addEventListener('mousedown', () => isScrubbing = true);
+        scrubber.addEventListener('touchstart', () => isScrubbing = true, { passive: true });
+        
+        scrubber.addEventListener('mouseup', () => isScrubbing = false);
+        scrubber.addEventListener('touchend', () => isScrubbing = false);
+
         // Auto update scrubber as tune plays
         wavesurfer.on('audioprocess', function() {
-            if(wavesurfer.getDuration() > 0) {
+            if(!isScrubbing && wavesurfer.getDuration() > 0) {
                 const percent = (wavesurfer.getCurrentTime() / wavesurfer.getDuration()) * 100;
                 scrubber.value = percent;
                 timeCurrent.innerText = formatTime(wavesurfer.getCurrentTime());
@@ -1249,13 +1259,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (timeTotal) timeTotal.innerText = formatTime(wavesurfer.getDuration());
             if (timeCurrent) timeCurrent.innerText = "0:00";
             scrubber.value = 0;
+            isScrubbing = false;
         });
 
         // User scrubs slider manually
         scrubber.addEventListener('input', function(e) {
-            const percent = e.target.value / 100;
-            wavesurfer.seekTo(percent);
-            timeCurrent.innerText = formatTime(wavesurfer.getCurrentTime());
+            if(wavesurfer.getDuration() > 0) {
+                const percent = e.target.value / 100;
+                wavesurfer.seekTo(percent);
+                timeCurrent.innerText = formatTime(wavesurfer.getCurrentTime());
+            }
         });
     }
 
