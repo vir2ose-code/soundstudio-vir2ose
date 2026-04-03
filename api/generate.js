@@ -1,7 +1,7 @@
 // /api/generate.js
 // Vercel Serverless Function for Azure OpenAI gpt-audio-1.5
 
-const ENABLE_AI_GENERATION = false; // Sicherheits-Modus: Strikt auf false!
+const ENABLE_AI_GENERATION = true; // Sicherheits-Modus: Temporär für Test auf true!
 
 export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
