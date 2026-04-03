@@ -32,7 +32,14 @@ export default async function handler(req, res) {
             // Azure nutzt chat/completions für die Audio-Modelle (gpt-4o-audio-preview / gpt-audio-1.5)
             const apiVersion = '2024-02-15-preview'; 
             
-            const targetUrl = `${endpoint}/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
+            let targetUrl = '';
+            // Robust parsing in case the user pasted the entire URL into the endpoint variable
+            if (endpoint.includes('/openai/deployments/')) {
+                targetUrl = endpoint;
+            } else {
+                const cleanEndpoint = endpoint.replace(/\/$/, ""); // Remove trailing slash
+                targetUrl = `${cleanEndpoint}/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
+            }
             
             const azurePayload = {
                 messages: [
