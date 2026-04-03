@@ -1,65 +1,89 @@
 // /api/generate.js
-// Vercel Serverless Function for Replicate Audio Generation Polling
+// Vercel Serverless Function for Azure OpenAI gpt-audio-1.5
+
+const ENABLE_AI_GENERATION = false; // Sicherheits-Modus: Strikt auf false!
+
 export default async function handler(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
     
-    // Load the user's secret Replicate Token
-    const apiKey = process.env.REPLICATE_API_TOKEN;
-    if (!apiKey) {
-        return res.status(501).json({ error: 'REPLICATE_API_TOKEN missing', useFallback: true });
+    // Safely return Fallback immediately to keep CPU idle (< 3%)
+    if (!ENABLE_AI_GENERATION) {
+        return res.status(200).json({ useFallback: true });
+    }
+
+    const apiKey = process.env.AZURE_OPENAI_API_KEY;
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT; 
+    
+    if (!apiKey || !endpoint) {
+        return res.status(501).json({ error: 'Azure Credentials missing', useFallback: true });
     }
 
     const { prompt, predictionId } = req.body;
 
     if (predictionId) {
-        // === POLLING LOGIC ===
-        // The frontend periodically asks us if the Replicate task is finished.
-        try {
-            const getResponse = await fetch(`https://api.replicate.com/v1/predictions/${predictionId}`, {
-                headers: { 'Authorization': `Bearer ${apiKey}` }
-            });
-            const data = await getResponse.json();
-            return res.status(200).json(data); 
-        } catch (e) {
-            console.error('Polling Error:', e);
-            return res.status(500).json({ error: 'Polling failed' });
-        }
+        // Polling not supported for sync Azure API, return error if accidentally called
+        return res.status(400).json({ error: 'Polling not applicable for Azure Sync', useFallback: true });
     } 
     
     if (prompt) {
-        // === INITIALIZATION LOGIC ===
-        // We tell Replicate to start processing the prompt on Meta's MusicGen.
         try {
-            const postResponse = await fetch('https://api.replicate.com/v1/predictions', {
+            // "Die deployment-id aus der URL: gpt-audio-1.5"
+            const deploymentName = 'gpt-audio-1.5';
+            // Azure nutzt chat/completions für die Audio-Modelle (gpt-4o-audio-preview / gpt-audio-1.5)
+            const apiVersion = '2024-02-15-preview'; 
+            
+            const targetUrl = `${endpoint}/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
+            
+            const azurePayload = {
+                messages: [
+                    {
+                        role: "user",
+                        content: [
+                            {
+                                type: "text",
+                                text: prompt
+                            }
+                        ]
+                    }
+                ],
+                modalities: ["audio", "text"],
+                audio: {
+                    voice: "alloy",
+                    format: "wav"
+                }
+            };
+
+            const postResponse = await fetch(targetUrl, {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${apiKey}`,
+                    'api-key': apiKey,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    version: "671ac645ce5e552cc63a54a2bbff63fcf798043055d2dac5fc9e36a837eedcfb",
-                    input: {
-                        prompt: prompt,
-                        model_version: "stereo-large",
-                        duration: 15
-                    }
-                })
+                body: JSON.stringify(azurePayload)
             });
             
             const data = await postResponse.json();
             
-            if (!postResponse.ok || data.error || data.detail) {
-                console.error("Replicate API Error:", data);
-                return res.status(500).json({ error: data.detail || data.error || 'Unknown Replicate Error' });
+            if (!postResponse.ok || data.error) {
+                console.error("Azure API Error:", data);
+                return res.status(500).json({ error: data.error?.message || 'Unknown Azure Error', useFallback: true });
             }
             
-            // Return the task ID immediately so Vercel doesn't hit the 10-second timeout!
-            return res.status(200).json({ predictionId: data.id });
+            // Azure returns the audio as base64 in the choices array
+            const audioBase64 = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.audio ? data.choices[0].message.audio.data : null;
+            if (!audioBase64) {
+                return res.status(500).json({ error: 'No audio data returned from Azure', useFallback: true });
+            }
+
+            const audioUrl = `data:audio/wav;base64,${audioBase64}`;
+            
+            // Return synchronously formatted as "succeeded" to trick frontend into instantly loading it!
+            return res.status(200).json({ status: 'succeeded', output: audioUrl });
         } catch (e) {
             console.error('Init Error:', e);
-            return res.status(500).json({ error: 'Init failed' });
+            return res.status(500).json({ error: 'Init failed', useFallback: true });
         }
     }
     
-    return res.status(400).json({ error: 'Invalid request' });
+    return res.status(400).json({ error: 'Invalid request', useFallback: true });
 }

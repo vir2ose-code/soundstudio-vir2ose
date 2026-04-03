@@ -1043,11 +1043,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const genreVal = genreEl.options[genreEl.selectedIndex].text;
         const vibeVal = vibeEl.options[vibeEl.selectedIndex].text;
         
-        const tempo = (tempoEl && tempoEl.value) ? tempoEl.value : '-';
-        const tonart = (tonartEl && tonartEl.value) ? tonartEl.value : '-';
-        const takt = (taktEl && taktEl.value) ? taktEl.value : '-';
+        let tempoStr = (tempoEl && tempoEl.value.trim() !== '') ? `${tempoEl.value.trim()} BPM` : '120 BPM';
+        let tonartStr = (tonartEl && tonartEl.value.trim() !== '') ? `Key of ${tonartEl.value.trim()}` : 'Key of C-Major';
 
-        const summary = `${genreVal} | ${vibeVal} | ${tempo} BPM | Key: ${tonart} | Time: ${takt}`;
+        const summary = `Professional ${genreVal} Instrumental, ${vibeVal} Atmosphere, ${tempoStr}, ${tonartStr}, 44.1kHz Studio Quality, Target Duration: 180 Seconds.`;
 
         const summaryText = document.getElementById('summary-text');
 
@@ -1417,7 +1416,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 const initData = await initRes.json();
 
-                // If Vercel has no API Key, or Replicate errored instantly, display error then fallback
+                // Sync API Success (e.g. Azure returning base64 instantly)
+                if (initRes.status === 200 && initData.status === 'succeeded' && initData.output) {
+                    const audioUrl = initData.output;
+                    
+                    statusDisplay.classList.remove('status-active');
+                    statusText.style.display = 'none';
+
+                    resultBox2.style.display = 'block';
+                    setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
+                    waveformContainer.style.display = 'block';
+
+                    currentSoundURL = audioUrl;
+                    if (wavesurfer && currentSoundURL) {
+                        wavesurfer.load(currentSoundURL);
+                        wavesurfer.once('ready', () => { 
+                            wavesurfer.play(); 
+                            const playIcon = document.getElementById('play-pause-icon');
+                            if (playIcon) playIcon.innerText = '⏸';
+                        });
+                    }
+
+                    const downloadBtn = document.getElementById('download-btn');
+                    if (downloadBtn) {
+                        downloadBtn.href = currentSoundURL;
+                        downloadBtn.download = `VIR2OSE_AI_Audio_${Date.now()}.wav`;
+                        downloadBtn.classList.add('btn-breathe');
+                        if (currentSoundURL.startsWith('http')) {
+                            fetch(currentSoundURL)
+                                .then(res => res.blob())
+                                .then(blob => downloadBtn.href = URL.createObjectURL(blob))
+                                .catch(e => console.error("Blob download failed:", e));
+                        }
+                    }
+                    return; // Stop here, no polling needed for async Azure logic
+                }
+
+                // If Vercel has no API Key, or Async generation errored instantly, display error then fallback
                 if (initRes.status !== 200 || initData.useFallback || initData.error || !initData.predictionId) {
                     const errMsg = initData.error || "Kein Token oder API Fehler.";
                     console.warn("Real API Error or Missing Token, Triggering Fail-Safe:", errMsg);
