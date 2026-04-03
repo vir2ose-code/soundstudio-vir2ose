@@ -73,7 +73,10 @@ export default async function handler(req, res) {
             
             if (!postResponse.ok || data.error) {
                 console.error("Azure API Error:", data);
-                return res.status(500).json({ error: data.error?.message || 'Unknown Azure Error', useFallback: true });
+                // VERBOSE DEBUGGING FOR THE UI TO HELP USER FIX VERCEL
+                const keySnippet = apiKey ? `${apiKey.substring(0,4)}...${apiKey.substring(apiKey.length-4)}` : 'missing';
+                const dbgMsg = `Azure Error: ${data.error?.message || postResponse.statusText}. Target: ${targetUrl}. Key used: ${keySnippet}`;
+                return res.status(500).json({ error: dbgMsg, useFallback: true });
             }
             
             // Azure returns the audio as base64 in the choices array
