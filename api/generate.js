@@ -1,96 +1,104 @@
-/**
- * API Handler für die Live AI Audio Generation (VIR2OSE Sound Engine)
- * Verbunden mit Azure AI Foundry (gpt-4o-audio-preview)
- */
+// /api/generate.js
+// Vercel Serverless Function for Azure OpenAI gpt-audio-1.5
 
 export default async function handler(req, res) {
-    // 1. Umgebungsvariablen & Konfiguration
-    const ENABLE_AZURE_GENERATION = process.env.ENABLE_AZURE_GENERATION === 'true';
+    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+    const ENABLE_AZURE_GENERATION = process.env.ENABLE_AZURE_GENERATION === 'true'; // Global toggle
     const ADMIN_BYPASS_KEY = process.env.ADMIN_BYPASS_KEY;
-    const AZURE_ENDPOINT = process.env.AZURE_OPENAI_ENDPOINT;
-    const AZURE_KEY = process.env.AZURE_OPENAI_KEY;
-    const AZURE_DEPLOYMENT = process.env.AZURE_OPENAI_DEPLOYMENT_NAME;
+    const { prompt, adminKey, predictionId } = req.body;
 
-    // Nur POST-Requests erlauben
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-
-    const { prompt, adminKey, voice = "alloy", format = "wav" } = req.body;
-
-    // 2. Validierung
-    if (!prompt) {
-        return res.status(400).json({ error: 'Prompt ist erforderlich' });
-    }
-
-    // 3. Sicherheits-Check (Globaler Hebel vs. Admin Bypass)
+    // 1. Authorization: Allow if global toggle is ON or if Admin Key matches
     const isAuthorized = ENABLE_AZURE_GENERATION || (adminKey && adminKey === ADMIN_BYPASS_KEY);
 
     if (!isAuthorized) {
-        console.log("Generierung deaktiviert: Sende Mock-Antwort");
-        return res.status(200).json({
-            success: true,
-            isDemo: true,
-            message: "Demo Mode Aktiv: Live-Generierung ist aktuell deaktiviert.",
-            demoAudioUrl: "/sounds/vir2ose_demo_beat.mp3" 
+        return res.status(200).json({ 
+            useFallback: true, 
+            error: "Generation lock active. Admin Key required." 
         });
     }
 
-    // 4. Azure AI Request Vorbereitung
-    if (!AZURE_ENDPOINT || !AZURE_KEY || !AZURE_DEPLOYMENT) {
-        console.error("Fehler: Azure Umgebungsvariablen fehlen!");
-        return res.status(500).json({ error: 'Server-Konfigurationsfehler' });
+    const apiKey = process.env.AZURE_OPENAI_KEY || process.env.AZURE_OPENAI_API_KEY;
+    const endpoint = process.env.AZURE_OPENAI_ENDPOINT; 
+    
+    if (!apiKey || !endpoint) {
+        return res.status(501).json({ error: 'Azure Credentials missing', useFallback: true });
     }
 
-    try {
-        const url = `${AZURE_ENDPOINT}/openai/deployments/${AZURE_DEPLOYMENT}/chat/completions?api-version=2024-05-01-preview`;
-
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'api-key': AZURE_KEY
-            },
-            body: JSON.stringify({
+    if (predictionId) {
+        // Polling not supported for sync Azure API, return error if accidentally called
+        return res.status(400).json({ error: 'Polling not applicable for Azure Sync', useFallback: true });
+    } 
+    
+    if (prompt) {
+        try {
+            // "Die deployment-id aus der URL: gpt-audio-1.5"
+            const deploymentName = 'gpt-audio-1.5';
+            // Azure nutzt chat/completions für die Audio-Modelle (gpt-4o-audio-preview / gpt-audio-1.5)
+            const apiVersion = '2024-02-15-preview'; 
+            
+            let targetUrl = '';
+            // Robust parsing in case the user pasted the entire URL into the endpoint variable
+            if (endpoint.includes('/openai/deployments/')) {
+                targetUrl = endpoint;
+            } else {
+                const cleanEndpoint = endpoint.replace(/\/$/, ""); // Remove trailing slash
+                targetUrl = `${cleanEndpoint}/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`;
+            }
+            
+            const azurePayload = {
                 messages: [
-                    { 
-                        role: 'system', 
-                        content: 'You are VIR2OSE, a world-class AI music producer. Generate professional audio based on the user prompt.' 
-                    },
-                    { role: 'user', content: prompt }
+                    {
+                        role: "user",
+                        content: [
+                            {
+                                type: "text",
+                                text: prompt
+                            }
+                        ]
+                    }
                 ],
-                modalities: ["text", "audio"],
-                audio: { 
-                    voice: voice, 
-                    format: format 
+                modalities: ["audio", "text"],
+                audio: {
+                    voice: "alloy",
+                    format: "wav"
                 }
-            })
-        });
+            };
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Azure API Error:", errorData);
-            return res.status(response.status).json({ 
-                error: 'Azure AI Verarbeitungsfehler', 
-                details: errorData.error?.message || errorData 
+            const postResponse = await fetch(targetUrl, {
+                method: 'POST',
+                headers: {
+                    'api-key': apiKey,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(azurePayload)
             });
+            
+            const data = await postResponse.json();
+            
+            if (!postResponse.ok || data.error) {
+                console.error("Azure API Error:", data);
+                // VERBOSE DEBUGGING FOR THE UI TO HELP USER FIX VERCEL
+                const keySnippet = apiKey ? `${apiKey.substring(0,4)}...${apiKey.substring(apiKey.length-4)}` : 'missing';
+                const dbgMsg = `Azure Error: ${data.error?.message || postResponse.statusText}. Target: ${targetUrl}. Key used: ${keySnippet}`;
+                return res.status(500).json({ error: dbgMsg, useFallback: true });
+            }
+            
+            // Azure returns the audio as base64 in the choices array
+            const audioBase64 = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.audio ? data.choices[0].message.audio.data : null;
+            if (!audioBase64) {
+                return res.status(500).json({ error: 'No audio data returned from Azure', useFallback: true });
+            }
+
+            const audioUrl = `data:audio/wav;base64,${audioBase64}`;
+            
+            // Return synchronously formatted as "succeeded" to trick frontend into instantly loading it!
+            return res.status(200).json({ status: 'succeeded', output: audioUrl });
+        } catch (e) {
+            console.error('Init Error:', e);
+            return res.status(500).json({ error: 'Init failed', useFallback: true });
         }
-
-        const result = await response.json();
-        
-        // Audio-Daten extrahieren (Base64)
-        const choice = result.choices[0];
-        const audioObject = choice.message.audio;
-
-        return res.status(200).json({
-            success: true,
-            text: choice.message.content || audioObject?.transcript,
-            audioBase64: audioObject?.data, 
-            audioId: audioObject?.id
-        });
-
-    } catch (err) {
-        console.error("API Handler Fehler:", err);
-        return res.status(500).json({ error: 'Interner Serverfehler', details: err.message });
     }
+    
+    return res.status(400).json({ error: 'Invalid request', useFallback: true });
 }
