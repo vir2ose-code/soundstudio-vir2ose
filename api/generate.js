@@ -60,34 +60,43 @@ export default async function handler(req, res) {
     // ──────────────── HYBRID API LOGIC (INITIATION HANDLER) ────────────────
     if (prompt) {
         try {
-            // Switching to JSON instead of FormData to prevent Node undefined errors
-            const initRes = await fetch('https://api.stability.ai/v2beta/stable-audio/generate', {
+            // Manual Multipart Construction to perfectly bypass Vercel/Node edge cases with FormData
+            const boundary = "----WebKitFormBoundary" + Math.random().toString(36).substring(2);
+            let bodyStr = `--${boundary}\r\nContent-Disposition: form-data; name="prompt"\r\n\r\n${prompt}\r\n--${boundary}--`;
+
+            const initRes = await fetch('https://api.stability.ai/v2beta/audio/stable-audio-2/text-to-audio', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json',
+                    'Content-Type': `multipart/form-data; boundary=${boundary}`,
                     'Accept': 'application/json' 
                 },
-                body: JSON.stringify({ prompt: prompt })
+                body: bodyStr
             });
             
             let data;
             try {
                 data = await initRes.json();
             } catch(jsonErr) {
-                // If Stability AI returns an error page instead of JSON, catch it!
-                throw new Error(`Stability API rejected format (Status ${initRes.status})`);
+                const rawText = await initRes.text();
+                throw new Error(`Stability API rejected format or crashed (Status ${initRes.status}). ${rawText.substring(0, 50)}`);
             }
             
-            if (initRes.status === 200 && data.id) {
-                // Success: Returns the task ID for the frontend to poll
-                return res.status(200).json({ predictionId: data.id, status: 'processing' });
+            if (initRes.status === 200) {
+                // If the API is synchronous and returns base64 directly in a JSON payload:
+                if (data.audio) {
+                    const audioUrl = `data:audio/wav;base64,${data.audio}`;
+                    return res.status(200).json({ status: 'succeeded', output: audioUrl });
+                } 
+                // If the API is async and returns an ID:
+                else if (data.id) {
+                    return res.status(200).json({ predictionId: data.id, status: 'processing' });
+                }
             } else {
-                console.error("Stability API Init Error:", data);
-                
+                console.error("Stability API Error Payload:", data);
                 // VERBOSE DEBUGGING FOR THE UI
-                const keySnippet = apiKey ? `${apiKey.substring(0,4)}...${apiKey.substring(apiKey.length-4)}` : 'missing';
-                const dbgMsg = `Stability Init Error: ${data.message || initRes.statusText}. Key used: ${keySnippet}`;
+                const keySnippet = apiKey ? `${apiKey.substring(0,4)}...` : 'missing';
+                const dbgMsg = `Stability Init Error: ${data.message || data.name || initRes.statusText}. Status: ${initRes.status}`;
                 return res.status(500).json({ error: dbgMsg, useFallback: true });
             }
         } catch (e) {
