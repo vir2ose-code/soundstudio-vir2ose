@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // About Me DE
             'nav_about': 'ÜBER MICH',
             'about_title': 'ÜBER MICH',
-            'about_intro': 'Herzlich willkommen! Mein Name ist Waldemar Krucinski. Mein professionelles Schaffen ruht auf drei wesentlichen Säulen, die kreatives Handwerk, staatlich geprüfte Expertise und technologischen Pionirgeist vereinen: Musikproduktion, Mediengestaltung und Netzwerk-Systeme.',
+            'about_intro': 'Herzlich willkommen! Mein Name ist Waldemar Krucinski. Mein professionelles Schaffen ruht auf drei wesentlichen Säulen, die kreatives Handwerk, staatlich geprüfte Expertise und technologischen Pioniergeist vereinen: Musikproduktion, Mediengestaltung und Netzwerk-Systeme.',
 
             'about_col1_title': '1. Musik: Staatlich geprüfte Produktion',
             'about_col1_text': 'Musik ist für mich ein ganzheitlicher Prozess auf höchstem technischem Niveau. Als staatlich geprüfter Musikproduzent (HOFA College Diploma) verfüge ich über tiefgreifendes Fachwissen in der gesamten Produktionskette. Mein Fokus liegt auf einem erstklassigen Sound und einer strukturierten Umsetzung – von der ersten Vision bis zum finalen Master.',
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'srv_card2_item3': '<strong>Mixing & Mastering:</strong> Ein transparenter, balancierter Mix und ein finales Mastering, das auf allen Endgeräten überzeugt.',
             'srv_card3_title': 'Sounddesign für Film & Video',
             'srv_card3_desc': 'Verleihe deinem visuellen Content die passende akustische Tiefe:',
-            'srv_card3_item1': '<strong>Film Sounddesign:</strong> Maßgeschneiderte Sound-Landschaften und Atmosphären für Filmstreifen oder Werbevideos.',
+            'srv_card3_item1': '<strong>Film-Sounddesign:</strong> Maßgeschneiderte Sound-Landschaften und Atmosphären für Filmstreifen oder Werbevideos.',
             'srv_card3_item2': '<strong>Synchronisation:</strong> Präzise Anpassung von Ton und Bild für eine immersive Wirkung.',
             'srv_card4_title': 'Podcasting & Voiceover',
             'srv_card4_desc': 'Professioneller Sound für deine Botschaft:',
@@ -526,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'about_col2_skill_text': 'Planowanie na planie, Montaż klasy High-End (DaVinci Resolve Studio, Avid, FCP), Animacja, Edycja grafiki, Dubbing i kompletne produkcje filmowe.',
 
             'about_col3_title': '3. Sieć i IT: Innowacja & Przyszłość',
-            'about_col3_text': 'Trzeci filar stanowi moją pasję do sztuki sieciowej i nowoczesnego programowania. Tutaj działam als ambitny "Early Adopter": Moje zainteresowanie rośnie wraz z każdą innowacją. Intensywnie eksperymentuję z narzędziami Agenta AI, VS Cloud i GitHub. Fascynują mnie powiązania infrastruktury technicznej z koncepcjami przyszłości, takimi jak technologia Antigravity.',
+            'about_col3_text': 'Trzeci filar stanowi moją pasję do sztuki sieciowej i nowoczesnego programowania. Tutaj działam jako ambitny "Early Adopter": Moje zainteresowanie rośnie wraz z każdą innowacją. Intensywnie eksperymentuję z narzędziami Agenta AI, VS Cloud i GitHub. Fascynują mnie powiązania infrastruktury technicznej z koncepcjami przyszłości, takimi jak technologia Antigravity.',
 
             'about_claim': '<strong>Moje motto:</strong> Niezależnie od tego, czy chodzi o akustykę, obraz czy sieci cyfrowe – reprezentuję projekty, które przekonują szeroką wiedzą, podwójnie certyfikowaną jakością i odwagą do wdrażania nowych technologii.',
             // Services PL
@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'srv_card1_footer': 'Niezależnie czy jesteś z regionu, czy podróżujesz – zarezerwuj swój osobisty dzień sesyjny i dopracuj swój projekt.',
             'srv_card2_title': 'Produkcja muzyczna & Inżynieria',
             'srv_card2_desc': 'Jako państwowy Producent Muzyczny towarzyszę Twojemu projektowi z techniczną doskonałością:',
-            'srv_card2_item1': '<strong>Nagrywanie i edycja:</strong> Czyste nagrania i perfekcyjny timing für każde instrument.',
+            'srv_card2_item1': '<strong>Nagrywanie i edycja:</strong> Czyste nagrania i perfekcyjny timing dla każdego instrumentu.',
             'srv_card2_item2': '<strong>Programowanie bębnów:</strong> Indywidualne i mocne uderzenia, które nadają Twojemu utworowi niezbędny fundament.',
             'srv_card2_item3': '<strong>Miksowanie i mastering:</strong> Przejrzysty, zbalansowany miks i finałowy master, który przekonuje na wszystkich urządzeniach.',
             'srv_card3_title': 'Sound Design dla Filmu i Wideo',
@@ -1409,6 +1409,8 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDisplay.classList.add('status-active');
         statusText.innerText = translations[currentLang]['gen_status_composing'] || "KI komponiert deinen Beat...";
         waveformContainer.style.display = 'none';
+        const playerControls = document.getElementById('player-controls');
+        if (playerControls) playerControls.style.display = 'none';
 
         // Hide result box and reset button state
         resultBox2.style.display = 'none';
@@ -1444,6 +1446,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     resultBox2.style.display = 'block';
                     setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
                     waveformContainer.style.display = 'block';
+                    if (playerControls) playerControls.style.display = 'flex';
 
                     currentSoundURL = audioUrl;
                     if (wavesurfer && currentSoundURL) {
@@ -1505,6 +1508,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             resultBox2.style.display = 'block';
                             setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
                             waveformContainer.style.display = 'block';
+                            const pControls = document.getElementById('player-controls');
+                            if (pControls) pControls.style.display = 'flex';
 
                             currentSoundURL = audioUrl;
                             if (wavesurfer && currentSoundURL) {
