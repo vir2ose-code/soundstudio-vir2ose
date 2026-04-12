@@ -71,7 +71,13 @@ export default async function handler(req, res) {
                 body: JSON.stringify({ prompt: prompt })
             });
             
-            const data = await initRes.json();
+            let data;
+            try {
+                data = await initRes.json();
+            } catch(jsonErr) {
+                // If Stability AI returns an error page instead of JSON, catch it!
+                throw new Error(`Stability API rejected format (Status ${initRes.status})`);
+            }
             
             if (initRes.status === 200 && data.id) {
                 // Success: Returns the task ID for the frontend to poll
@@ -86,7 +92,8 @@ export default async function handler(req, res) {
             }
         } catch (e) {
             console.error('Init Request Error:', e);
-            return res.status(500).json({ error: 'Server Init Exception', useFallback: true });
+            // Send exact error to the frontend instead of generic string
+            return res.status(500).json({ error: `Server Init Exception: ${e.message || e.toString()}`, useFallback: true });
         }
     }
     
