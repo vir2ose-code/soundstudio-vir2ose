@@ -60,17 +60,15 @@ export default async function handler(req, res) {
     // ──────────────── HYBRID API LOGIC (INITIATION HANDLER) ────────────────
     if (prompt) {
         try {
-            // Stability AI accepts multipart/form-data for audio generation natively 
-            const formData = new FormData();
-            formData.append("prompt", prompt);
-            
+            // Switching to JSON instead of FormData to prevent Node undefined errors
             const initRes = await fetch('https://api.stability.ai/v2beta/stable-audio/generate', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
                     'Accept': 'application/json' 
                 },
-                body: formData
+                body: JSON.stringify({ prompt: prompt })
             });
             
             const data = await initRes.json();
