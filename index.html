@@ -192,7 +192,22 @@
                         Echtzeit.</p>
 
                     <div id="status-display" class="status-display" style="padding: 10px 15px; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: auto;">
-                        <p data-i18n="gen_status_ready" style="font-size: 0.85rem; margin: 0; padding-bottom: 5px; opacity: 0.8;">Bereit für die Generierung...</p>
+                        <p id="status-text" data-i18n="gen_status_ready" style="font-size: 0.85rem; margin: 0; padding-bottom: 5px; opacity: 0.8;">Bereit für die Generierung...</p>
+                        
+                        <!-- AI GENERATOR LOADER -->
+                        <div id="loader-container" class="loader-container">
+                            <div class="dot-spinner">
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                                <div class="dot-spinner__dot"></div>
+                            </div>
+                        </div>
+
                         <div id="waveform-container" class="waveform-container" style="display: none; width: 100%;">
                             <div id="waveform"></div>
                         </div>
