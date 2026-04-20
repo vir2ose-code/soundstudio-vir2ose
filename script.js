@@ -1408,6 +1408,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         statusDisplay.classList.add('status-active');
         statusText.innerText = translations[currentLang]['gen_status_composing'] || "KI komponiert deinen Beat...";
+        
+        // Show progress loader
+        const loader = document.getElementById('loader-container');
+        if (loader) loader.style.display = 'flex';
+
         waveformContainer.style.display = 'none';
         const playerControls = document.getElementById('player-controls');
         if (playerControls) playerControls.style.display = 'none';
@@ -1442,6 +1447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     statusDisplay.classList.remove('status-active');
                     statusText.style.display = 'none';
+                    if (loader) loader.style.display = 'none';
 
                     resultBox2.style.display = 'block';
                     setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
@@ -1481,6 +1487,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         statusText.innerText = `API Fehler: ${errMsg}`;
                         statusText.style.color = '#ff4444';
                     }
+                    if (loader) loader.style.display = 'none';
                     setTimeout(() => {
                         if (statusText) statusText.style.color = '';
                         runSimulationFallback(promptFromLeft, currentLang);
@@ -1504,6 +1511,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             
                             statusDisplay.classList.remove('status-active');
                             statusText.style.display = 'none';
+                            const loaderFinal = document.getElementById('loader-container');
+                            if (loaderFinal) loaderFinal.style.display = 'none';
 
                             resultBox2.style.display = 'block';
                             setTimeout(() => resultBox2.classList.add('result-box-show'), 10);
@@ -1542,6 +1551,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 statusText.innerText = `Replicate Fehler: ${pollData.error}`;
                                 statusText.style.color = '#ff4444';
                             }
+                            const loaderError = document.getElementById('loader-container');
+                            if (loaderError) loaderError.style.display = 'none';
                             setTimeout(() => {
                                 if (statusText) statusText.style.color = '';
                                 runSimulationFallback(promptFromLeft, currentLang);
